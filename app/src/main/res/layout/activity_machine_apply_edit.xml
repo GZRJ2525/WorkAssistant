@@ -1,0 +1,263 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gzrijing.workassistant.view.MachineApplyEditActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="申请机械列表："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/machine_apply_edit_del_all_iv"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/sw_15dp"
+                    android:layout_weight="2"
+                    android:src="@drawable/icon_delete" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:gravity="center"
+                    android:text="名称"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_12dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="单位"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_12dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="数量"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_12dp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black" />
+
+            <com.gzrijing.workassistant.widget.MyListView
+                android:id="@+id/machine_apply_edit_apply_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="@dimen/sw_5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusableInTouchMode="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="自定义机械："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_15dp" />
+
+                    <Button
+                        android:id="@+id/machine_apply_edit_add_btn"
+                        android:layout_width="@dimen/sw_30dp"
+                        android:layout_height="@dimen/sw_20dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/btn_blue_frame"
+                        android:text="添加"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/sw_12dp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/sw_5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="名称："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_15dp" />
+
+                    <EditText
+                        android:id="@+id/machine_apply_edit_name_et"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_line_gray_blue"
+                        android:textColor="@color/black"
+                        android:textCursorDrawable="@drawable/edit_cursor_blue"
+                        android:textSize="@dimen/sw_15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/sw_5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="规格："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_15dp" />
+
+                    <EditText
+                        android:id="@+id/machine_apply_edit_spec_et"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_line_gray_blue"
+                        android:textColor="@color/black"
+                        android:textCursorDrawable="@drawable/edit_cursor_blue"
+                        android:textSize="@dimen/sw_15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/sw_5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="单位："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_15dp" />
+
+                    <EditText
+                        android:id="@+id/machine_apply_edit_unit_et"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_line_gray_blue"
+                        android:textColor="@color/black"
+                        android:textCursorDrawable="@drawable/edit_cursor_blue"
+                        android:textSize="@dimen/sw_15dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sw_40dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="关键字："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp" />
+
+                <EditText
+                    android:id="@+id/machine_apply_edit_query_keyword_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@drawable/edit_frame_gray_blue"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp" />
+
+                <Button
+                    android:id="@+id/machine_apply_edit_query_keyword_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/sw_30dp"
+                    android:layout_marginLeft="@dimen/sw_5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_blue"
+                    android:text="查询"
+                    android:textColor="@color/white"
+                    android:textCursorDrawable="@drawable/edit_cursor_blue"
+                    android:textSize="@dimen/sw_15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="名称"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_12dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="单位"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_12dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="状态"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_12dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black" />
+
+            <com.gzrijing.workassistant.widget.MyListView
+                android:id="@+id/machine_apply_edit_query_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

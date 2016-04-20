@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gzrijing.workassistant.view.ReportInfoByProjectAmountActivity">
+
+    <include layout="@layout/toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/sw_5dp"
+                android:text="未审核工程量单："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"/>
+
+            <com.gzrijing.workassistant.widget.MyListView
+                android:id="@+id/report_info_by_project_amount_wait_lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/sw_5dp"
+                android:background="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/sw_5dp"
+                android:text="已审核工程量单："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"/>
+
+            <com.gzrijing.workassistant.widget.MyListView
+                android:id="@+id/report_info_by_project_amount_ok_lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

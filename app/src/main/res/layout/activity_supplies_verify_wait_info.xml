@@ -1,0 +1,223 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gzrijing.workassistant.view.SuppliesVerifyWaitInfoActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/sw_5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="领用时间："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp" />
+
+                <TextView
+                    android:id="@+id/supplies_verify_wait_info_use_time_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey_text"
+                    android:textSize="@dimen/sw_15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/sw_5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="　备　注："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp" />
+
+                <TextView
+                    android:id="@+id/supplies_verify_wait_info_remarks_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/sw_5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="名称"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_12dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="规格"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_12dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="单位"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_12dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="申请数量"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_12dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black" />
+
+            <com.gzrijing.workassistant.widget.MyListView
+                android:id="@+id/supplies_verify_wait_info_lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/sw_10dp"
+                android:padding="@dimen/sw_5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="是否批准："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp" />
+
+                <LinearLayout
+                    android:id="@+id/supplies_verify_wait_info_yes_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/sw_10dp">
+
+                    <ImageView
+                        android:id="@+id/supplies_verify_wait_info_yes_iv"
+                        android:layout_width="@dimen/sw_20dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/spinner_item_check_on" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/sw_5dp"
+                        android:text="批准"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_15dp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/supplies_verify_wait_info_no_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/sw_20dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/sw_10dp">
+
+                    <ImageView
+                        android:id="@+id/supplies_verify_wait_info_no_iv"
+                        android:layout_width="@dimen/sw_20dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/spinner_item_check_off" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/sw_5dp"
+                        android:text="不批准"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_15dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/supplies_verify_wait_info_reason_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sw_5dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:padding="@dimen/sw_5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="不批原因："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp" />
+
+                <EditText
+                    android:id="@+id/supplies_verify_wait_info_reason_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_line_white_blue"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@drawable/edit_cursor_blue"
+                    android:textSize="@dimen/sw_15dp" />
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sw_5dp">
+
+                <Button
+                    android:id="@+id/supplies_verify_wait_info_submit_btn"
+                    android:layout_width="@dimen/sw_60dp"
+                    android:layout_height="@dimen/sw_30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/sw_10dp"
+                    android:background="@drawable/btn_blue"
+                    android:text="提交"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sw_15dp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

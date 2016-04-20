@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/manage_gridview_ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/btn_blue_frame"
+    android:orientation="vertical"
+    android:padding="@dimen/sw_10dp">
+
+    <ImageView
+        android:id="@+id/manage_gridview_icon_iv"
+        android:layout_width="@dimen/sw_50dp"
+        android:layout_height="@dimen/sw_50dp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/manage_gridview_text_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sw_5dp"
+        android:gravity="center"
+        android:text="机械申请单"
+        android:textColor="@color/grey_text"
+        android:textSize="@dimen/sw_12dp" />
+</LinearLayout>

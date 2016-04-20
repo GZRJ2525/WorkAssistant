@@ -1,0 +1,218 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/sw_5dp"
+    tools:context="com.gzrijing.workassistant.view.ReportProgressFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/sw_5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="收款性质："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <LinearLayout
+                android:id="@+id/fragment_report_project_amount_water_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/fragment_report_project_amount_water_iv"
+                    android:layout_width="@dimen/sw_20dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/spinner_item_check_on" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/sw_5dp"
+                    android:text="水务"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/fragment_report_project_amount_customer_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/sw_20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/fragment_report_project_amount_customer_iv"
+                    android:layout_width="@dimen/sw_20dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/spinner_item_check_off" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/sw_5dp"
+                    android:text="客户"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/sw_5dp">
+
+            <TextView
+                android:id="@+id/fragment_report_project_amount_content_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="施工内容："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_project_amount_content_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/sw_5dp">
+
+            <TextView
+                android:id="@+id/fragment_report_project_amount_civil_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="土建项目："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_project_amount_civil_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sw_5dp"
+            android:layout_marginTop="@dimen/sw_10dp"
+            android:text="材料列表："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/sw_15dp"
+                android:layout_weight="2" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:gravity="center"
+                android:text="名称"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_12dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:gravity="center"
+                android:text="规格"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_12dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="单位"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_12dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="数量"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_12dp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+        <com.gzrijing.workassistant.widget.MyListView
+            android:id="@+id/fragment_report_project_amount_supplies_lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal"
+            android:padding="@dimen/sw_10dp">
+
+            <Button
+                android:id="@+id/fragment_report_project_amount_submit_need_btn"
+                android:layout_width="@dimen/sw_60dp"
+                android:layout_height="@dimen/sw_30dp"
+                android:layout_marginRight="@dimen/sw_20dp"
+                android:background="@drawable/btn_blue"
+                android:text="要审核"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sw_15dp" />
+
+            <Button
+                android:id="@+id/fragment_report_project_amount_submit_wait_btn"
+                android:layout_width="@dimen/sw_60dp"
+                android:layout_height="@dimen/sw_30dp"
+                android:background="@drawable/btn_blue"
+                android:text="待审核"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sw_15dp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

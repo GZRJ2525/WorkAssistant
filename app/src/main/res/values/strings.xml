@@ -1,0 +1,272 @@
+<resources>
+    <string name="app_name">小榄水务</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">业务</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_pipe_inspection_map">管网维护</string>
+    <string name="title_activity_download_offline_map">离线地图管理</string>
+    <string name="title_activity_pipe_inspection_form">巡检表格</string>
+    <string name="title_activity_subordinate">下属列表</string>
+    <string name="title_activity_subordinate_location">下属实时位置</string>
+    <string name="title_activity_supplies_apply_edit">材料查询</string>
+    <string name="title_activity_distribute">工程派工</string>
+
+
+    <string-array name="business_item">
+        <item>全部</item>
+        <item>供水维修</item>
+        <item>供水管网维护</item>
+        <item>挂表工程</item>
+        <item>移表户外</item>
+        <item>故障水表</item>
+        <item>违章水表</item>
+        <item>供水工程</item>
+        <item>供水零散工程</item>
+        <item>供水维修通知单工程</item>
+        <item>污水工程</item>
+        <item>污水零散工程</item>
+        <item>污水维修工程</item>
+        <item>供水管网巡查</item>
+        <item>其他工程</item>
+    </string-array>
+
+    <string-array name="worker_fragment_state_item">
+        <item>全部</item>
+        <item>正常</item>
+        <item>暂缓执行</item>
+        <item>停止</item>
+        <item>取消</item>
+    </string-array>
+
+    <string-array name="leader_fragment_state_item">
+        <item>全部</item>
+        <item>未派工</item>
+        <item>已派工</item>
+        <item>完成</item>
+    </string-array>
+
+    <!-- 供水维修 -->
+    <string-array name="reportComplete_form1">
+        <item>维修内容</item>
+        <item>排水口径</item>
+        <item>排水时间</item>
+        <item>施工日期</item>
+        <item>完工日期</item>
+        <item>验收日期</item>
+        <item>　备　注</item>
+    </string-array>
+
+    <!-- 供水管网维护 -->
+    <string-array name="reportComplete_form2">
+        <item>排水口径</item>
+        <item>排水时间</item>
+        <item>施工日期</item>
+        <item>完工日期</item>
+        <item>验收日期</item>
+        <item>　备　注</item>
+    </string-array>
+
+    <!-- 挂表工程 -->
+    <string-array name="reportComplete_form3">
+        <item>表身编号</item>
+        <item>水表产地</item>
+        <item>排水口径</item>
+        <item>排水时间</item>
+        <item>水表有效日期</item>
+        <item>施工日期</item>
+        <item>完工日期</item>
+        <item>验收日期</item>
+        <item>　备　注</item>
+    </string-array>
+
+    <!-- 移表户外 -->
+    <string-array name="reportComplete_form4">
+        <item>处理结果</item>
+        <item>表身编号</item>
+        <item>水表产地</item>
+        <item>排水口径</item>
+        <item>排水时间</item>
+        <item>水表有效日期</item>
+        <item>施工日期</item>
+        <item>完工日期</item>
+        <item>验收日期</item>
+        <item>　备　注</item>
+    </string-array>
+
+    <!-- 故障水表 -->
+    <string-array name="reportComplete_form5">
+        <item>处理结果</item>
+        <item>表身编号</item>
+        <item>水表产地</item>
+        <item>行至度数</item>
+        <item>排水口径</item>
+        <item>排水时间</item>
+        <item>抄表日期</item>
+        <item>水表有效日期</item>
+        <item>施工日期</item>
+        <item>完工日期</item>
+        <item>验收日期</item>
+        <item>　备　注</item>
+    </string-array>
+
+    <!-- 违章水表 -->
+    <string-array name="reportComplete_form6">
+        <item>处理结果</item>
+        <item>排水口径</item>
+        <item>排水时间</item>
+        <item>施工日期</item>
+        <item>完工日期</item>
+        <item>验收日期</item>
+        <item>　备　注</item>
+    </string-array>
+
+    <!-- 供水工程，供水零散工程，供水维修通知单工程 -->
+    <string-array name="reportComplete_form7">
+        <item>甲方代表</item>
+        <item>监理单位</item>
+        <item>　监理员</item>
+        <item>安装人员</item>
+        <item>土方人员</item>
+        <item>排水口径</item>
+        <item>排水时间</item>
+        <item>施工日期</item>
+        <item>完工日期</item>
+        <item>验收日期</item>
+        <item>　备　注</item>
+    </string-array>
+
+    <!-- 污水工程，污水零散工程 -->
+    <string-array name="reportComplete_form8">
+        <item>甲方代表</item>
+        <item>监理单位</item>
+        <item>　监理员</item>
+        <item>安装人员</item>
+        <item>土方人员</item>
+        <item>施工日期</item>
+        <item>完工日期</item>
+        <item>验收日期</item>
+        <item>　备　注</item>
+    </string-array>
+
+    <!-- 污水维修工程 -->
+    <string-array name="reportComplete_form9">
+        <item>甲方代表</item>
+        <item>监理单位</item>
+        <item>　监理员</item>
+        <item>安装人员</item>
+        <item>土方人员</item>
+        <item>施工日期</item>
+        <item>完工日期</item>
+        <item>验收日期</item>
+        <item>　备　注</item>
+    </string-array>
+
+    <!-- 其他工程 -->
+    <string-array name="reportComplete_form10">
+        <item>施工内容</item>
+        <item>甲方代表</item>
+        <item>监理单位</item>
+        <item>　监理员</item>
+        <item>安装人员</item>
+        <item>土方人员</item>
+        <item>排水口径</item>
+        <item>排水时间</item>
+        <item>施工日期</item>
+        <item>完工日期</item>
+        <item>验收日期</item>
+        <item>　备　注</item>
+    </string-array>
+
+
+    <string name="title_activity_progress">工程进度</string>
+    <string name="title_activity_supplies_apply">材料申请</string>
+    <string name="title_activity_machine_apply">机械申请</string>
+    <string name="title_activity_machine_apply_edit">机械查询</string>
+    <string name="title_activity_machine_return_edit">机械退回</string>
+    <string name="title_activity_supplies_return_edit">材料退回</string>
+    <string name="title_activity_detailed_info">工程信息</string>
+    <string name="title_activity_machine_verify">机械审核</string>
+    <string name="title_activity_machine_verify_ok_info">已审列表</string>
+    <string name="title_activity_supplies_verify">材料审核</string>
+    <string name="title_activity_supplies_verify_wait_info">待审列表</string>
+    <string name="title_activity_supplies_verify_ok_info">已审列表</string>
+    <string name="title_activity_tem_info">临时信息</string>
+    <string name="title_activity_tem_info_content">信息内容</string>
+    <string name="title_activity_report">工程汇报</string>
+    <string name="title_activity_report_info">汇报信息</string>
+    <string name="title_activity_report_info_problem">汇报内容</string>
+    <string name="title_activity_report_info_progress">汇报内容</string>
+    <string name="title_activity_report_info_complete">汇报内容</string>
+    <string name="title_activity_supplies_applying">材料修改</string>
+    <string name="title_activity_machine_applying">机械修改</string>
+    <string name="title_activity_print">打印预览</string>
+    <string name="title_activity_entrust">代班功能</string>
+    <string name="title_activity_notice">通知公告</string>
+    <string name="title_activity_notice_content">通知内容</string>
+    <string name="title_activity_trajectory_query">轨迹查询</string>
+    <string name="title_activity_business_have_send">已派工程</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+
+</resources>

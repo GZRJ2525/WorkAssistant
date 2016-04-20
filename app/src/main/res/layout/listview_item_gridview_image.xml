@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.gzrijing.workassistant.widget.WrapHeightGridView
+        android:id="@+id/listview_item_gridview_image_gv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sw_5dp"
+        android:horizontalSpacing="@dimen/sw_10dp"
+        android:listSelector="@color/transparent"
+        android:numColumns="3"
+        android:scrollbars="none"
+        android:verticalSpacing="@dimen/sw_10dp" >
+    </com.gzrijing.workassistant.widget.WrapHeightGridView>
+
+</RelativeLayout>

@@ -1,0 +1,62 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/sw_5dp"
+    tools:context="com.gzrijing.workassistant.view.ReportProblemFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="问题描述："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+
+        <EditText
+            android:id="@+id/fragment_report_problem_describe_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/sw_150dp"
+            android:hint="请填写"
+            android:gravity="top"
+            android:layout_marginTop="@dimen/sw_5dp"
+            android:background="@drawable/bg_text"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/sw_5dp"
+            android:text="添加附件："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+
+        <com.gzrijing.workassistant.widget.WrapHeightGridView
+            android:id="@+id/fragment_report_problem_image_gv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:horizontalSpacing="@dimen/sw_10dp"
+            android:listSelector="@color/transparent"
+            android:numColumns="3"
+            android:scrollbars="none"
+            android:verticalSpacing="@dimen/sw_10dp" >
+        </com.gzrijing.workassistant.widget.WrapHeightGridView>
+
+        <Button
+            android:id="@+id/fragment_report_problem_report_btn"
+            android:layout_width="@dimen/sw_60dp"
+            android:layout_height="@dimen/sw_30dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/sw_10dp"
+            android:background="@drawable/btn_blue"
+            android:text="汇报"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sw_15dp"/>
+    </LinearLayout>
+</ScrollView>

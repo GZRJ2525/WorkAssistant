@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sw_5dp">6dp</dimen>
+    <dimen name="sw_10dp">12dp</dimen>
+    <dimen name="sw_12dp">14.5dp</dimen>
+    <dimen name="sw_15dp">18dp</dimen>
+    <dimen name="sw_20dp">24dp</dimen>
+    <dimen name="sw_25dp">30dp</dimen>
+    <dimen name="sw_30dp">36dp</dimen>
+    <dimen name="sw_40dp">48dp</dimen>
+    <dimen name="sw_50dp">60dp</dimen>
+    <dimen name="sw_60dp">72dp</dimen>
+    <dimen name="sw_80dp">96dp</dimen>
+    <dimen name="sw_100dp">120dp</dimen>
+    <dimen name="sw_120dp">144dp</dimen>
+    <dimen name="sw_150dp">180dp</dimen>
+    <dimen name="sw_200dp">240dp</dimen>
+</resources>

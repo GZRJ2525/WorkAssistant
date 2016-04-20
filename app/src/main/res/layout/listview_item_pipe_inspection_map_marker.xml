@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_text"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="编号："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_12dp" />
+
+        <TextView
+            android:id="@+id/listview_item_pipe_inspection_map_marker_id_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sw_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="名称："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_12dp" />
+
+        <TextView
+            android:id="@+id/listview_item_pipe_inspection_map_marker_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sw_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="型号："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_12dp" />
+
+        <TextView
+            android:id="@+id/listview_item_pipe_inspection_map_marker_model_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sw_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="阀门型号："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_12dp" />
+
+        <TextView
+            android:id="@+id/listview_item_pipe_inspection_map_marker_valveNo_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxWidth="@dimen/sw_200dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sw_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="阀门井型号："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_12dp" />
+
+        <TextView
+            android:id="@+id/listview_item_pipe_inspection_map_marker_valveGNo_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxWidth="@dimen/sw_200dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sw_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地址："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_12dp" />
+
+        <TextView
+            android:id="@+id/listview_item_pipe_inspection_map_marker_address_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxWidth="@dimen/sw_200dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_12dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/sw_5dp">
+        <Button
+            android:id="@+id/listview_item_pipe_inspection_map_marker_inspection_btn"
+            android:layout_width="@dimen/sw_60dp"
+            android:layout_height="@dimen/sw_25dp"
+            android:background="@drawable/btn_blue"
+            android:text="点检"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sw_12dp"/>
+        <Button
+            android:id="@+id/listview_item_pipe_inspection_map_marker_update_btn"
+            android:layout_width="@dimen/sw_60dp"
+            android:layout_height="@dimen/sw_25dp"
+            android:background="@drawable/btn_blue"
+            android:layout_marginLeft="@dimen/sw_10dp"
+            android:layout_toRightOf="@+id/listview_item_pipe_inspection_map_marker_inspection_btn"
+            android:text="更新"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sw_12dp"/>
+    </RelativeLayout>
+
+</LinearLayout>

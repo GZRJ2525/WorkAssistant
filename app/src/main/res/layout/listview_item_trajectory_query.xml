@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_text"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/listview_item_trajectory_query_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sw_15dp" />
+
+    <TextView
+        android:id="@+id/listview_item_trajectory_query_tel_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sw_15dp" />
+
+    <TextView
+        android:id="@+id/listview_item_trajectory_query_last_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sw_15dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="处理的任务："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp" />
+
+        <TextView
+            android:id="@+id/listview_item_trajectory_query_doing_task_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/listview_item_trajectory_query_trajectory_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/sw_5dp"
+        android:layout_marginTop="@dimen/sw_5dp"
+        android:text="查看历史轨迹"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/sw_15dp" />
+
+</LinearLayout>
+

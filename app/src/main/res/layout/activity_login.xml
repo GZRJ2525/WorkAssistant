@@ -1,0 +1,177 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:src="@drawable/login_logo" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/login_user_iv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/login_user_off" />
+
+                <EditText
+                    android:id="@+id/login_user_et"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:background="@null"
+                    android:textColorHint="@color/grey_hint"
+                    android:hint="输入账号"
+                    android:inputType="textPersonName"
+                    android:textSize="@dimen/sw_15dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="2dp"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/login_password_iv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/login_pwd_off" />
+
+                <EditText
+                    android:id="@+id/login_password_et"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:background="@null"
+                    android:hint="输入密码"
+                    android:textColorHint="@color/grey_hint"
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/sw_15dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="V1.0.0"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/sw_15dp" />
+
+            <Button
+                android:id="@+id/login_login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:background="@drawable/btn_blue"
+                android:text="登    录"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sw_20dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:visibility="invisible" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/login_checkbox_iv"
+                    android:layout_width="@dimen/sw_15dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/sw_5dp"
+                    android:layout_toLeftOf="@+id/textView"
+                    android:src="@drawable/login_checkbox_off" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:text="记住密码"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:visibility="invisible" />
+
+
+</LinearLayout>

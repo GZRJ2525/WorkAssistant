@@ -1,0 +1,716 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gzrijing.workassistant.view.ReportCompleteFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item1_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item1_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="维修内容"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_complete_item1_value_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item2_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item2_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="施工内容"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_complete_item2_value_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item3_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item3_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="处理结果"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_complete_item3_value_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item4_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item4_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="表身编号"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_complete_item4_value_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item5_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item5_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="水表产地"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_complete_item5_value_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item6_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item6_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="行至度数"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_complete_item6_value_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item7_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item7_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="排水口径"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="DN"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_complete_item7_value_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/sw_100dp"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item8_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item8_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="甲方代表"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_complete_item8_value_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item9_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item9_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="监理单位"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_complete_item9_value_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item10_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item10_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="　监理员"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_complete_item10_value_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item11_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item11_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="安装人员"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_complete_item11_value_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item12_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item12_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="土方人员"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_complete_item12_value_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item13_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item13_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="排水时间"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_complete_item13_value_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/sw_60dp"
+                android:background="@drawable/edit_line_blue"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="分钟"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item14_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item14_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="抄表日期"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item14_value_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="点击选择日期"
+                android:background="@drawable/edit_line_blue"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item15_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item15_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="水表有效日期"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item15_value_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="点击选择日期"
+                android:background="@drawable/edit_line_blue"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item16_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item16_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="施工日期"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item16_value_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="点击选择日期"
+                android:background="@drawable/edit_line_blue"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item17_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item17_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="完工日期"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item17_value_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="点击选择日期"
+                android:background="@drawable/edit_line_blue"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item18_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item18_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="验收日期"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item18_value_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="点击选择日期"
+                android:background="@drawable/edit_line_blue"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_report_complete_item19_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/sw_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_report_complete_item19_key_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="　备　注"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <EditText
+                android:id="@+id/fragment_report_complete_item19_value_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/sw_5dp"
+            android:text="添加附件："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+
+        <com.gzrijing.workassistant.widget.WrapHeightGridView
+            android:id="@+id/fragment_report_complete_image_gv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:horizontalSpacing="@dimen/sw_10dp"
+            android:listSelector="@color/transparent"
+            android:numColumns="3"
+            android:scrollbars="none"
+            android:verticalSpacing="@dimen/sw_10dp" >
+        </com.gzrijing.workassistant.widget.WrapHeightGridView>
+
+
+        <Button
+            android:id="@+id/fragment_report_complete_report_btn"
+            android:layout_width="@dimen/sw_60dp"
+            android:layout_height="@dimen/sw_30dp"
+            android:background="@drawable/btn_blue"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/sw_5dp"
+            android:layout_marginRight="@dimen/sw_5dp"
+            android:layout_marginBottom="@dimen/sw_20dp"
+            android:text="汇报"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sw_15dp"/>
+    </LinearLayout>
+</ScrollView>

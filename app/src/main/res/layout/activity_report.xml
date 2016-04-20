@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gzrijing.workassistant.view.ReportActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/sw_5dp"
+        android:layout_marginBottom="@dimen/sw_5dp">
+
+        <Button
+            android:id="@+id/report_progress_btn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/sw_40dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_paging_left_on"
+            android:text="进度汇报"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sw_15dp" />
+
+        <Button
+            android:id="@+id/report_problem_btn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/sw_40dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_paging_middle_off"
+            android:text="问题汇报"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/sw_15dp" />
+
+        <Button
+            android:id="@+id/report_complete_btn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/sw_40dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_paging_middle_off"
+            android:text="完工汇报"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/sw_15dp" />
+
+        <Button
+            android:id="@+id/report_project_amount_btn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/sw_40dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_paging_right_off"
+            android:text="工程量汇报"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/sw_15dp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_report"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

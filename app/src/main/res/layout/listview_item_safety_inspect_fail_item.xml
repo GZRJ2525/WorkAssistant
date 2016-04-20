@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/sw_5dp"
+        android:paddingRight="@dimen/sw_5dp"
+        android:paddingTop="@dimen/sw_5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="不合格项："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+
+        <TextView
+            android:id="@+id/listview_item_safety_inspect_fail_item_content_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/sw_5dp"
+        android:paddingRight="@dimen/sw_5dp"
+        android:paddingTop="@dimen/sw_5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="是否处理："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+
+        <TextView
+            android:id="@+id/listview_item_safety_inspect_fail_item_is_handle_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/sw_5dp"
+        android:paddingRight="@dimen/sw_5dp"
+        android:paddingTop="@dimen/sw_5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="是否派发："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+
+        <TextView
+            android:id="@+id/listview_item_safety_inspect_fail_item_is_distributed_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/sw_5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="　整改人："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+
+        <TextView
+            android:id="@+id/listview_item_safety_inspect_fail_item_worker_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="点击选择整改人"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/sw_15dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/sw_5dp"
+        android:paddingRight="@dimen/sw_5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="备注信息："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+
+        <EditText
+            android:id="@+id/listview_item_safety_inspect_fail_item_remark_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_line_blue"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/listview_item_safety_inspect_fail_item_submit_btn"
+        android:layout_width="@dimen/sw_60dp"
+        android:layout_height="@dimen/sw_30dp"
+        android:background="@drawable/btn_blue"
+        android:layout_gravity="right"
+        android:layout_marginTop="@dimen/sw_5dp"
+        android:layout_marginRight="@dimen/sw_5dp"
+        android:layout_marginBottom="@dimen/sw_5dp"
+        android:text="派发"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sw_15dp"/>
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="blue">#027EBA</color>//2,126,168
+    <color name="blue_pressed">#035881</color>//3,88,129
+    <color name="grey">#A6A6A6</color>//162,162,162
+    <color name="grey_hint">#D5D5D5</color>//213,213,213
+    <color name="grey_bg">#DDDDDD</color>//221,221,221
+    <color name="grey_content">#EBEBF4</color>//235,235,244
+    <color name="grey_text">#858E99</color>//133,142,153
+    <color name="pink_bg">#FCE2AC</color>//252,226,172
+    <color name="red">#E60012</color>//230,0,18
+    <color name="redShallow">#f56969</color>//245,105,105
+    <color name="orangeShallow">#fcc42e</color>//252,196,46
+
+    <!-- 二维码 -->
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <!-- 二维码 -->
+
+</resources>

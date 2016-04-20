@@ -1,0 +1,475 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gzrijing.workassistant.view.MachineApplyActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/sw_10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/sw_10dp"
+                android:layout_marginRight="@dimen/sw_10dp"
+                android:background="@drawable/bg_text"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="机械申请列表："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_15dp" />
+
+                    <Button
+                        android:id="@+id/machine_apply_apply_edit_btn"
+                        android:layout_width="@dimen/sw_50dp"
+                        android:layout_height="@dimen/sw_25dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/btn_blue_frame"
+                        android:text="编辑"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/sw_12dp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/sw_5dp">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="名称"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="单位"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="数量"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black" />
+
+                <com.gzrijing.workassistant.widget.MyListView
+                    android:id="@+id/machine_apply_created_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sw_10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="领用时间："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_15dp" />
+
+                    <TextView
+                        android:id="@+id/machine_apply_use_time_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="未选择"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_text"
+                        android:textSize="@dimen/sw_15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sw_10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="退回时间："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_15dp" />
+
+                    <TextView
+                        android:id="@+id/machine_apply_return_time_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="未选择"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_text"
+                        android:textSize="@dimen/sw_15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sw_10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="使用地点："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_15dp" />
+
+                    <EditText
+                        android:id="@+id/machine_apply_use_address_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_line_gray_blue"
+                        android:textColor="@color/black"
+                        android:textCursorDrawable="@drawable/edit_cursor_blue"
+                        android:textSize="@dimen/sw_15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sw_10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="　备　注："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_15dp" />
+
+                    <EditText
+                        android:id="@+id/machine_apply_apply_remarks_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_line_gray_blue"
+                        android:textColor="@color/black"
+                        android:textCursorDrawable="@drawable/edit_cursor_blue"
+                        android:textSize="@dimen/sw_15dp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/machine_apply_apply_btn"
+                    android:layout_width="@dimen/sw_50dp"
+                    android:layout_height="@dimen/sw_25dp"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="@dimen/sw_10dp"
+                    android:background="@drawable/btn_blue_frame"
+                    android:text="申请"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/sw_12dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/sw_10dp"
+                android:layout_marginRight="@dimen/sw_10dp"
+                android:layout_marginTop="@dimen/sw_10dp"
+                android:background="@drawable/bg_text"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="机械申请中："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/sw_5dp">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="申请单ID"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="申请时间"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="状态"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black" />
+
+                <com.gzrijing.workassistant.widget.MyListView
+                    android:id="@+id/machine_apply_applying_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/sw_10dp"
+                android:background="@drawable/bg_text"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="机械已审核："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/sw_5dp">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="申请单ID"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="审核时间"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="状态"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black" />
+
+                <com.gzrijing.workassistant.widget.MyListView
+                    android:id="@+id/machine_apply_approval_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/sw_10dp"
+                android:layout_marginRight="@dimen/sw_10dp"
+                android:background="@drawable/bg_text"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="机械发放列表："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/sw_5dp">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="编号"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="名称"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="状态"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black" />
+
+                <com.gzrijing.workassistant.widget.MyListView
+                    android:id="@+id/machine_apply_received_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/sw_10dp"
+                android:layout_marginRight="@dimen/sw_10dp"
+                android:layout_marginTop="@dimen/sw_10dp"
+                android:background="@drawable/bg_text"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="机械退回列表："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_15dp" />
+
+                    <Button
+                        android:id="@+id/machine_apply_return_edit_btn"
+                        android:layout_width="@dimen/sw_50dp"
+                        android:layout_height="@dimen/sw_25dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/btn_blue_frame"
+                        android:text="编辑"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/sw_12dp" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/sw_5dp">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="退回单ID"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="申请时间"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="退回性质"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="状态"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_12dp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black" />
+
+                <com.gzrijing.workassistant.widget.MyListView
+                    android:id="@+id/machine_apply_return_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

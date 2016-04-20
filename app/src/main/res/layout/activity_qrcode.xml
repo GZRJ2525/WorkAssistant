@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/blue"
+    tools:context="com.gzrijing.workassistant.view.QrcodeActivity">
+
+    <include layout="@layout/toolbar"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="@dimen/sw_20dp"
+        android:layout_marginRight="@dimen/sw_20dp"
+        android:gravity="center"
+        android:background="@color/white"
+        android:text="找申请人扫二维码"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sw_15dp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/sw_20dp"
+        android:layout_marginRight="@dimen/sw_20dp"
+        android:background="@color/black"/>
+
+    <ImageView
+        android:id="@+id/qrcode_iv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:layout_marginLeft="@dimen/sw_20dp"
+        android:layout_marginRight="@dimen/sw_20dp"
+        android:layout_marginBottom="@dimen/sw_50dp"
+        android:padding="@dimen/sw_30dp"
+        android:background="@color/white"
+        android:src="@drawable/icon_ok"/>
+
+</LinearLayout>

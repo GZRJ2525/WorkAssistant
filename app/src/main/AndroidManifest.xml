@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.gzrijing.workassistant">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- 个推SDK权限配置开始 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 支持个推3.0 电子围栏功能 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 浮动通知权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 自定义权限 -->
+    <uses-permission android:name="getui.permission.GetuiService.com.gzrijing.workassistant" />
+
+    <permission
+        android:name="getui.permission.GetuiService.com.gzrijing.workassistant"
+        android:protectionLevel="normal" />
+
+    <!-- 个推SDK权限配置结束 -->
+    <application
+        android:name=".base.MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/login_logo"
+        android:label="@string/app_name"
+        android:theme="@style/MyAppTheme">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="Txc9L9HTxjpI9g7WiTfWxeti" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.2" />
+            </intent-filter>
+        </service>
+
+        <!-- app activity -->
+        <activity
+            android:name=".view.LoginActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".base.BaseActivity" />
+        <activity
+            android:name=".view.MainActivity"
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.PipeInspectionMapActivity"
+            android:label="@string/title_activity_pipe_inspection_map"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.DownloadOfflineMapActivity"
+            android:label="@string/title_activity_download_offline_map"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.PipeInspectionFormActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_pipe_inspection_form"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SubordinateActivity"
+            android:label="@string/title_activity_subordinate"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SubordinateLocationActivity"
+            android:label="@string/title_activity_subordinate_location" />
+        <activity
+            android:name=".view.SuppliesApplyEditActivity"
+            android:label="@string/title_activity_supplies_apply_edit"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.DistributeActivity"
+            android:label="@string/title_activity_distribute"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ProgressActivity"
+            android:label="@string/title_activity_progress"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SuppliesApplyActivity"
+            android:label="@string/title_activity_supplies_apply"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MachineApplyActivity"
+            android:label="@string/title_activity_machine_apply"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MachineApplyEditActivity"
+            android:label="@string/title_activity_machine_apply_edit"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MachineReturnEditActivity"
+            android:label="@string/title_activity_machine_return_edit"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SuppliesReturnEditActivity"
+            android:label="@string/title_activity_supplies_return_edit"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.DetailedInfoActivity"
+            android:label="@string/title_activity_detailed_info"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MachineVerifyActivity"
+            android:label="@string/title_activity_machine_verify"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MachineVerifyOkInfoActivity"
+            android:label="@string/title_activity_machine_verify_ok_info"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SuppliesVerifyActivity"
+            android:label="@string/title_activity_supplies_verify"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SuppliesVerifyOkInfoActivity"
+            android:label="@string/title_activity_supplies_verify_ok_info"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.TemInfoActivity"
+            android:label="@string/title_activity_tem_info"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ReportActivity"
+            android:label="@string/title_activity_report"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ReportInfoProblemActivity"
+            android:label="@string/title_activity_report_info_problem"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SuppliesApplyingActivity"
+            android:label="@string/title_activity_supplies_applying"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MachineApplyingActivity"
+            android:label="@string/title_activity_machine_applying"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.PrintActivity"
+            android:label="@string/title_activity_print"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.DeviceListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".view.EntrustActivity"
+            android:label="@string/title_activity_entrust"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.NoticeActivity"
+            android:label="@string/title_activity_notice"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ReportInfoProgressActivity"
+            android:label="@string/title_activity_report_info_progress"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.NoticeContentActivity"
+            android:label="@string/title_activity_notice_content"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.TrajectoryQueryActivity"
+            android:label="@string/title_activity_trajectory_query"
+            android:screenOrientation="portrait" />
+        <activity android:name=".view.ImageBrowserForLocationActivity" />
+        <activity android:name=".view.ImageBrowserForHttpActivity" />
+        <activity android:name=".view.ImageSelectorActivity" />
+        <activity
+            android:name=".view.BusinessHaveSendActivity"
+            android:label="@string/title_activity_business_have_send"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SuppliesApplyingScanActivity"
+            android:label="材料列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SuppliesApprovalActivity"
+            android:label="材料列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SuppliesReceivedActivity"
+            android:label="领料列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SuppliesReturnActivity"
+            android:label="退料列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".zxing.view.MipcaActivityCapture"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MachineApplyingScanActivity"
+            android:label="机械列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MachineApprovalActivity"
+            android:label="机械列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MachineReturnActivity"
+            android:label="退料列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SendMachineActivity"
+            android:label="送机列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.QrcodeActivity"
+            android:label="二维码"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SendMachineInfoActivity"
+            android:label="送机信息"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ReturnMachineActivity"
+            android:label="退机列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ReportInfoCompleteActivity"
+            android:label="完工信息"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.PipeInspectionUpdateByValveActivity"
+            android:label="更新信息"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.PipeInspectionUpdateByFireHydrantActivity"
+            android:label="更新信息"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.PipeInspectionUpdateByWaterWellActivity"
+            android:label="更新信息"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MapPointActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.PipeInspectionAddByValveActivity"
+            android:label="增加阀门"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.PipeInspectionAddByFireHydrantActivity"
+            android:label="增加消防栓"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.PipeInspectionAddByWaterWellActivity"
+            android:label="增加污水井"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SafetyInspectTaskActivity"
+            android:label="安全检查"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SafetyInspectMapActivity"
+            android:label="工程地点"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SafetyInspectFormActivity"
+            android:label="检查项目"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SafetyInspectRecordActivity"
+            android:label="检查表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SafetyInspectUploadImageActivity"
+            android:label="上传图片"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.LeaderMachineApplyBillListActivity"
+            android:label="机械申请单"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.LeaderMachineApplyBillByInfoActivity"
+            android:label="申请单信息"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.LeaderMachineApplyBillByPlanActivity"
+            android:label="安排送机"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.LeaderMachineApplyBillByMachineStateActivity"
+            android:label="机械状态"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.LeaderMachineApplyBillBySendMachineActivity"
+            android:label="发放机械"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.LeaderMachineReturnBillListActivity"
+            android:label="机械退机单"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.LeaderMachineReturnBillByInfoActivity"
+            android:label="退机单信息"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.LeaderMachineReturnBillByPlanActivity"
+            android:label="安排退机"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.LeaderMachineReturnBillByBackMachineActivity"
+            android:label="退回机械"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SendMachineReportActivity"
+            android:label="送机汇报"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ReportInfoByProgressActivity"
+            android:label="进度汇报列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ReportInfoByProblemActivity"
+            android:label="问题汇报列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ReportInfoByProjectAmountActivity"
+            android:label="工程量汇报列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ReportInfoProblemByProcessActivity"
+            android:label="问题处理"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ReportInfoProjectAmountByWaitActivity"
+            android:label="待审核工程量信息"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ReportInfoProjectAmountByOkActivity"
+            android:label="已审核工程量信息"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.QueryProjectAmountActivity"
+            android:label="工程量列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.QueryProjectAmountByInfoActivity"
+            android:label="工程量信息"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.AccidentsActivity"
+            android:label="意外情况列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.AccidentsProcessActivity"
+            android:label="意外情况处理"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.GetGPSActivity"
+            android:label="获取坐标"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.BusinessLeaderByMyOrderActivity"
+            android:label="我的任务"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.BusinessLeaderByMyOrderDetailedInfoActivity"
+            android:label="详细信息"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.BusinessLeaderByMyOrderSuppliesApplyActivity"
+            android:label="材料申请"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.BusinessLeaderByMyOrderSuppliesApplyingActivity"
+            android:label="材料申请"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.QueryBeforeSuppliesActivity"
+            android:label="查询工程耗材"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.BusinessLeaderByMyOrderSuppliesApplyingScanActivity"
+            android:label="材料列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.BusinessLeaderByMyOrderSuppliesApprovalActivity"
+            android:label="材料列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.BusinessLeaderByMyOrderSuppliesReceivedActivity"
+            android:label="领料列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.BusinessLeaderByMyOrderSuppliesReturnEditActivity"
+            android:label="退料编辑"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.BusinessLeaderByMyOrderSuppliesReturnActivity"
+            android:label="退料列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SettingActivity"
+            android:label="设置"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.BusinessHaveSendByAllActivity"
+            android:label="已派任务"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ProblemProcessResultActivity"
+            android:label="问题处理结果"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SafetyInspectFailActivity"
+            android:label="不合格工程"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SafetyInspectFailItemActivity"
+            android:label="不合格项"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SafetyInspectFailReportActivity"
+            android:label="不合格项"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SafetyInspectHistoryRecordActivity"
+            android:label="历史纪录信息"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SafetyInspectHistoryRecordItemActivity"
+            android:label="历史纪录清单"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.SafetyInspectHistoryRecordQueryActivity"
+            android:label="历史纪录查询"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.QueryProjectAmountByInfoModifyActivity"
+            android:label="工程量修改"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.DistributeByDirectorActivity"
+            android:label="工程派工"
+            android:screenOrientation="portrait" />
+        <!-- app activity -->
+
+
+        <!-- app service -->
+        <service android:name=".service.GetLeaderBusinessService" />
+        <service android:name=".service.GetWorkerBusinessService" />
+        <service
+            android:name=".service.ReportProgressService"
+            android:exported="false" />
+        <service
+            android:name=".service.ReportProblemService"
+            android:exported="false" />
+        <service
+            android:name=".service.ReportCompleteService"
+            android:exported="false" />
+        <service
+            android:name=".service.ReportProjectAmountService"
+            android:exported="false" />
+        <service
+            android:name=".service.DownLoadAllImageService"
+            android:exported="false" />
+        <service
+            android:name=".service.DownLoadProblemImageService"
+            android:exported="false" />
+        <service
+            android:name=".service.DownLoadProgressImageService"
+            android:exported="false" />
+        <service
+            android:name=".service.GetInspectionService"
+            android:exported="false" />
+        <service
+            android:name=".service.GetSewageWellsService"
+            android:exported="false" />
+        <service
+            android:name=".service.PipeInspectionFormService"
+            android:exported="false" />
+        <service
+            android:name=".service.GetMachineVerifyService"
+            android:exported="false" />
+        <service
+            android:name=".service.GetReportInfoProblemService"
+            android:exported="false" />
+        <service
+            android:name=".service.GetReportInfoProgressService"
+            android:exported="false" />
+        <service
+            android:name=".service.GetReportInfoProjectAmountService"
+            android:exported="false" />
+        <service
+            android:name=".service.GetReportInfoProjectAmountSuppliesService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerSuppliesApplyStateService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerSuppliesReceivedStateService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerMachineApplyStateService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerMachineReceivedStateService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerSuppliesReturnStateService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerSendMachineOrderService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerMachineReturnStateService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerReturnMachineOrderService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerReportInfoProgressService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerReportInfoProblemService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerReportInfoProjectAmountService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerReportInfoCompleteService"
+            android:exported="false" />
+        <service
+            android:name=".service.UploadSafetyInspectImageService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerLeaderMachineApplyBillService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerLeaderMachineReturnBillService"
+            android:exported="false" />
+        <service
+            android:name=".service.SendMachineReportService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerMachineSendOkService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerMachineBackOkService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerOrderStateService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerOrderTemInfoService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerSafetyInspectFailService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerSafetyInspectFailByDistributedService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerSafetyInspectFailByHandleService"
+            android:exported="false" />
+        <service
+            android:name=".service.ListenerProjectAmountIsCheckService"
+            android:exported="false" />
+
+        <!-- app service -->
+
+
+        <!-- app receiver -->
+        <receiver android:name=".receiver.NotificationReceiver" />
+
+        <!-- app receiver -->
+
+
+        <!-- 个推SDK配置开始 -->
+        <!-- 配置的第三方参数属性 -->
+        <meta-data
+            android:name="PUSH_APPID"
+            android:value="nd5YEvLkMv711zw2OWl1xA" />
+        <!-- 替换为应用的APPID -->
+        <meta-data
+            android:name="PUSH_APPKEY"
+            android:value="Oz562IOwvUAZJLtwOmsKgA" />
+        <!-- 替换为应用的APPKEY -->
+        <meta-data
+            android:name="PUSH_APPSECRET"
+            android:value="tf8MWbvysa7OBKwUVx6CI8" />
+        <!-- 替换为应用的APPSECRET -->
+        <!-- 配置第三方Receiver 用来接收ClientId和透传消息 -->
+        <receiver
+            android:name=".receiver.MainReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.nd5YEvLkMv711zw2OWl1xA" />
+            </intent-filter>
+        </receiver>
+        <!-- 配置SDK核心服务 -->
+        <service
+            android:name="com.igexin.sdk.PushService"
+            android:exported="true"
+            android:label="NotificationCenter"
+            android:process=":pushservice" />
+        <!-- SDK　2.6.1.0版本新增配置项 -->
+        <service
+            android:name="com.igexin.sdk.PushServiceUser"
+            android:exported="true"
+            android:label="NotificationCenterUser" />
+
+        <receiver android:name="com.igexin.sdk.PushReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="com.igexin.sdk.action.refreshls" />
+                <!-- 以下三项为可选的action声明，可大大提高service存活率和消息到达速度 -->
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.igexin.sdk.PushManagerReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.pushmanager" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.igexin.sdk.PushActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:process=":pushservice"
+            android:taskAffinity="com.igexin.sdk.PushActivityTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <service
+            android:name="com.igexin.download.DownloadService"
+            android:process=":pushservice" />
+
+        <receiver android:name="com.igexin.download.DownloadReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.igexin.download.DownloadProvider"
+            android:authorities="downloads.com.gzrijing.workassistant"
+            android:exported="true"
+            android:process=":pushservice" />
+
+        <activity
+            android:name="com.igexin.getuiext.activity.GetuiExtActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:process=":pushservice"
+            android:taskAffinity="android.task.myServicetask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <receiver
+            android:name="com.igexin.getuiext.service.PayloadReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.7fjUl2Z3LH6xYy7NQK4ni4" />
+                <action android:name="com.igexin.sdk.action.nd5YEvLkMv711zw2OWl1xA" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.igexin.getuiext.service.GetuiExtService"
+            android:process=":pushservice" />
+        <!-- 个推SDK配置结束 -->
+
+    </application>
+
+</manifest>

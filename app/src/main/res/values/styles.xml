@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Actionbar color -->
+        <item name="colorPrimary">@color/blue</item>
+        <!--Status bar color-->
+        <item name="colorPrimaryDark">@color/blue</item>
+        <!--Window color-->
+        <item name="android:windowBackground">@color/grey_bg</item>
+        <!--text color-->
+        <item name="android:textColorPrimary">@color/white</item>
+        <!--Control color-->
+        <item name="colorControlNormal">@color/white</item>
+        <!--menu selected color-->
+        <item name="colorAccent">@color/grey</item>
+    </style>
+
+    <!-- ProgressBar theme. -->
+    <style name="ProgressBar_Mini" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:maxHeight">@dimen/sw_50dp</item>
+        <item name="android:minHeight">@dimen/sw_10dp</item>
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:indeterminateDrawable">@android:drawable/progress_indeterminate_horizontal</item>
+        <item name="android:progressDrawable">@drawable/progressbar_mini</item>
+    </style>
+    <style name="MyAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="MyAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+</resources>

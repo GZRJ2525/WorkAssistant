@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/viewpage_item_image_selector_select_iv"
+            android:layout_width="@dimen/sw_30dp"
+            android:layout_height="@dimen/sw_30dp"
+            android:src="@drawable/login_checkbox_off"
+            android:layout_margin="@dimen/sw_10dp"/>
+
+        <ImageView
+            android:id="@+id/viewpage_item_image_selector_image_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter" />
+    </LinearLayout>
+
+</ScrollView>

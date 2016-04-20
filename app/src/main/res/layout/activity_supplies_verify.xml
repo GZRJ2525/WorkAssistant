@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gzrijing.workassistant.view.SuppliesVerifyActivity">
+
+    <include layout="@layout/toolbar" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sw_5dp"
+        android:text="已审核材料申请单:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sw_15dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sw_10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"
+            android:text="单号"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"
+            android:text="申请人"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center_horizontal"
+            android:text="领用时间"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black" />
+
+    <ListView
+        android:id="@+id/supplies_verify_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

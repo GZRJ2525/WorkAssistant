@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gzrijing.workassistant.view.WorkerFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工程类型："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp" />
+
+        <Spinner
+            android:id="@+id/fragment_worker_business_sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_spinner"
+            android:spinnerMode="dialog"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工程状态："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp" />
+
+        <Spinner
+            android:id="@+id/fragment_worker_state_sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_spinner"
+            android:spinnerMode="dialog"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp" />
+    </LinearLayout>
+
+    <com.gzrijing.workassistant.widget.ListViewCompatByWorker
+        android:id="@+id/fragment_worker_order_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey_content" />
+
+</LinearLayout>

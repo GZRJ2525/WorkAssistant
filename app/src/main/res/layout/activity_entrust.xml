@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gzrijing.workassistant.view.EntrustActivity">
+
+    <include layout="@layout/toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sw_5dp"
+        android:padding="@dimen/sw_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="　代班人："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp" />
+
+        <TextView
+            android:id="@+id/entrust_replace_leader_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="点击代班人"
+            android:gravity="center_horizontal"
+            android:background="@drawable/edit_line_blue"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/sw_5dp"
+        android:layout_marginTop="@dimen/sw_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始时间："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp" />
+
+        <TextView
+            android:id="@+id/entrust_begin_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="点击选择日期"
+            android:background="@drawable/edit_line_blue"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/sw_5dp"
+        android:layout_marginTop="@dimen/sw_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="结束时间："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp" />
+
+        <TextView
+            android:id="@+id/entrust_end_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="点击选择日期"
+            android:background="@drawable/edit_line_blue"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"/>
+    </LinearLayout>
+</LinearLayout>

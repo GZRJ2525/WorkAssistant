@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gzrijing.workassistant.view.AccidentsProcessActivity">
+
+    <include layout="@layout/toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sw_5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="工程编号："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp"/>
+
+                <TextView
+                    android:id="@+id/accidents_process_order_id_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sw_10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="问题类型："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp"/>
+
+                <TextView
+                    android:id="@+id/accidents_process_problem_type_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sw_10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="工程状态："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp"/>
+
+                <TextView
+                    android:id="@+id/accidents_process_state_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sw_10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="问题描述："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp"/>
+
+                <TextView
+                    android:id="@+id/accidents_process_reason_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sw_10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="　负责人："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp"/>
+
+                <TextView
+                    android:id="@+id/accidents_process_handle_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sw_10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="问题发起人："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp"/>
+
+                <TextView
+                    android:id="@+id/accidents_process_problem_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sw_10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="问题发起时间："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp"/>
+
+                <TextView
+                    android:id="@+id/accidents_process_problem_time_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sw_10dp"
+                android:text="附件："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <com.gzrijing.workassistant.widget.WrapHeightGridView
+                android:id="@+id/accidents_process_image_gv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="@dimen/sw_10dp"
+                android:listSelector="@color/transparent"
+                android:numColumns="3"
+                android:scrollbars="none"
+                android:verticalSpacing="@dimen/sw_10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sw_10dp"
+                android:text="处理结果："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"/>
+
+            <EditText
+                android:id="@+id/accidents_process_handle_result_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:minHeight="@dimen/sw_100dp"
+                android:background="@drawable/bg_text"
+                android:layout_margin="@dimen/sw_5dp"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@drawable/edit_cursor_blue"
+                android:textSize="@dimen/sw_15dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

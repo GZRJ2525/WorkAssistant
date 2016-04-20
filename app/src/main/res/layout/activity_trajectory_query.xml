@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gzrijing.workassistant.view.TrajectoryQueryActivity">
+
+    <include layout="@layout/toolbar"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/bmapView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:clickable="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/trajectory_query_exit_btn"
+                android:layout_width="@dimen/sw_40dp"
+                android:layout_height="@dimen/sw_40dp"
+                android:visibility="gone"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/btn_exit" />
+
+            <Button
+                android:id="@+id/trajectory_query_replay_btn"
+                android:layout_width="@dimen/sw_40dp"
+                android:layout_height="@dimen/sw_40dp"
+                android:layout_marginTop="@dimen/sw_5dp"
+                android:visibility="gone"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/trajectory_query_exit_btn"
+                android:background="@drawable/btn_replay" />
+
+        </RelativeLayout>
+    </FrameLayout>
+</LinearLayout>

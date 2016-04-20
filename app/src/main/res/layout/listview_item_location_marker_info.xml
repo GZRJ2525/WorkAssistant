@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_text"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/listview_item_location_marker_info_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="　　姓名："
+        android:textColor="@color/black"
+        android:textSize="@dimen/sw_12dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最后记录："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_12dp" />
+
+        <TextView
+            android:id="@+id/listview_item_location_marker_info_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="@dimen/sw_200dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_12dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/listview_item_location_marker_info_tel_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="　　电话："
+        android:textColor="@color/blue"
+        android:textSize="@dimen/sw_12dp" />
+
+</LinearLayout>

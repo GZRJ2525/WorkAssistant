@@ -1,0 +1,181 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gzrijing.workassistant.view.DistributeActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/distribute_remarks_et"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sw_150dp"
+                android:layout_margin="@dimen/sw_10dp"
+                android:hint="请填写任务内容"
+                android:gravity="top"
+                android:background="@drawable/bg_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey" />
+
+            <LinearLayout
+                android:id="@+id/distribute_executor_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/sw_10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="　施工员："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_15dp" />
+
+                    <TextView
+                        android:id="@+id/distribute_executor_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="未选择"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_text"
+                        android:textSize="@dimen/sw_15dp" />
+                </LinearLayout>
+
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/sw_20dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_weight="1"
+                    android:src="@drawable/btn_arrow" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey" />
+
+            <LinearLayout
+                android:id="@+id/distribute_deadline_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/sw_10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="工程期限："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sw_15dp" />
+
+                    <TextView
+                        android:id="@+id/distribute_deadline_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="未选择"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_text"
+                        android:textSize="@dimen/sw_15dp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/sw_20dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_weight="1"
+                    android:src="@drawable/btn_arrow" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/sw_10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="添加录音："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sw_15dp" />
+
+                <TextView
+                    android:id="@+id/distribute_record_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/sw_5dp"
+                    android:hint="点击添加"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey_text"
+                    android:textSize="@dimen/sw_15dp" />
+
+                <TextView
+                    android:id="@+id/distribute_del_record_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:visibility="gone"
+                    android:text="删除"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/sw_15dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/sw_10dp"
+                android:text="添加图片："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"/>
+
+            <com.gzrijing.workassistant.widget.WrapHeightGridView
+                android:id="@+id/distribute_image_gv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="@dimen/sw_10dp"
+                android:listSelector="@color/transparent"
+                android:numColumns="3"
+                android:scrollbars="none"
+                android:verticalSpacing="@dimen/sw_10dp" >
+            </com.gzrijing.workassistant.widget.WrapHeightGridView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/sw_5dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/listview_item_safety_inspect_history_record_item_time_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sw_15dp"/>
+
+    <Button
+        android:id="@+id/listview_item_safety_inspect_history_record_item_query_btn"
+        android:layout_width="@dimen/sw_80dp"
+        android:layout_height="@dimen/sw_25dp"
+        android:background="@drawable/btn_blue_frame"
+        android:text="查看记录"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/sw_15dp"/>
+
+</LinearLayout>

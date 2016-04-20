@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.gzrijing.workassistant.view.SuppliesReturnEditActivity">
+    <item
+        android:id="@+id/action_apply"
+        android:orderInCategory="100"
+        android:icon="@drawable/icon_apply"
+        android:title="申请"
+        app:showAsAction="always" />
+</menu>
