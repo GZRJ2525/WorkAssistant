@@ -16,8 +16,10 @@ import android.widget.Toast;
 import com.gzrijing.workassistant.R;
 import com.gzrijing.workassistant.adapter.NoticeAdapter;
 import com.gzrijing.workassistant.base.BaseActivity;
+import com.gzrijing.workassistant.entity.LeaderMachineApplyBill;
 import com.gzrijing.workassistant.entity.Notice;
 import com.gzrijing.workassistant.listener.HttpCallbackListener;
+import com.gzrijing.workassistant.util.DateUtil;
 import com.gzrijing.workassistant.util.HttpUtils;
 import com.gzrijing.workassistant.util.JsonParseUtils;
 import com.gzrijing.workassistant.util.ToastUtil;
@@ -25,6 +27,9 @@ import com.gzrijing.workassistant.util.ToastUtil;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class NoticeActivity extends BaseActivity {
@@ -71,6 +76,20 @@ public class NoticeActivity extends BaseActivity {
                 Log.e("response", response);
                 ArrayList<Notice> list = JsonParseUtils.getNotice(response);
                 noticeList.addAll(list);
+                if (noticeList.size() > 1) {
+                    Collections.sort(noticeList, new Comparator<Notice>() {
+                        @Override
+                        public int compare(Notice lhs, Notice rhs) {
+                            Date date1 = DateUtil.stringToDate(lhs.getDate());
+                            Date date2 = DateUtil.stringToDate(rhs.getDate());
+                            // 对日期字段进行升序，如果欲降序可采用after方法
+                            if (date1.before(date2)) {
+                                return 1;
+                            }
+                            return -1;
+                        }
+                    });
+                }
                 handler.post(new Runnable() {
                     @Override
                     public void run() {

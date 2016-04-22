@@ -106,7 +106,7 @@ public class PrintActivity extends BaseActivity implements View.OnClickListener 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tv_worker = (TextView) findViewById(R.id.print_worker_tv);
-        tv_worker.setText("施工员：" + userName);
+        tv_worker.setText("打印人：" + userName);
         tv_orderId = (TextView) findViewById(R.id.print_order_id_tv);
         tv_orderId.setText("工单：" + acceptance.getOrderId());
 

@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,6 +45,7 @@ public class LeaderFragment extends Fragment implements AdapterView.OnItemSelect
     private List<BusinessByLeader> orderList = new ArrayList<BusinessByLeader>();
     private BusinessLeaderAdapter adapter;
     private List<BusinessByLeader> orderListByLeader = new ArrayList<BusinessByLeader>();
+    private Handler handler;
 
     public LeaderFragment() {
     }
@@ -115,6 +118,21 @@ public class LeaderFragment extends Fragment implements AdapterView.OnItemSelect
         lv_order = (ListView) layoutView.findViewById(R.id.fragment_leader_order_lv);
         adapter = new BusinessLeaderAdapter(getActivity(), orderList, userNo);
         lv_order.setAdapter(adapter);
+
+        handler = new Handler(getActivity().getMainLooper()){
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what){
+                    case 0:
+                        adapter.notifyDataSetChanged();
+                        Message message = handler.obtainMessage(0);
+                        handler.sendMessageDelayed(message, 60 * 1000);
+                }
+            }
+        };
+
+        Message message = handler.obtainMessage(0);
+        handler.sendMessageDelayed(message, 60 * 1000);
     }
 
     private void setListeners() {

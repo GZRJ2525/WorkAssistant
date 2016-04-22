@@ -38,6 +38,8 @@ public class BusinessHaveSendByAllActivity extends BaseActivity {
     private SortByDeadlineFragment sortByDeadlineFragment;
     private SortByWorkerNameFragment sortByWorkerNameFragment;
     private ProgressDialog pDialog;
+    private boolean getDate;
+    private boolean getSubordinate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class BusinessHaveSendByAllActivity extends BaseActivity {
     }
 
     private void getData() {
+        getDate = false;
         pDialog = new ProgressDialog(this);
         pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pDialog.setMessage("正在加载数据...");
@@ -79,8 +82,11 @@ public class BusinessHaveSendByAllActivity extends BaseActivity {
                     public void run() {
                         ArrayList<BusinessHaveSendByAll> list = JsonParseUtils.getBusinessHaveSendByAll(response);
                         businessList.addAll(list);
-                        pDialog.dismiss();
-                        setTabSelection(index);
+                        getDate = true;
+                        if (getDate && getSubordinate) {
+                            pDialog.dismiss();
+                            setTabSelection(index);
+                        }
                     }
                 });
 
@@ -92,7 +98,10 @@ public class BusinessHaveSendByAllActivity extends BaseActivity {
                     @Override
                     public void run() {
                         ToastUtil.showToast(BusinessHaveSendByAllActivity.this, "与服务器断开连接", Toast.LENGTH_SHORT);
-                        pDialog.dismiss();
+                        getDate = true;
+                        if (getDate && getSubordinate) {
+                            pDialog.dismiss();
+                        }
                     }
                 });
             }
@@ -100,6 +109,7 @@ public class BusinessHaveSendByAllActivity extends BaseActivity {
     }
 
     private void getSubordinate() {
+        getSubordinate = false;
         String url = null;
         try {
             url = "?cmd=getsitusergl&userno=" + URLEncoder.encode(userNo, "UTF-8");
@@ -112,6 +122,11 @@ public class BusinessHaveSendByAllActivity extends BaseActivity {
                 Log.e("response--s", response);
                 List<Subordinate> list = JsonParseUtils.getSubordinate(response);
                 subordinateList.addAll(list);
+                getSubordinate = true;
+                if (getDate && getSubordinate) {
+                    pDialog.dismiss();
+                    setTabSelection(index);
+                }
             }
 
             @Override
@@ -120,6 +135,10 @@ public class BusinessHaveSendByAllActivity extends BaseActivity {
                     @Override
                     public void run() {
                         ToastUtil.showToast(BusinessHaveSendByAllActivity.this, "与服务器断开连接", Toast.LENGTH_SHORT);
+                        getSubordinate = true;
+                        if (getDate && getSubordinate) {
+                            pDialog.dismiss();
+                        }
                     }
                 });
 
@@ -157,7 +176,7 @@ public class BusinessHaveSendByAllActivity extends BaseActivity {
     }
 
     private void selectSort() {
-        String[] item = {"按期限排序", "按施工员名字排序"};
+        String[] item = {"按施工员名字排序", "按期限排序"};
         final int flag = index;
         new android.support.v7.app.AlertDialog.Builder(this).setTitle("选择排序方式：").setSingleChoiceItems(
                 item, index, new DialogInterface.OnClickListener() {
@@ -188,17 +207,6 @@ public class BusinessHaveSendByAllActivity extends BaseActivity {
         hideFragments(transaction);
         switch (index) {
             case 0:
-                if (sortByDeadlineFragment == null) {
-                    sortByDeadlineFragment = new SortByDeadlineFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelableArrayList("businessList", businessList);
-                    sortByDeadlineFragment.setArguments(bundle);
-                    transaction.add(R.id.business_have_send_by_all_fragment_content, sortByDeadlineFragment);
-                } else {
-                    transaction.show(sortByDeadlineFragment);
-                }
-                break;
-            case 1:
                 if (sortByWorkerNameFragment == null) {
                     sortByWorkerNameFragment = new SortByWorkerNameFragment();
                     Bundle bundle = new Bundle();
@@ -210,6 +218,18 @@ public class BusinessHaveSendByAllActivity extends BaseActivity {
                     transaction.show(sortByWorkerNameFragment);
                 }
                 break;
+
+            case 1:
+            if (sortByDeadlineFragment == null) {
+                    sortByDeadlineFragment = new SortByDeadlineFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelableArrayList("businessList", businessList);
+                    sortByDeadlineFragment.setArguments(bundle);
+                    transaction.add(R.id.business_have_send_by_all_fragment_content, sortByDeadlineFragment);
+                } else {
+                    transaction.show(sortByDeadlineFragment);
+                }
+            break;
         }
         transaction.commit();
     }

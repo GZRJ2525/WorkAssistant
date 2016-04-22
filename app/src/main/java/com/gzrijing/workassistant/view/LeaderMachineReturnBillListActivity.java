@@ -34,7 +34,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 
-public class LeaderMachineReturnBillListActivity extends BaseActivity implements View.OnClickListener{
+public class LeaderMachineReturnBillListActivity extends BaseActivity implements View.OnClickListener {
 
     private String userNo;
     private EditText et_id;
@@ -118,12 +118,12 @@ public class LeaderMachineReturnBillListActivity extends BaseActivity implements
                 ArrayList<LeaderMachineReturnBill> list = JsonParseUtils.getLeaderMachineReturnBill(response);
                 billList.clear();
                 billList.addAll(list);
-                if(billList.toString().equals("[]")){
+                if (billList.size() > 1) {
                     Collections.sort(billList, new Comparator<LeaderMachineReturnBill>() {
                         @Override
                         public int compare(LeaderMachineReturnBill lhs, LeaderMachineReturnBill rhs) {
-                            Date date1 = DateUtil.stringToDate(lhs.getApplyName());
-                            Date date2 = DateUtil.stringToDate(rhs.getApplyName());
+                            Date date1 = DateUtil.stringToDate(lhs.getApplyDate());
+                            Date date2 = DateUtil.stringToDate(rhs.getApplyDate());
                             // 对日期字段进行升序，如果欲降序可采用after方法
                             if (date1.before(date2)) {
                                 return 1;
@@ -159,18 +159,18 @@ public class LeaderMachineReturnBillListActivity extends BaseActivity implements
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if(action.equals("action.com.gzrijing.workassistant.LeaderMachineReturnBillByPlan")){
+            if (action.equals("action.com.gzrijing.workassistant.LeaderMachineReturnBillByPlan")) {
                 int machinePosition = intent.getIntExtra("machinePosition", -1);
                 String billNo = intent.getStringExtra("billNo");
-                for(LeaderMachineReturnBill bill : billList){
-                    if(bill.getBillNo().equals(billNo)){
+                for (LeaderMachineReturnBill bill : billList) {
+                    if (bill.getBillNo().equals(billNo)) {
                         bill.getMachineList().get(machinePosition).setFlag("1");
                         adapter.notifyDataSetChanged();
                     }
                 }
             }
 
-            if(action.equals("action.com.gzrijing.workassistant.LeaderMachineReturnBill")){
+            if (action.equals("action.com.gzrijing.workassistant.LeaderMachineReturnBill")) {
                 getReturnBill();
             }
         }

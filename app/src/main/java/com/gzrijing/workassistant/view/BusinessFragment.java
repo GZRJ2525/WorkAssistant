@@ -34,7 +34,6 @@ import com.gzrijing.workassistant.entity.PicUrl;
 import com.gzrijing.workassistant.entity.Supplies;
 import com.gzrijing.workassistant.entity.SuppliesNo;
 import com.gzrijing.workassistant.listener.HttpCallbackListener;
-import com.gzrijing.workassistant.service.GetWorkerBusinessService;
 import com.gzrijing.workassistant.util.DeleteFolderUtil;
 import com.gzrijing.workassistant.util.HttpUtils;
 import com.gzrijing.workassistant.util.ImageUtils;
@@ -171,6 +170,10 @@ public class BusinessFragment extends Fragment {
         List<BusinessByLeader> list = JsonParseUtils.getLeaderBusiness(data);
         if(list.size() == 0){
             pDialog.dismiss();
+            Fragment fragment = getChildFragmentManager().findFragmentByTag(userRank);
+            if (fragment == null) {
+                setTabSelection(Integer.valueOf(userRank));
+            }
         }
         for (final BusinessByLeader order : list) {
             BusinessData data1 = new BusinessData();
@@ -268,6 +271,10 @@ public class BusinessFragment extends Fragment {
         List<BusinessByLeader> list = JsonParseUtils.getLeaderBusiness(data);
         if(list.size() == 0){
             pDialog.dismiss();
+            Fragment fragment = getChildFragmentManager().findFragmentByTag(userRank);
+            if (fragment == null) {
+                setTabSelection(Integer.valueOf(userRank));
+            }
         }
         for (final BusinessByLeader order : list) {
             count+=2;
@@ -498,6 +505,10 @@ public class BusinessFragment extends Fragment {
         List<BusinessByWorker> list = JsonParseUtils.getWorkerBusiness(data);
         if(list.size() == 0){
             pDialog.dismiss();
+            Fragment fragment = getChildFragmentManager().findFragmentByTag(userRank);
+            if (fragment == null) {
+                setTabSelection(Integer.valueOf(userRank));
+            }
         }
         for (final BusinessByWorker order : list) {
             count+=2;

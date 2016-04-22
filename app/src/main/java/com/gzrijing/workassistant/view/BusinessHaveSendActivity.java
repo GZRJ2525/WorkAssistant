@@ -2,7 +2,6 @@ package com.gzrijing.workassistant.view;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.Toolbar;
@@ -23,11 +22,12 @@ import com.gzrijing.workassistant.util.ToastUtil;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class BusinessHaveSendActivity extends BaseActivity {
 
-    private String userNo;
     private String orderId;
     private ListView lv_business;
     private ArrayList<BusinessHaveSend> BHSList = new ArrayList<BusinessHaveSend>();
@@ -46,9 +46,6 @@ public class BusinessHaveSendActivity extends BaseActivity {
     }
 
     private void initData() {
-        SharedPreferences app = getSharedPreferences(
-                "saveUser", MODE_PRIVATE);
-        userNo = app.getString("userNo", "");
         Intent intent = getIntent();
         orderId = intent.getStringExtra("orderId");
 
@@ -77,6 +74,7 @@ public class BusinessHaveSendActivity extends BaseActivity {
                     public void run() {
                         ArrayList<BusinessHaveSend> list = JsonParseUtils.getBusinessHaveSend(response);
                         BHSList.addAll(list);
+                        sequence(BHSList);
                         adapter.notifyDataSetChanged();
                     }
                 });
@@ -93,6 +91,15 @@ public class BusinessHaveSendActivity extends BaseActivity {
                     }
                 });
                 pDialog.cancel();
+            }
+        });
+    }
+
+    private void sequence (List<BusinessHaveSend> orders){
+        Collections.sort(orders, new Comparator<BusinessHaveSend>() {
+            @Override
+            public int compare(BusinessHaveSend lhs, BusinessHaveSend rhs) {
+                return rhs.getId().compareTo(lhs.getId());
             }
         });
     }
