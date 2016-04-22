@@ -6,6 +6,7 @@
     android:padding="@dimen/sw_15dp">
 
     <RelativeLayout
+        android:id="@+id/listview_item_business_leader_head_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/blue" >
@@ -123,6 +124,28 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/sw_15dp" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/sw_10dp"
+            android:paddingBottom="@dimen/sw_10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="剩余时间："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
+
+            <TextView
+                android:id="@+id/listview_item_business_leader_time_left_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp" />
         </LinearLayout>
 
         <LinearLayout
