@@ -49,8 +49,11 @@
         <item>完成</item>
     </string-array>
 
+    <!-- 完工汇报界面汇报项开始 -->
     <!-- 供水维修 -->
     <string-array name="reportComplete_form1">
+        <item>安装人员</item>
+        <item>土方人员</item>
         <item>维修内容</item>
         <item>排水口径</item>
         <item>排水时间</item>
@@ -62,6 +65,8 @@
 
     <!-- 供水管网维护 -->
     <string-array name="reportComplete_form2">
+        <item>安装人员</item>
+        <item>土方人员</item>
         <item>排水口径</item>
         <item>排水时间</item>
         <item>施工日期</item>
@@ -72,6 +77,8 @@
 
     <!-- 挂表工程 -->
     <string-array name="reportComplete_form3">
+        <item>安装人员</item>
+        <item>土方人员</item>
         <item>表身编号</item>
         <item>水表产地</item>
         <item>排水口径</item>
@@ -85,6 +92,8 @@
 
     <!-- 移表户外 -->
     <string-array name="reportComplete_form4">
+        <item>安装人员</item>
+        <item>土方人员</item>
         <item>处理结果</item>
         <item>表身编号</item>
         <item>水表产地</item>
@@ -99,6 +108,8 @@
 
     <!-- 故障水表 -->
     <string-array name="reportComplete_form5">
+        <item>安装人员</item>
+        <item>土方人员</item>
         <item>处理结果</item>
         <item>表身编号</item>
         <item>水表产地</item>
@@ -115,6 +126,8 @@
 
     <!-- 违章水表 -->
     <string-array name="reportComplete_form6">
+        <item>安装人员</item>
+        <item>土方人员</item>
         <item>处理结果</item>
         <item>排水口径</item>
         <item>排水时间</item>
@@ -180,6 +193,7 @@
         <item>验收日期</item>
         <item>　备　注</item>
     </string-array>
+    <!-- 完工汇报界面汇报项结束 -->
 
 
     <string name="title_activity_progress">工程进度</string>
