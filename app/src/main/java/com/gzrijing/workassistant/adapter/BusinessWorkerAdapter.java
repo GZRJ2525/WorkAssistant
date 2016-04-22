@@ -111,53 +111,58 @@ public class BusinessWorkerAdapter extends BaseAdapter implements SlideView.OnSl
         v.temInfo.setText("有" + orderList.get(position).getTemInfoNum() + "条临时信息");
 
         String endTime = orderList.get(position).getDeadline();
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date d = sdf.parse(endTime);
-            long time = d.getTime() - System.currentTimeMillis();
-            long day = time / (1000 * 60 * 60 * 24);
-            long dayNm = 0;
-            if (day > 0) {
-                dayNm = day;
-            }
-            long hour = (time - day * 1000 * 60 * 60 * 24) / (1000 * 60 * 60);
-            long hourNm = 0;
-            if (hour > 0) {
-                hourNm = hour;
-            }
-            long min = (time - day * 1000 * 60 * 60 * 24 - hour * 1000 * 60 * 60) / (1000 * 60);
-            long minNm = 0;
-            if (min > 0) {
-                minNm = min;
-            }
-            String surpTime = dayNm + "天" + hourNm + "时" + minNm + "分";
-            if (dayNm == 0 && hourNm < 4 && hourNm > 1) {
-                v.timeLeft.setText(surpTime);
-                v.head_rl.setBackgroundColor(context.getResources().getColor(R.color.orangeShallow));
-            } else if (dayNm == 0 && hourNm < 2) {
-                v.timeLeft.setText(surpTime);
-                v.head_rl.setBackgroundColor(context.getResources().getColor(R.color.redShallow));
-            } else {
-                v.timeLeft.setText(surpTime);
-                v.head_rl.setBackgroundColor(context.getResources().getColor(R.color.blue));
-            }
-            if (dayNm == 0 && hourNm == 1 && minNm == 59) {
-                NotificationManager manager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
-                Intent intent = new Intent(context, NotificationReceiver.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        if(endTime.equals("")){
+            v.timeLeft.setText("");
+            v.head_rl.setBackgroundColor(context.getResources().getColor(R.color.blue));
+        }else{
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date d = sdf.parse(endTime);
+                long time = d.getTime() - System.currentTimeMillis();
+                long day = time / (1000 * 60 * 60 * 24);
+                long dayNm = 0;
+                if (day > 0) {
+                    dayNm = day;
+                }
+                long hour = (time - day * 1000 * 60 * 60 * 24) / (1000 * 60 * 60);
+                long hourNm = 0;
+                if (hour > 0) {
+                    hourNm = hour;
+                }
+                long min = (time - day * 1000 * 60 * 60 * 24 - hour * 1000 * 60 * 60) / (1000 * 60);
+                long minNm = 0;
+                if (min > 0) {
+                    minNm = min;
+                }
+                String surpTime = dayNm + "天" + hourNm + "时" + minNm + "分";
+                if (dayNm == 0 && hourNm < 4 && hourNm > 1) {
+                    v.timeLeft.setText(surpTime);
+                    v.head_rl.setBackgroundColor(context.getResources().getColor(R.color.orangeShallow));
+                } else if (dayNm == 0 && hourNm < 2) {
+                    v.timeLeft.setText(surpTime);
+                    v.head_rl.setBackgroundColor(context.getResources().getColor(R.color.redShallow));
+                } else {
+                    v.timeLeft.setText(surpTime);
+                    v.head_rl.setBackgroundColor(context.getResources().getColor(R.color.blue));
+                }
+                if (dayNm == 0 && hourNm == 1 && minNm == 59) {
+                    NotificationManager manager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
+                    Intent intent = new Intent(context, NotificationReceiver.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                Notification notification = new NotificationCompat.Builder(context)
-                        .setContentText("你有一条快过期的工程")
-                        .setTicker("你有一条快过期的工程")
-                        .setContentIntent(pendingIntent)
-                        .setSmallIcon(android.R.drawable.ic_notification_clear_all)
-                        .build();
-                notification.defaults = Notification.DEFAULT_SOUND;
-                notification.flags = Notification.FLAG_INSISTENT;
-                manager.notify(MyApplication.notificationId++, notification);
+                    Notification notification = new NotificationCompat.Builder(context)
+                            .setContentText("你有一条快过期的工程")
+                            .setTicker("你有一条快过期的工程")
+                            .setContentIntent(pendingIntent)
+                            .setSmallIcon(android.R.drawable.ic_notification_clear_all)
+                            .build();
+                    notification.defaults = Notification.DEFAULT_SOUND;
+                    notification.flags = Notification.FLAG_INSISTENT;
+                    manager.notify(MyApplication.notificationId++, notification);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
 
         if (orderList.get(position).getType().equals("供水管网巡查")) {
@@ -165,6 +170,8 @@ public class BusinessWorkerAdapter extends BaseAdapter implements SlideView.OnSl
             v.suppliesApply.setVisibility(View.GONE);
             v.queryProjectAmount.setVisibility(View.GONE);
             v.gps.setVisibility(View.GONE);
+            v.problemResult.setVisibility(View.GONE);
+            v.safetyInspectFail.setVisibility(View.GONE);
         }
         if (orderList.get(position).isUrgent()) {
             v.urgent.setVisibility(View.VISIBLE);
