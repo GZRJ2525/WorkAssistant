@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,7 @@ public class LeaderMachineApplyBillBySendMachineActivity extends BaseActivity im
     private TextView tv_sendDate;
     private TextView btn_send;
     private String getAddress;
+    private EditText et_getRemark;
     private ArrayList<Subordinate> subordinates = new ArrayList<Subordinate>();
     private WheelMain wheelMain;
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -99,6 +101,7 @@ public class LeaderMachineApplyBillBySendMachineActivity extends BaseActivity im
         tv_sendUser = (TextView) findViewById(R.id.leader_machine_apply_bill_by_send_machine_send_user_tv);
         tv_sendDate = (TextView) findViewById(R.id.leader_machine_apply_bill_by_send_machine_send_date_tv);
         tv_sendDate.setText(bill.getUseDate());
+        et_getRemark = (EditText)findViewById(R.id.leader_machine_apply_bill_by_send__remark_et);//yycq
         btn_send = (TextView) findViewById(R.id.leader_machine_apply_bill_by_send_machine_send_btn);
         if (flag.equals("安排")) {
             btn_send.setText("安排");
@@ -136,6 +139,10 @@ public class LeaderMachineApplyBillBySendMachineActivity extends BaseActivity im
     }
 
     private void send() {
+        if(tv_sendUser.getText().toString().trim().equals("")) {//yycq 添加判断
+            ToastUtil.showToast(this, "请选择送机人", Toast.LENGTH_SHORT);
+            return;
+        }
         pDialog = new ProgressDialog(this);
         pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pDialog.setMessage("正在" + flag + "中");
@@ -156,6 +163,7 @@ public class LeaderMachineApplyBillBySendMachineActivity extends BaseActivity im
             jsonObject.put("MachineNo", machineNo);
             jsonObject.put("SendUNo", executors);
             jsonObject.put("SendDate", tv_sendDate.getText().toString());
+            jsonObject.put("Remark",et_getRemark.getText().toString());//yycq 添加备注 Remark = 备注
             jsonArray.put(jsonObject);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -185,6 +193,9 @@ public class LeaderMachineApplyBillBySendMachineActivity extends BaseActivity im
                         } else {
                             ToastUtil.showToast(LeaderMachineApplyBillBySendMachineActivity.this,
                                     flag + "失败", Toast.LENGTH_SHORT);
+                            ToastUtil.showToast(LeaderMachineApplyBillBySendMachineActivity.this,
+                                     "失败"+response, Toast.LENGTH_SHORT);
+                            Log.e("失败原因",response);
                         }
                     }
                 });

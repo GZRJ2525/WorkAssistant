@@ -146,7 +146,40 @@
             android:textColor="@color/blue"
             android:textSize="@dimen/sw_15dp" />
     </LinearLayout>
+    <!--yycq 添加备注-->
+    <LinearLayout
+        android:id="@+id/leader_machine_apply_bill_by_send__remark_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/sw_5dp"
+        android:orientation="horizontal">
 
+        <TextView
+            android:id="@+id/leader_machine_apply_bill_by_send__remark_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="　备　注"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp" />
+
+        <EditText
+            android:id="@+id/leader_machine_apply_bill_by_send__remark_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_text"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sw_15dp"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
     <Button
         android:id="@+id/leader_machine_apply_bill_by_send_machine_send_btn"
         android:layout_width="@dimen/sw_60dp"

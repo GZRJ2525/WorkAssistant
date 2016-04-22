@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,7 @@ public class LeaderMachineReturnBillByBackMachineActivity extends BaseActivity i
     private TextView tv_backUser;
     private TextView tv_backDate;
     private TextView btn_plan;
+    private EditText getRemark;//yycq
     private ArrayList<Subordinate> subordinates = new ArrayList<Subordinate>();
     private WheelMain wheelMain;
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -97,6 +99,7 @@ public class LeaderMachineReturnBillByBackMachineActivity extends BaseActivity i
         tv_backDate = (TextView) findViewById(R.id.leader_machine_return_bill_by_back_machine_back_date_tv);
         tv_backDate.setText(bill.getReturnDate());
         btn_plan = (TextView) findViewById(R.id.leader_machine_return_bill_by_back_machine_plan_btn);
+        getRemark =(EditText)findViewById(R.id.leader_machine_return_bill_by_back_machine_back_remark_et);//yycq
     }
 
     private void setListeners() {
@@ -131,6 +134,10 @@ public class LeaderMachineReturnBillByBackMachineActivity extends BaseActivity i
             ToastUtil.showToast(this, "填写送机地点", Toast.LENGTH_SHORT);
             return;
         }
+        if(tv_backUser.getText().toString().trim().equals("")){//yycq 添加判断
+            ToastUtil.showToast(this, "请选择退机人", Toast.LENGTH_SHORT);
+            return;
+        }
         pDialog = new ProgressDialog(this);
         pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pDialog.setMessage("正在安排中");
@@ -152,6 +159,7 @@ public class LeaderMachineReturnBillByBackMachineActivity extends BaseActivity i
             jsonObject.put("SendUNo", executors);
             jsonObject.put("SendDate", tv_backDate.getText().toString());
             jsonObject.put("MachineAddress", et_sendAddress.getText().toString().trim());
+            jsonObject.put("Remark",getRemark.getText().toString().trim());//yycq
             jsonArray.put(jsonObject);
         } catch (JSONException e) {
             e.printStackTrace();

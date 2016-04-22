@@ -1372,6 +1372,7 @@ public class JsonParseUtils {
                 String sendData = jsonObject.getString("SendDate");
                 String applyName = jsonObject.getString("SaveName");
                 String machineNum = jsonObject.getString("Qty");
+                String remark = jsonObject.getString("Remark");//yycq 添加
 
                 SendMachine sendMachine = new SendMachine();
                 sendMachine.setSendId(sendId);
@@ -1383,7 +1384,8 @@ public class JsonParseUtils {
                 sendMachine.setMachineName(machineName);
                 sendMachine.setApplyName(applyName);
                 sendMachine.setSendData(sendData);
-                sendMachine.setMachineNum(machineNum);
+                sendMachine.setMachineNum(machineNum);//yycq 添加
+                sendMachine.setRemark(remark);
                 list.add(sendMachine);
             }
         } catch (JSONException e) {
@@ -1415,6 +1417,7 @@ public class JsonParseUtils {
                 String returnName = jsonObject.getString("SaveName");
                 String returnTime = jsonObject.getString("SendDate");
                 String type = jsonObject.getString("BillType");
+                String remark = jsonObject.getString("Remark");//yycq!
 
                 ReturnMachine returnMachine = new ReturnMachine();
                 returnMachine.setSendId(sendId);
@@ -1428,6 +1431,7 @@ public class JsonParseUtils {
                 returnMachine.setReturnName(returnName);
                 returnMachine.setReturnTiem(returnTime);
                 returnMachine.setType(type);
+                returnMachine.setRemark(remark);//yycq
                 list.add(returnMachine);
             }
         } catch (JSONException e) {
@@ -1833,6 +1837,7 @@ public class JsonParseUtils {
                 String machineUnit = jsonObject.getString("MachineUnit");
                 String state = jsonObject.getString("State");
                 String address = jsonObject.getString("MachineAddress");
+                String businessNo =jsonObject.getString("FileNo");//yycq 添加工程编号
 
                 LeaderMachineState machineState = new LeaderMachineState();
                 machineState.setMachineNo(machineNo);
@@ -1840,6 +1845,7 @@ public class JsonParseUtils {
                 machineState.setMachineUnit(machineUnit);
                 machineState.setState(state);
                 machineState.setAddress(address);
+                machineState.setBusinessNo(businessNo);//yycq 添加
                 list.add(machineState);
             }
         } catch (JSONException e) {

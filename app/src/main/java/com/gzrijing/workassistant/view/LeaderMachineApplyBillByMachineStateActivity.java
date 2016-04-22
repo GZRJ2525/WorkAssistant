@@ -74,7 +74,7 @@ public class LeaderMachineApplyBillByMachineStateActivity extends BaseActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        ArrayList<LeaderMachineState> list = JsonParseUtils.getLeaderMachineState(response);
+                        ArrayList<LeaderMachineState> list = JsonParseUtils.getLeaderMachineState(response);//yycq 获取机械台账列表
                         machineList.addAll(list);
                         adapter = new LeaderMachineApplyBillByMachineStateAdapter(LeaderMachineApplyBillByMachineStateActivity.this,
                                 machineList, bill);

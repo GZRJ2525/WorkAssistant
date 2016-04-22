@@ -11,9 +11,7 @@ import android.widget.TextView;
 
 import com.gzrijing.workassistant.R;
 import com.gzrijing.workassistant.entity.LeaderMachineApplyBill;
-import com.gzrijing.workassistant.entity.LeaderMachineApplyBillByMachine;
 import com.gzrijing.workassistant.entity.LeaderMachineState;
-import com.gzrijing.workassistant.view.LeaderMachineApplyBillByMachineStateActivity;
 import com.gzrijing.workassistant.view.LeaderMachineApplyBillBySendMachineActivity;
 
 import java.util.ArrayList;
@@ -55,6 +53,7 @@ public class LeaderMachineApplyBillByMachineStateAdapter extends BaseAdapter {
             v = new ViewHolder();
             convertView = listContainer.inflate(
                     R.layout.listview_item_leader_machine_apply_bill_by_machine_state, parent, false);
+            v.businessNo = (TextView)convertView.findViewById(R.id.listview_item_leader_machine_apply_bill_by_machine_state_business_no_tv);//yycq 初始化使用该机械的对应工程编号
             v.machineNo = (TextView) convertView.findViewById(R.id.listview_item_leader_machine_apply_bill_by_machine_state_no_tv);
             v.machineName = (TextView) convertView.findViewById(R.id.listview_item_leader_machine_apply_bill_by_machine_state_name_tv);
             v.state = (TextView) convertView.findViewById(R.id.listview_item_leader_machine_apply_bill_by_machine_state_state_tv);
@@ -63,7 +62,7 @@ public class LeaderMachineApplyBillByMachineStateAdapter extends BaseAdapter {
         } else {
             v = (ViewHolder) convertView.getTag();
         }
-
+        v.businessNo.setText(list.get(position).getBusinessNo());//yycq 添加
         v.machineNo.setText(list.get(position).getMachineNo());
         v.machineName.setText(list.get(position).getMachineName());
         v.state.setText(list.get(position).getState());
@@ -109,6 +108,7 @@ public class LeaderMachineApplyBillByMachineStateAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
+        private TextView businessNo;//yycq 定义工程编号tv
         private TextView machineNo;
         private TextView machineName;
         private TextView state;

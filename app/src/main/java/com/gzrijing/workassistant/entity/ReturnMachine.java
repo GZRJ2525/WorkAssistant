@@ -15,11 +15,12 @@ public class ReturnMachine implements Parcelable {
     private String machineNum;      //机械数量
     private String returnName;      //退机人
     private String returnTiem;      //退机时间
+    private String remark;          // 备注 yycq
 
     public ReturnMachine() {
     }
 
-    public ReturnMachine(String sendId, String orderId, String billNo, String sendAddress, String address, String type, String machineNo, String machineName, String machineNum, String returnName, String returnTiem) {
+    public ReturnMachine(String sendId, String orderId, String billNo, String sendAddress, String address, String type, String machineNo, String machineName, String machineNum, String returnName, String returnTiem,String remark) {//yycq
         this.sendId = sendId;
         this.orderId = orderId;
         this.billNo = billNo;
@@ -31,6 +32,7 @@ public class ReturnMachine implements Parcelable {
         this.machineNum = machineNum;
         this.returnName = returnName;
         this.returnTiem = returnTiem;
+        this.remark = remark;//yycq
     }
 
     public String getSendId() {
@@ -121,6 +123,13 @@ public class ReturnMachine implements Parcelable {
         this.returnTiem = returnTiem;
     }
 
+    public String getRemark() {
+        return remark;
+    }//yycq
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }//yycq
     @Override
     public int describeContents() {
         return 0;
@@ -139,6 +148,7 @@ public class ReturnMachine implements Parcelable {
         dest.writeString(this.machineNum);
         dest.writeString(this.returnName);
         dest.writeString(this.returnTiem);
+        dest.writeString(this.remark);//yycq
     }
 
     protected ReturnMachine(Parcel in) {
@@ -153,6 +163,7 @@ public class ReturnMachine implements Parcelable {
         this.machineNum = in.readString();
         this.returnName = in.readString();
         this.returnTiem = in.readString();
+        this.remark =in.readString();//yycq
     }
 
     public static final Creator<ReturnMachine> CREATOR = new Creator<ReturnMachine>() {

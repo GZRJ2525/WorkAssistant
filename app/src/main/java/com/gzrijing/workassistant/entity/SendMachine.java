@@ -14,11 +14,12 @@ public class SendMachine implements Parcelable {
     private String applyName;       //申请人
     private String sendData;        //发放时间
     private String machineNum;      //机械数量
+    private String remark;          //备注 yycq添加
 
     public SendMachine() {
     }
 
-    public SendMachine(String sendId, String orderId, String billNo, String getAddress, String sendAddress, String machineNo, String machineName, String applyName, String sendData, String machineNum) {
+    public SendMachine(String sendId, String orderId, String billNo, String getAddress, String sendAddress, String machineNo, String machineName, String applyName, String sendData, String machineNum,String remark) {//remark yycq添加
         this.sendId = sendId;
         this.orderId = orderId;
         this.billNo = billNo;
@@ -29,6 +30,7 @@ public class SendMachine implements Parcelable {
         this.applyName = applyName;
         this.sendData = sendData;
         this.machineNum = machineNum;
+        this.remark = remark;//yycq 添加
     }
 
     public String getSendId() {
@@ -111,6 +113,9 @@ public class SendMachine implements Parcelable {
         this.machineNum = machineNum;
     }
 
+    public void setRemark(String remark){this.remark = remark;};// yycq 添加
+
+    public String  getRemark(){return remark;};// yycq 添加
     @Override
     public int describeContents() {
         return 0;
@@ -128,6 +133,7 @@ public class SendMachine implements Parcelable {
         dest.writeString(this.applyName);
         dest.writeString(this.sendData);
         dest.writeString(this.machineNum);
+        dest.writeString(this.remark);//yycq 添加
     }
 
     protected SendMachine(Parcel in) {
@@ -141,6 +147,7 @@ public class SendMachine implements Parcelable {
         this.applyName = in.readString();
         this.sendData = in.readString();
         this.machineNum = in.readString();
+        this.remark = in.readString();// yycq 添加
     }
 
     public static final Creator<SendMachine> CREATOR = new Creator<SendMachine>() {
