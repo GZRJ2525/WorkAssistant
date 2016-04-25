@@ -172,6 +172,13 @@ public class BusinessWorkerAdapter extends BaseAdapter implements SlideView.OnSl
             v.gps.setVisibility(View.GONE);
             v.problemResult.setVisibility(View.GONE);
             v.safetyInspectFail.setVisibility(View.GONE);
+        }else{
+            v.info.setVisibility(View.VISIBLE);
+            v.suppliesApply.setVisibility(View.VISIBLE);
+            v.queryProjectAmount.setVisibility(View.VISIBLE);
+            v.gps.setVisibility(View.VISIBLE);
+            v.problemResult.setVisibility(View.VISIBLE);
+            v.safetyInspectFail.setVisibility(View.VISIBLE);
         }
         if (orderList.get(position).isUrgent()) {
             v.urgent.setVisibility(View.VISIBLE);
@@ -239,6 +246,7 @@ public class BusinessWorkerAdapter extends BaseAdapter implements SlideView.OnSl
             public void onClick(View v) {
                 Intent intent = new Intent(context, QueryProjectAmountActivity.class);
                 intent.putExtra("orderId", orderList.get(position).getOrderId());
+                intent.putExtra("type", orderList.get(position).getType());
                 context.startActivity(intent);
             }
         });

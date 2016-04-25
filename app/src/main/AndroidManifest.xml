@@ -694,6 +694,7 @@
             android:process=":pushservice" />
         <!-- 个推SDK配置结束 -->
 
+        <activity android:name=".view.ProjectAmountAddSuppliesActivity"></activity>
     </application>
 
 </manifest>

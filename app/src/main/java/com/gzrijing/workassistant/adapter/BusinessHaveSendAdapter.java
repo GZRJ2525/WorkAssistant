@@ -18,15 +18,17 @@ import java.util.ArrayList;
 
 public class BusinessHaveSendAdapter extends BaseAdapter {
     private String orderId;
+    private String type;
     private Context context;
     private LayoutInflater listContainer;
     private ArrayList<BusinessHaveSend> BHSList;
 
-    public BusinessHaveSendAdapter(Context context, ArrayList<BusinessHaveSend> BHSList, String orderId) {
+    public BusinessHaveSendAdapter(Context context, ArrayList<BusinessHaveSend> BHSList, String orderId, String type) {
         this.context = context;
         listContainer = LayoutInflater.from(context);
         this.BHSList = BHSList;
         this.orderId = orderId;
+        this.type = type;
     }
 
     @Override
@@ -102,6 +104,7 @@ public class BusinessHaveSendAdapter extends BaseAdapter {
                 Intent intent = new Intent(context, ReportInfoByProjectAmountActivity.class);
                 intent.putExtra("id", BHSList.get(position).getId());
                 intent.putExtra("orderId", orderId);
+                intent.putExtra("type", type);
                 context.startActivity(intent);
             }
         });

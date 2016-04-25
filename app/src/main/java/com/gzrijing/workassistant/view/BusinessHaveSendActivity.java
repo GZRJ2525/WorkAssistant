@@ -34,6 +34,7 @@ public class BusinessHaveSendActivity extends BaseActivity {
     private BusinessHaveSendAdapter adapter;
     private Handler handler = new Handler();
     private ProgressDialog pDialog;
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class BusinessHaveSendActivity extends BaseActivity {
     private void initData() {
         Intent intent = getIntent();
         orderId = intent.getStringExtra("orderId");
+        type = intent.getStringExtra("type");
 
         getBusinessHaveSend();
 
@@ -110,7 +112,7 @@ public class BusinessHaveSendActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         lv_business = (ListView) findViewById(R.id.business_have_send_lv);
-        adapter = new BusinessHaveSendAdapter(this, BHSList, orderId);
+        adapter = new BusinessHaveSendAdapter(this, BHSList, orderId, type);
         lv_business.setAdapter(adapter);
     }
 

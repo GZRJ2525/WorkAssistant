@@ -26,15 +26,17 @@ import java.util.List;
 public class QueryProjectAmountAdapter extends BaseAdapter {
 
     private String orderId;
+    private String type;
     private Context context;
     private LayoutInflater listContainer;
     private List<QueryProjectAmount> list;
 
-    public QueryProjectAmountAdapter(Context context, List<QueryProjectAmount> list, String orderId) {
+    public QueryProjectAmountAdapter(Context context, List<QueryProjectAmount> list, String orderId, String type) {
         this.context = context;
         listContainer = LayoutInflater.from(context);
         this.list = list;
         this.orderId = orderId;
+        this.type = type;
     }
 
     @Override
@@ -77,6 +79,7 @@ public class QueryProjectAmountAdapter extends BaseAdapter {
                 if(list.get(position).getState().equals("不通过")){
                     Intent intent = new Intent(context, QueryProjectAmountByInfoModifyActivity.class);
                     intent.putExtra("orderId", orderId);
+                    intent.putExtra("type", type);
                     intent.putExtra("projectAmount", list.get(position));
                     context.startActivity(intent);
                 }else{

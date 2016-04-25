@@ -222,6 +222,7 @@ public class BusinessLeaderAdapter extends BaseAdapter implements SlideView.OnSl
             public void onClick(View v) {
                 Intent intent = new Intent(context, BusinessHaveSendActivity.class);
                 intent.putExtra("orderId", orderList.get(position).getOrderId());
+                intent.putExtra("type", orderList.get(position).getType());
                 context.startActivity(intent);
             }
         });

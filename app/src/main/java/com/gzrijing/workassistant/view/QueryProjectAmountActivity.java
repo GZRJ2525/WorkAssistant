@@ -1,5 +1,6 @@
 package com.gzrijing.workassistant.view;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.IntegerRes;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -16,8 +18,10 @@ import android.widget.Toast;
 import com.gzrijing.workassistant.R;
 import com.gzrijing.workassistant.adapter.QueryProjectAmountAdapter;
 import com.gzrijing.workassistant.base.BaseActivity;
+import com.gzrijing.workassistant.entity.BusinessByWorker;
 import com.gzrijing.workassistant.entity.QueryProjectAmount;
 import com.gzrijing.workassistant.listener.HttpCallbackListener;
+import com.gzrijing.workassistant.util.DateUtil;
 import com.gzrijing.workassistant.util.HttpUtils;
 import com.gzrijing.workassistant.util.JsonParseUtils;
 import com.gzrijing.workassistant.util.ToastUtil;
@@ -25,6 +29,9 @@ import com.gzrijing.workassistant.util.ToastUtil;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 public class QueryProjectAmountActivity extends BaseActivity {
 
@@ -34,6 +41,8 @@ public class QueryProjectAmountActivity extends BaseActivity {
     private ArrayList<QueryProjectAmount> projectAmountList = new ArrayList<QueryProjectAmount>();
     private Handler handler = new Handler();
     private QueryProjectAmountAdapter adapter;
+    private ProgressDialog pDialog;
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +60,7 @@ public class QueryProjectAmountActivity extends BaseActivity {
 
         Intent intent = getIntent();
         orderId = intent.getStringExtra("orderId");
+        type = intent.getStringExtra("type");
 
         IntentFilter intentFilter = new IntentFilter("action.com.gzrijing.workassistant.QueryProjectAmount");
         registerReceiver(mBroadcastReceiver, intentFilter);
@@ -59,6 +69,10 @@ public class QueryProjectAmountActivity extends BaseActivity {
     }
 
     private void getProjectAmount() {
+        pDialog = new ProgressDialog(this);
+        pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pDialog.setMessage("正在加载数据...");
+        pDialog.show();
         String url = null;
         try {
             url = "?cmd=getmyconsconfirm&userno=" + URLEncoder.encode(userNo, "UTF-8")
@@ -77,7 +91,11 @@ public class QueryProjectAmountActivity extends BaseActivity {
                         ArrayList<QueryProjectAmount> list = JsonParseUtils.getQueryProjectAmount(response);
                         projectAmountList.clear();
                         projectAmountList.addAll(list);
+                        if (projectAmountList.size() > 1) {
+                            Collections.sort(projectAmountList, Collections.<QueryProjectAmount>reverseOrder());
+                        }
                         adapter.notifyDataSetChanged();
+                        pDialog.dismiss();
                     }
                 });
             }
@@ -88,6 +106,7 @@ public class QueryProjectAmountActivity extends BaseActivity {
                     @Override
                     public void run() {
                         ToastUtil.showToast(QueryProjectAmountActivity.this, "与服务器断开连接", Toast.LENGTH_SHORT);
+                        pDialog.dismiss();
                     }
                 });
             }
@@ -100,7 +119,7 @@ public class QueryProjectAmountActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         lv_ProjectAmount = (ListView) findViewById(R.id.query_project_amount_lv);
-        adapter = new QueryProjectAmountAdapter(this, projectAmountList, orderId);
+        adapter = new QueryProjectAmountAdapter(this, projectAmountList, orderId, type);
         lv_ProjectAmount.setAdapter(adapter);
 
     }

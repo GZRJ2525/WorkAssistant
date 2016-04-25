@@ -30,6 +30,7 @@ public class ReportInfoByProjectAmountActivity extends BaseActivity {
     private ReportInfoProjectAmountAdapter waitAdapter;
     private ReportInfoProjectAmountAdapter okAdapter;
     private String orderId;
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class ReportInfoByProjectAmountActivity extends BaseActivity {
         Intent intent = getIntent();
         togetherid = intent.getStringExtra("id");
         orderId = intent.getStringExtra("orderId");
+        type = intent.getStringExtra("type");
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("action.com.gzrijing.workassistant.ReportInfo.projectAmount");
@@ -66,12 +68,12 @@ public class ReportInfoByProjectAmountActivity extends BaseActivity {
 
         lv_wait = (ListView) findViewById(R.id.report_info_by_project_amount_wait_lv);
         waitAdapter = new ReportInfoProjectAmountAdapter(
-                ReportInfoByProjectAmountActivity.this, waitList, togetherid, orderId);
+                ReportInfoByProjectAmountActivity.this, waitList, togetherid, orderId, type);
         lv_wait.setAdapter(waitAdapter);
 
         lv_ok = (ListView) findViewById(R.id.report_info_by_project_amount_ok_lv);
         okAdapter = new ReportInfoProjectAmountAdapter(
-                ReportInfoByProjectAmountActivity.this, okList, togetherid, orderId);
+                ReportInfoByProjectAmountActivity.this, okList, togetherid, orderId, type);
         lv_ok.setAdapter(okAdapter);
 
     }

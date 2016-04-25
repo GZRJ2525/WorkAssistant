@@ -162,6 +162,7 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
                     reportProjectAmount = new ReportProjectAmountFragment();
                     Bundle bundle = new Bundle();
                     bundle.putString("orderId", orderId);
+                    bundle.putString("type", type);
                     reportProjectAmount.setArguments(bundle);
                     transaction.add(R.id.fragment_report, reportProjectAmount);
                 } else {

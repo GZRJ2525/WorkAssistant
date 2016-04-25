@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,7 +35,7 @@ import com.gzrijing.workassistant.util.ToastUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QueryProjectAmountByInfoModifyActivity extends BaseActivity implements View.OnClickListener{
+public class QueryProjectAmountByInfoModifyActivity extends BaseActivity implements View.OnClickListener {
 
     private String userNo;
     private TextView tv_checkName;
@@ -50,6 +51,8 @@ public class QueryProjectAmountByInfoModifyActivity extends BaseActivity impleme
     private ArrayList<Supplies> suppliesList = new ArrayList<Supplies>();
     private ReportInfoProjectAmountByWaitAdapter adapter;
     private ProgressDialog pDialog;
+    private Button btn_edit;
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +71,10 @@ public class QueryProjectAmountByInfoModifyActivity extends BaseActivity impleme
 
         Intent intent = getIntent();
         orderId = intent.getStringExtra("orderId");
+        type = intent.getStringExtra("type");
         projectAmount = intent.getParcelableExtra("projectAmount");
 
-        if(projectAmount.getFeeType().equals("水务")){
+        if (projectAmount.getFeeType().equals("水务")) {
             index = 1;
         }
 
@@ -124,6 +128,8 @@ public class QueryProjectAmountByInfoModifyActivity extends BaseActivity impleme
         et_civil = (EditText) findViewById(R.id.query_project_amount_by_info_modify_civil_et);
         et_civil.setText(projectAmount.getCivil());
 
+        btn_edit = (Button) findViewById(R.id.query_project_amount_by_info_modify_edit_supplies_btn);
+
         lv_supplies = (ListView) findViewById(R.id.query_project_amount_by_info_modify_supplies_lv);
         adapter = new ReportInfoProjectAmountByWaitAdapter(this, suppliesList);
         lv_supplies.setAdapter(adapter);
@@ -131,13 +137,21 @@ public class QueryProjectAmountByInfoModifyActivity extends BaseActivity impleme
 
     private void setListeners() {
         tv_feeType.setOnClickListener(this);
+        btn_edit.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.query_project_amount_by_info_modify_fee_type_tv:
                 selectFeeType();
+                break;
+
+            case R.id.query_project_amount_by_info_modify_edit_supplies_btn:
+                Intent intent = new Intent(this, ProjectAmountAddSuppliesActivity.class);
+                intent.putParcelableArrayListExtra("suppliesList", suppliesList);
+                intent.putExtra("type", type);
+                startActivityForResult(intent, 10);
                 break;
         }
     }
@@ -154,10 +168,10 @@ public class QueryProjectAmountByInfoModifyActivity extends BaseActivity impleme
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(index == 0) {
+                        if (index == 0) {
                             tv_feeType.setText("客户");
                         }
-                        if(index == 1) {
+                        if (index == 1) {
                             tv_feeType.setText("水务");
                         }
                     }
@@ -168,6 +182,19 @@ public class QueryProjectAmountByInfoModifyActivity extends BaseActivity impleme
                         index = flag;
                     }
                 }).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 10) {
+            if (resultCode == 10) {
+                List<Supplies> supplies = data.getParcelableArrayListExtra("suppliesList");
+                suppliesList.clear();
+                suppliesList.addAll(supplies);
+                adapter.notifyDataSetChanged();
+            }
+        }
     }
 
     @Override
@@ -218,7 +245,7 @@ public class QueryProjectAmountByInfoModifyActivity extends BaseActivity impleme
                 String result = intent.getStringExtra("result");
                 ToastUtil.showToast(context, result, Toast.LENGTH_SHORT);
                 pDialog.cancel();
-                if(result.equals("汇报成功")){
+                if (result.equals("汇报成功")) {
                     Intent intent1 = new Intent("action.com.gzrijing.workassistant.QueryProjectAmount");
                     sendBroadcast(intent1);
                     finish();

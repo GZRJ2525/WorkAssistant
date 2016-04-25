@@ -59,12 +59,14 @@ public class ReportInfoProjectAmountByWaitActivity extends BaseActivity implemen
     private ReportInfoProjectAmount info;
     private boolean isCheck = true;
     private Intent serviceIntent;
-    private List<Supplies> suppliesList = new ArrayList<Supplies>();
+    private ArrayList<Supplies> suppliesList = new ArrayList<Supplies>();
     private ReportInfoProjectAmountByWaitAdapter suppliesAdapter;
     private ProgressDialog pDialog;
     private Handler handler = new Handler();
     private String orderId;
     private int index = 0;
+    private Button btn_edit;
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +87,7 @@ public class ReportInfoProjectAmountByWaitActivity extends BaseActivity implemen
         String togetherid = intent.getStringExtra("id");
         info = intent.getParcelableExtra("projectAmount");
         orderId = intent.getStringExtra("orderId");
+        type = intent.getStringExtra("type");
 
         if(info.getFeeType().equals("水务")){
             index = 1;
@@ -115,6 +118,8 @@ public class ReportInfoProjectAmountByWaitActivity extends BaseActivity implemen
         et_civil = (EditText) findViewById(R.id.report_info_project_amount_by_wait_civil_et);
         et_civil.setText(info.getCivil());
 
+        btn_edit = (Button) findViewById(R.id.report_info_project_amount_by_wait_edit_supplies_btn);
+
         lv_supplies = (ListView) findViewById(R.id.report_info_project_amount_by_wait_supplies_lv);
         suppliesAdapter = new ReportInfoProjectAmountByWaitAdapter(this, suppliesList);
         lv_supplies.setAdapter(suppliesAdapter);
@@ -132,6 +137,7 @@ public class ReportInfoProjectAmountByWaitActivity extends BaseActivity implemen
         ll_yes.setOnClickListener(this);
         ll_no.setOnClickListener(this);
         btn_submit.setOnClickListener(this);
+        btn_edit.setOnClickListener(this);
     }
 
     @Override
@@ -159,6 +165,13 @@ public class ReportInfoProjectAmountByWaitActivity extends BaseActivity implemen
 
             case R.id.report_info_project_amount_by_wait_submit_btn:
                 submit();
+                break;
+
+            case R.id.report_info_project_amount_by_wait_edit_supplies_btn:
+                Intent intent = new Intent(this, ProjectAmountAddSuppliesActivity.class);
+                intent.putParcelableArrayListExtra("suppliesList", suppliesList);
+                intent.putExtra("type", type);
+                startActivityForResult(intent, 10);
                 break;
         }
     }
@@ -189,6 +202,19 @@ public class ReportInfoProjectAmountByWaitActivity extends BaseActivity implemen
                         index = flag;
                     }
                 }).show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 10) {
+            if (resultCode == 10) {
+                List<Supplies> supplies = data.getParcelableArrayListExtra("suppliesList");
+                suppliesList.clear();
+                suppliesList.addAll(supplies);
+                suppliesAdapter.notifyDataSetChanged();
+            }
+        }
     }
 
     private void submit() {

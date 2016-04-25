@@ -29,14 +29,17 @@ import com.gzrijing.workassistant.util.HttpUtils;
 import com.gzrijing.workassistant.util.JsonParseUtils;
 import com.gzrijing.workassistant.util.ToastUtil;
 
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ReportProjectAmountFragment extends Fragment implements View.OnClickListener {
 
     private View layoutView;
     private String orderId;
+    private String type;
     private String userNo;
     private LinearLayout ll_water;
     private ImageView iv_water;
@@ -52,6 +55,7 @@ public class ReportProjectAmountFragment extends Fragment implements View.OnClic
     private boolean isCheck;
     private Handler handler = new Handler();
     private ProgressDialog pDialog;
+    private Button btn_addSupplies;
 
     public ReportProjectAmountFragment() {
     }
@@ -69,6 +73,7 @@ public class ReportProjectAmountFragment extends Fragment implements View.OnClic
 
         Bundle bundle = getArguments();
         orderId = bundle.getString("orderId");
+        type = bundle.getString("type");
 
         getSupplies();
 
@@ -131,6 +136,8 @@ public class ReportProjectAmountFragment extends Fragment implements View.OnClic
         ll_customer = (LinearLayout) layoutView.findViewById(R.id.fragment_report_project_amount_customer_ll);
         iv_customer = (ImageView) layoutView.findViewById(R.id.fragment_report_project_amount_customer_iv);
 
+        btn_addSupplies = (Button) layoutView.findViewById(R.id.fragment_report_project_amount_add_supplies_btn);
+
         et_content = (EditText) layoutView.findViewById(R.id.fragment_report_project_amount_content_et);
         et_civil = (EditText) layoutView.findViewById(R.id.fragment_report_project_amount_civil_et);
         btn_need = (Button) layoutView.findViewById(R.id.fragment_report_project_amount_submit_need_btn);
@@ -145,6 +152,7 @@ public class ReportProjectAmountFragment extends Fragment implements View.OnClic
     private void setListeners() {
         ll_water.setOnClickListener(this);
         ll_customer.setOnClickListener(this);
+        btn_addSupplies.setOnClickListener(this);
         btn_need.setOnClickListener(this);
         btn_wait.setOnClickListener(this);
 
@@ -170,6 +178,13 @@ public class ReportProjectAmountFragment extends Fragment implements View.OnClic
                 }
                 break;
 
+            case R.id.fragment_report_project_amount_add_supplies_btn:
+                Intent intent = new Intent(getActivity(), ProjectAmountAddSuppliesActivity.class);
+                intent.putParcelableArrayListExtra("suppliesList", suppliesList);
+                intent.putExtra("type", type);
+                startActivityForResult(intent, 10);
+                break;
+
             case R.id.fragment_report_project_amount_submit_need_btn:
                 report("1");
                 break;
@@ -177,7 +192,6 @@ public class ReportProjectAmountFragment extends Fragment implements View.OnClic
             case R.id.fragment_report_project_amount_submit_wait_btn:
                 report("0");
                 break;
-
         }
     }
 
@@ -219,6 +233,19 @@ public class ReportProjectAmountFragment extends Fragment implements View.OnClic
             }
         }
     };
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 10) {
+            if (resultCode == 10) {
+                List<Supplies> supplies = data.getParcelableArrayListExtra("suppliesList");
+                suppliesList.clear();
+                suppliesList.addAll(supplies);
+                adapter.notifyDataSetChanged();
+            }
+        }
+    }
 
     @Override
     public void onDestroy() {

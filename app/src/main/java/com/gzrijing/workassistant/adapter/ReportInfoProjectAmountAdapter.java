@@ -18,17 +18,19 @@ import java.util.List;
 public class ReportInfoProjectAmountAdapter extends BaseAdapter {
 
     private String orderId;
+    private String type;
     private String togetherid;
     private Context context;
     private LayoutInflater listContainer;
     private List<ReportInfoProjectAmount> list;
 
-    public ReportInfoProjectAmountAdapter(Context context, List<ReportInfoProjectAmount> list, String togetherid, String orderId) {
+    public ReportInfoProjectAmountAdapter(Context context, List<ReportInfoProjectAmount> list, String togetherid, String orderId, String type) {
         this.context = context;
         listContainer = LayoutInflater.from(context);
         this.list = list;
         this.togetherid = togetherid;
         this.orderId = orderId;
+        this.type = type;
     }
 
     @Override
@@ -76,6 +78,7 @@ public class ReportInfoProjectAmountAdapter extends BaseAdapter {
                     intent.putExtra("id", togetherid);
                     intent.putExtra("projectAmount", list.get(position));
                     intent.putExtra("orderId", orderId);
+                    intent.putExtra("type", type);
                     context.startActivity(intent);
                 }
 

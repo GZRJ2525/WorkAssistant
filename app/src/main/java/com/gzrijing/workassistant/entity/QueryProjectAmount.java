@@ -3,7 +3,7 @@ package com.gzrijing.workassistant.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class QueryProjectAmount implements Parcelable {
+public class QueryProjectAmount implements Parcelable, Comparable<QueryProjectAmount>{
     private String id;
     private String feeType;         //收费性质 (客户，水务）
     private String content;         //施工内容
@@ -116,4 +116,9 @@ public class QueryProjectAmount implements Parcelable {
             return new QueryProjectAmount[size];
         }
     };
+
+    @Override
+    public int compareTo(QueryProjectAmount another) {
+        return Integer.valueOf(this.getId())- Integer.valueOf(another.getId());
+    }
 }
