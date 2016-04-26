@@ -119,10 +119,10 @@ public class LeaderFragment extends Fragment implements AdapterView.OnItemSelect
         adapter = new BusinessLeaderAdapter(getActivity(), orderList, userNo);
         lv_order.setAdapter(adapter);
 
-        handler = new Handler(getActivity().getMainLooper()){
+        handler = new Handler(getActivity().getMainLooper()) {
             @Override
             public void handleMessage(Message msg) {
-                switch (msg.what){
+                switch (msg.what) {
                     case 0:
                         adapter.notifyDataSetChanged();
                         Message message = handler.obtainMessage(0);
@@ -140,8 +140,8 @@ public class LeaderFragment extends Fragment implements AdapterView.OnItemSelect
         sp_state.setOnItemSelectedListener(this);
     }
 
-    private void select(View view){
-        if(view != null){
+    private void select(View view) {
+        if (view != null) {
             TextView tv = (TextView) view;
             tv.setTextColor(getResources().getColor(R.color.black));
         }
@@ -152,31 +152,41 @@ public class LeaderFragment extends Fragment implements AdapterView.OnItemSelect
         if (type.equals("全部") && state.equals("全部")) {
             orderList.addAll(orderListByLeader);
         } else if (type.equals("全部") && !state.equals("全部")) {
-            for(BusinessByLeader order : orderListByLeader){
-                if(order.getState().equals(state)){
+            for (BusinessByLeader order : orderListByLeader) {
+                if (order.getState().equals(state)) {
                     orderList.add(order);
                 }
             }
         } else if (!type.equals("全部") && state.equals("全部")) {
-            for(BusinessByLeader order : orderListByLeader){
-                if(order.getType().equals(type)){
+            for (BusinessByLeader order : orderListByLeader) {
+                if (order.getType().equals(type)) {
                     orderList.add(order);
                 }
             }
         } else {
-            for(BusinessByLeader order : orderListByLeader){
-                if(order.getType().equals(type) && order.getState().equals(state)){
+            for (BusinessByLeader order : orderListByLeader) {
+                if (order.getType().equals(type) && order.getState().equals(state)) {
                     orderList.add(order);
                 }
             }
         }
-        if(!orderList.toString().equals("[]")){
+        if (orderList.size() > 1) {
             sequence(orderList);
+            ArrayList<BusinessByLeader> list = new ArrayList<BusinessByLeader>();
+            for (int i = 0 ; i<orderList.size(); i++) {
+                if (orderList.get(i).getState().equals("已完工")) {
+                    list.add(orderList.get(i));
+                    orderList.remove(i);
+                }
+            }
+            if (list.size() > 0) {
+                orderList.addAll(list);
+            }
         }
         adapter.notifyDataSetChanged();
     }
 
-    private void sequence (List<BusinessByLeader> orders){
+    private void sequence(List<BusinessByLeader> orders) {
         Collections.sort(orders, new Comparator<BusinessByLeader>() {
             @Override
             public int compare(BusinessByLeader lhs, BusinessByLeader rhs) {
@@ -206,21 +216,31 @@ public class LeaderFragment extends Fragment implements AdapterView.OnItemSelect
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             Log.e("action", action);
-            if(action.equals("action.com.gzrijing.workassistant.LeaderFragment")||
-                    action.equals("action.com.gzrijing.workassistant.temInfoNum")){
+            if (action.equals("action.com.gzrijing.workassistant.LeaderFragment") ||
+                    action.equals("action.com.gzrijing.workassistant.temInfoNum")) {
                 getDBData();
                 orderList.clear();
                 orderList.addAll(orderListByLeader);
-                if(!orderList.toString().equals("[]")){
+                if (orderList.size() > 1) {
                     sequence(orderList);
+                    ArrayList<BusinessByLeader> list = new ArrayList<BusinessByLeader>();
+                    for (int i = 0 ; i<orderList.size(); i++) {
+                        if (orderList.get(i).getState().equals("已完工")) {
+                            list.add(orderList.get(i));
+                            orderList.remove(i);
+                        }
+                    }
+                    if (list.size() > 0) {
+                        orderList.addAll(list);
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }
 
-            if(action.equals("action.com.gzrijing.workassistant.LeaderFragment.Distribute")){
+            if (action.equals("action.com.gzrijing.workassistant.LeaderFragment.Distribute")) {
                 String orderId = intent.getStringExtra("orderId");
-                for(BusinessByLeader order : orderListByLeader){
-                    if(order.getOrderId().equals(orderId)){
+                for (BusinessByLeader order : orderListByLeader) {
+                    if (order.getOrderId().equals(orderId)) {
                         order.setState("已派工");
                     }
                 }

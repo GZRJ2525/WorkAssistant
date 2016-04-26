@@ -40,7 +40,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-public class WorkerFragment extends Fragment implements AdapterView.OnItemSelectedListener{
+public class WorkerFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private View layoutView;
     private Spinner sp_business;
@@ -53,7 +53,7 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
-            switch (msg.what){
+            switch (msg.what) {
                 case 0:
                     adapter.notifyDataSetChanged();
                     Message message = handler.obtainMessage(0);
@@ -107,7 +107,7 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
 
     }
 
-    private void getWorkerOreder(){
+    private void getWorkerOreder() {
         List<BusinessData> list = DataSupport.where("user = ?", userNo).find(BusinessData.class);
         for (BusinessData data : list) {
             BusinessByWorker order = new BusinessByWorker();
@@ -140,12 +140,22 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
                     @Override
                     public void run() {
                         List<BusinessByWorker> list = JsonParseUtils.getInspection(response);
-                        for(BusinessByWorker businessByWorker: list){
+                        for (BusinessByWorker businessByWorker : list) {
                             orderListByWorker.add(businessByWorker);
                             orderList.add(businessByWorker);
                         }
-                        if(!orderList.toString().equals("[]")){
+                        if (orderList.size() > 1) {
                             sequence(orderList);
+                            ArrayList<BusinessByWorker> BBWList = new ArrayList<BusinessByWorker>();
+                            for (int i = 0; i < orderList.size(); i++) {
+                                if (orderList.get(i).getState().equals("已完工")) {
+                                    BBWList.add(orderList.get(i));
+                                    orderList.remove(i);
+                                }
+                            }
+                            if (BBWList.size() > 0) {
+                                orderList.addAll(BBWList);
+                            }
                         }
                         adapter.notifyDataSetChanged();
                     }
@@ -180,12 +190,22 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
                     @Override
                     public void run() {
                         List<BusinessByWorker> list = JsonParseUtils.getInspection(response);
-                        for(BusinessByWorker businessByWorker: list){
+                        for (BusinessByWorker businessByWorker : list) {
                             orderListByWorker.add(businessByWorker);
                             orderList.add(businessByWorker);
                         }
-                        if(!orderList.toString().equals("[]")){
+                        if (orderList.size() > 1) {
                             sequence(orderList);
+                            ArrayList<BusinessByWorker> BBWList = new ArrayList<BusinessByWorker>();
+                            for (int i = 0; i < orderList.size(); i++) {
+                                if (orderList.get(i).getState().equals("已完工")) {
+                                    BBWList.add(orderList.get(i));
+                                    orderList.remove(i);
+                                }
+                            }
+                            if (BBWList.size() > 0) {
+                                orderList.addAll(BBWList);
+                            }
                         }
                         adapter.notifyDataSetChanged();
                     }
@@ -234,8 +254,8 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
         sp_state.setOnItemSelectedListener(this);
     }
 
-    private void select(View view){
-        if(view != null){
+    private void select(View view) {
+        if (view != null) {
             TextView tv = (TextView) view;
             tv.setTextColor(getResources().getColor(R.color.black));
         }
@@ -246,31 +266,41 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
         if (type.equals("全部") && state.equals("全部")) {
             orderList.addAll(orderListByWorker);
         } else if (type.equals("全部") && !state.equals("全部")) {
-            for(BusinessByWorker order : orderListByWorker){
-                if(order.getState().equals(state)){
+            for (BusinessByWorker order : orderListByWorker) {
+                if (order.getState().equals(state)) {
                     orderList.add(order);
                 }
             }
         } else if (!type.equals("全部") && state.equals("全部")) {
-            for(BusinessByWorker order : orderListByWorker){
-                if(order.getType().equals(type)){
+            for (BusinessByWorker order : orderListByWorker) {
+                if (order.getType().equals(type)) {
                     orderList.add(order);
                 }
             }
         } else {
-            for(BusinessByWorker order : orderListByWorker){
-                if(order.getType().equals(type) && order.getState().equals(state)){
+            for (BusinessByWorker order : orderListByWorker) {
+                if (order.getType().equals(type) && order.getState().equals(state)) {
                     orderList.add(order);
                 }
             }
         }
-        if(!orderList.toString().equals("[]")){
+        if (orderList.size() > 1) {
             sequence(orderList);
+            ArrayList<BusinessByWorker> BBWList = new ArrayList<BusinessByWorker>();
+            for (int i = 0; i < orderList.size(); i++) {
+                if (orderList.get(i).getState().equals("已完工")) {
+                    BBWList.add(orderList.get(i));
+                    orderList.remove(i);
+                }
+            }
+            if (BBWList.size() > 0) {
+                orderList.addAll(BBWList);
+            }
         }
         adapter.notifyDataSetChanged();
     }
 
-    private void sequence (List<BusinessByWorker> orders){
+    private void sequence(List<BusinessByWorker> orders) {
         Collections.sort(orders, new Comparator<BusinessByWorker>() {
             @Override
             public int compare(BusinessByWorker lhs, BusinessByWorker rhs) {
@@ -299,32 +329,55 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if(action.equals("action.com.gzrijing.workassistant.WorkerFragment.Inspection")){
+            if (action.equals("action.com.gzrijing.workassistant.WorkerFragment.Inspection")) {
                 String jsonData = intent.getStringExtra("jsonData");
                 List<BusinessByWorker> list = JsonParseUtils.getInspection(jsonData);
-                for(BusinessByWorker businessByWorker: list){
+                for (BusinessByWorker businessByWorker : list) {
                     orderListByWorker.add(businessByWorker);
                     orderList.add(businessByWorker);
                 }
-                if(!orderList.toString().equals("[]")){
+                if (orderList.size() > 1) {
                     sequence(orderList);
+                    ArrayList<BusinessByWorker> BBWList = new ArrayList<BusinessByWorker>();
+                    for (int i = 0; i < orderList.size(); i++) {
+                        if (orderList.get(i).getState().equals("已完工")) {
+                            BBWList.add(orderList.get(i));
+                            orderList.remove(i);
+                        }
+                    }
+                    if (BBWList.size() > 0) {
+                        orderList.addAll(BBWList);
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }
 
-            if(action.equals("action.com.gzrijing.workassistant.WorkerFragment")){
+            if (action.equals("action.com.gzrijing.workassistant.WorkerFragment")) {
                 String jsonData = intent.getStringExtra("jsonData");
                 List<BusinessByWorker> list = JsonParseUtils.getWorkerBusiness(jsonData);
                 orderList.addAll(list);
                 orderListByWorker.addAll(list);
-                if(!orderList.toString().equals("[]")){
+                if (!orderList.toString().equals("[]")) {
                     sequence(orderList);
+                }
+                if (orderList.size() > 1) {
+                    sequence(orderList);
+                    ArrayList<BusinessByWorker> BBWList = new ArrayList<BusinessByWorker>();
+                    for (int i = 0; i < orderList.size(); i++) {
+                        if (orderList.get(i).getState().equals("已完工")) {
+                            BBWList.add(orderList.get(i));
+                            orderList.remove(i);
+                        }
+                    }
+                    if (BBWList.size() > 0) {
+                        orderList.addAll(BBWList);
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }
-            if(action.equals("action.com.gzrijing.workassistant.PipeInspectMap.add")
+            if (action.equals("action.com.gzrijing.workassistant.PipeInspectMap.add")
                     || action.equals("action.com.gzrijing.workassistant.PipeInspectMap.update")
-                    || action.equals("action.com.gzrijing.workassistant.PipeInspectMap.inspection")){
+                    || action.equals("action.com.gzrijing.workassistant.PipeInspectMap.inspection")) {
                 orderListByWorker.clear();
                 orderList.clear();
                 getWorkerOreder();
@@ -332,32 +385,32 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
                 getSewageWellsOrder();
             }
 
-            if(action.equals("action.com.gzrijing.workassistant.WorkerFragment.state")){
+            if (action.equals("action.com.gzrijing.workassistant.WorkerFragment.state")) {
                 String orderId = intent.getStringExtra("orderId");
                 String state = intent.getStringExtra("state");
-                for(BusinessByWorker order : orderListByWorker){
-                    if(orderId.equals(order.getOrderId())){
+                for (BusinessByWorker order : orderListByWorker) {
+                    if (orderId.equals(order.getOrderId())) {
                         order.setState(state);
                     }
                 }
-                for(BusinessByWorker order : orderList){
-                    if(orderId.equals(order.getOrderId())){
+                for (BusinessByWorker order : orderList) {
+                    if (orderId.equals(order.getOrderId())) {
                         order.setState(state);
                         adapter.notifyDataSetChanged();
                     }
                 }
             }
 
-            if(action.equals("action.com.gzrijing.workassistant.temInfoNum")){
+            if (action.equals("action.com.gzrijing.workassistant.temInfoNum")) {
                 String orderId = intent.getStringExtra("orderId");
                 int num = intent.getIntExtra("temInfoNum", -1);
-                for(BusinessByWorker order : orderListByWorker){
-                    if(orderId.equals(order.getOrderId())){
+                for (BusinessByWorker order : orderListByWorker) {
+                    if (orderId.equals(order.getOrderId())) {
                         order.setTemInfoNum(num);
                     }
                 }
-                for(BusinessByWorker order : orderList){
-                    if(orderId.equals(order.getOrderId())){
+                for (BusinessByWorker order : orderList) {
+                    if (orderId.equals(order.getOrderId())) {
                         order.setTemInfoNum(num);
                         adapter.notifyDataSetChanged();
                     }

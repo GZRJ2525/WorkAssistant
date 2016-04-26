@@ -112,6 +112,8 @@ public class JsonParseUtils {
                 businessByLeader.setTemInfoNum(temInfoNum);
                 if (state.equals("未派工")) {
                     businessByLeader.setFlag("确认收到");
+                } else if (state.equals("未派工")) {
+                    businessByLeader.setFlag("已完工");
                 } else {
                     businessByLeader.setFlag("派工");
                 }
@@ -223,6 +225,9 @@ public class JsonParseUtils {
                 }
                 if (flag.equals("正在处理")) {
                     flag = "汇报";
+                }
+                if(flag.equals("已完工")){
+                    state = "已完工";
                 }
                 String receivedTime = jsonObject.getString("CheckDate").replace("/", "-");
                 String deadline = jsonObject.getString("EstimateFinishDate").replace("/", "-");
@@ -1214,10 +1219,10 @@ public class JsonParseUtils {
                 String unit = jsonObject.getString("MachineUnit");
                 String sendNum = jsonObject.getString("Qty");
                 String state = jsonObject.getString("State");
-                if(state.equals("送机中")){
+                if (state.equals("送机中")) {
                     state = "已安排";
                 }
-                if(state.equals("已送到")){
+                if (state.equals("已送到")) {
                     state = "已送达";
                 }
                 Machine machine = new Machine();
@@ -1597,6 +1602,7 @@ public class JsonParseUtils {
 
     /**
      * 获取安全检查不合格工程
+     *
      * @param jsonData
      * @return
      */
@@ -1837,7 +1843,7 @@ public class JsonParseUtils {
                 String machineUnit = jsonObject.getString("MachineUnit");
                 String state = jsonObject.getString("State");
                 String address = jsonObject.getString("MachineAddress");
-                String businessNo =jsonObject.getString("FileNo");//yycq 添加工程编号
+                String businessNo = jsonObject.getString("FileNo");//yycq 添加工程编号
 
                 LeaderMachineState machineState = new LeaderMachineState();
                 machineState.setMachineNo(machineNo);

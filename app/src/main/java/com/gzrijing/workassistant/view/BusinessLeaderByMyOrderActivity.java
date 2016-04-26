@@ -1,5 +1,6 @@
 package com.gzrijing.workassistant.view;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.gzrijing.workassistant.adapter.BusinessLeaderByMyOrderAdapter;
 import com.gzrijing.workassistant.base.BaseActivity;
 import com.gzrijing.workassistant.entity.BusinessByWorker;
 import com.gzrijing.workassistant.listener.HttpCallbackListener;
+import com.gzrijing.workassistant.util.DateUtil;
 import com.gzrijing.workassistant.util.HttpUtils;
 import com.gzrijing.workassistant.util.JsonParseUtils;
 import com.gzrijing.workassistant.util.ToastUtil;
@@ -22,6 +24,9 @@ import com.gzrijing.workassistant.util.ToastUtil;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class BusinessLeaderByMyOrderActivity extends BaseActivity {
@@ -32,6 +37,7 @@ public class BusinessLeaderByMyOrderActivity extends BaseActivity {
     private List<BusinessByWorker> orderList = new ArrayList<BusinessByWorker>();
     private BusinessLeaderByMyOrderAdapter adapter;
     private Handler handler = new Handler();
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,10 @@ public class BusinessLeaderByMyOrderActivity extends BaseActivity {
     }
 
     private void getMyOrder() {
+        pDialog = new ProgressDialog(this);
+        pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pDialog.setMessage("正在加载数据...");
+        pDialog.show();
         String url = null;
         try {
             url = "?cmd=getmycons&userno="+ URLEncoder.encode(userNo, "UTF-8")
@@ -72,7 +82,21 @@ public class BusinessLeaderByMyOrderActivity extends BaseActivity {
                     public void run() {
                         List<BusinessByWorker> list = JsonParseUtils.getWorkerBusiness(response);
                         orderList.addAll(list);
+                        if (orderList.size() > 1) {
+                            sequence(orderList);
+                            ArrayList<BusinessByWorker> BBWList = new ArrayList<BusinessByWorker>();
+                            for (int i = 0; i < orderList.size(); i++) {
+                                if (orderList.get(i).getState().equals("已完工")) {
+                                    BBWList.add(orderList.get(i));
+                                    orderList.remove(i);
+                                }
+                            }
+                            if (BBWList.size() > 0) {
+                                orderList.addAll(BBWList);
+                            }
+                        }
                         adapter.notifyDataSetChanged();
+                        pDialog.dismiss();
                     }
                 });
             }
@@ -83,6 +107,7 @@ public class BusinessLeaderByMyOrderActivity extends BaseActivity {
                     @Override
                     public void run() {
                         ToastUtil.showToast(BusinessLeaderByMyOrderActivity.this, "与服务器断开连接", Toast.LENGTH_SHORT);
+                        pDialog.dismiss();
                     }
                 });
             }
@@ -97,6 +122,21 @@ public class BusinessLeaderByMyOrderActivity extends BaseActivity {
         lv_myOrder = (ListView) findViewById(R.id.business_leader_by_my_order_lv);
         adapter = new BusinessLeaderByMyOrderAdapter(this, orderList, userNo);
         lv_myOrder.setAdapter(adapter);
+    }
+
+    private void sequence(List<BusinessByWorker> orders) {
+        Collections.sort(orders, new Comparator<BusinessByWorker>() {
+            @Override
+            public int compare(BusinessByWorker lhs, BusinessByWorker rhs) {
+                Date date1 = DateUtil.stringToDate2(lhs.getReceivedTime());
+                Date date2 = DateUtil.stringToDate2(rhs.getReceivedTime());
+                // 对日期字段进行升序，如果欲降序可采用after方法
+                if (date1.before(date2)) {
+                    return 1;
+                }
+                return -1;
+            }
+        });
     }
 
     @Override
