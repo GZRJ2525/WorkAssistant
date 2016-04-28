@@ -460,6 +460,22 @@
             android:name=".view.DistributeByDirectorActivity"
             android:label="工程派工"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ProjectAmountAddSuppliesActivity"
+            android:label="编辑材料"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.InspectionStationDetailedInfoActivity"
+            android:label="详细信息"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.CancelBusinessActivity"
+            android:label="取消工程"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.DistributeByInspectionStationActivity"
+            android:label="派发工程"
+            android:screenOrientation="portrait" />
         <!-- app activity -->
 
 
@@ -694,7 +710,6 @@
             android:process=":pushservice" />
         <!-- 个推SDK配置结束 -->
 
-        <activity android:name=".view.ProjectAmountAddSuppliesActivity"></activity>
     </application>
 
 </manifest>
