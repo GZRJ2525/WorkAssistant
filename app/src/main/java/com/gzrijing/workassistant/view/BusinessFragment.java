@@ -61,6 +61,7 @@ public class BusinessFragment extends Fragment {
     private LeaderFragment leaderFragment;
     private WorkerFragment workerFragment;
     private DirectorFragment directorFragment;
+    private InspectionStationFragment inspectionStationFragment;
     private String userRank;
     private String userNo;
     private Handler handler = new Handler();
@@ -93,29 +94,37 @@ public class BusinessFragment extends Fragment {
         if (savedInstanceState == null) {
             Log.e("userRank", userRank);
             Log.e("userNo", userNo);
-            List<TimeData> timeData = DataSupport.where("userNo = ?", userNo).find(TimeData.class);
-            if (timeData.size() > 0) {
+            if(userRank.equals("3")){
                 Fragment fragment = getChildFragmentManager().findFragmentByTag(userRank);
                 if (fragment == null) {
                     setTabSelection(Integer.valueOf(userRank));
                 }
-            } else {
-                DataSupport.deleteAll(BusinessData.class);
-                DataSupport.deleteAll(TimeData.class);
-                DeleteFolderUtil.deleteFolder(Environment.getExternalStorageDirectory()+"/GZRJWorkassistant");
-                mImageLoader = ImageLoader.getInstance();
-                pDialog = new ProgressDialog(getActivity());
-                pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                pDialog.setMessage("请保持网络连接，正在加载数据...");
-                pDialog.show();
-                if (userRank.equals("0")) {
-                    getWorkerBusiness();
-                }
-                if(userRank.equals("1")){
-                    getLeaderBusiness();
-                }
-                if(userRank.equals("2")){
-                    getDirectorBusiness();
+            }else{
+                List<TimeData> timeData = DataSupport.where("userNo = ?", userNo).find(TimeData.class);
+                if (timeData.size() > 0) {
+                    Fragment fragment = getChildFragmentManager().findFragmentByTag(userRank);
+                    if (fragment == null) {
+                        setTabSelection(Integer.valueOf(userRank));
+                    }
+                } else {
+                    DataSupport.deleteAll(BusinessData.class);
+                    DataSupport.deleteAll(TimeData.class);
+                    DeleteFolderUtil.deleteFolder(Environment.getExternalStorageDirectory()+"/GZRJWorkassistant");
+                    mImageLoader = ImageLoader.getInstance();
+                    pDialog = new ProgressDialog(getActivity());
+                    pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    pDialog.setCancelable(false);
+                    pDialog.setMessage("请保持网络连接，正在加载数据...");
+                    pDialog.show();
+                    if (userRank.equals("0")) {
+                        getWorkerBusiness();
+                    }
+                    if(userRank.equals("1")){
+                        getLeaderBusiness();
+                    }
+                    if(userRank.equals("2")){
+                        getDirectorBusiness();
+                    }
                 }
             }
 
@@ -770,6 +779,14 @@ public class BusinessFragment extends Fragment {
                     transaction.show(directorFragment);
                 }
                 break;
+            case 3:
+                if (inspectionStationFragment == null) {
+                    inspectionStationFragment = new InspectionStationFragment();
+                    transaction.add(R.id.fragment_business, inspectionStationFragment, "3");
+                } else {
+                    transaction.show(inspectionStationFragment);
+                }
+                break;
         }
         transaction.commit();
     }
@@ -786,6 +803,9 @@ public class BusinessFragment extends Fragment {
         }
         if (directorFragment != null) {
             transaction.hide(directorFragment);
+        }
+        if (inspectionStationFragment != null) {
+            transaction.hide(inspectionStationFragment);
         }
     }
 

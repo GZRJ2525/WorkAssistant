@@ -2,12 +2,11 @@ package com.gzrijing.workassistant.view;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Handler;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +19,6 @@ import android.widget.Toast;
 
 import com.gzrijing.workassistant.R;
 import com.gzrijing.workassistant.base.BaseActivity;
-import com.gzrijing.workassistant.db.BusinessData;
 import com.gzrijing.workassistant.entity.WorkGroup;
 import com.gzrijing.workassistant.listener.HttpCallbackListener;
 import com.gzrijing.workassistant.util.HttpUtils;
@@ -32,8 +30,6 @@ import com.gzrijing.workassistant.widget.selectdate.WheelMain;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.RequestBody;
 
-import org.litepal.crud.DataSupport;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DateFormat;
@@ -43,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class DistributeByDirectorActivity extends BaseActivity implements View.OnClickListener {
+public class DistributeByInspectionStationActivity extends BaseActivity implements View.OnClickListener{
 
     private String userNo;
     private String orderId;
@@ -61,7 +57,7 @@ public class DistributeByDirectorActivity extends BaseActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_distribute_by_director);
+        setContentView(R.layout.activity_distribute_by_inspection_station);
 
         initData();
         initViews();
@@ -108,7 +104,7 @@ public class DistributeByDirectorActivity extends BaseActivity implements View.O
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtil.showToast(DistributeByDirectorActivity.this, "与服务器断开连接", Toast.LENGTH_SHORT);
+                        ToastUtil.showToast(DistributeByInspectionStationActivity.this, "与服务器断开连接", Toast.LENGTH_SHORT);
                         pDialog.dismiss();
                     }
                 });
@@ -122,10 +118,10 @@ public class DistributeByDirectorActivity extends BaseActivity implements View.O
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        tv_workGroup = (TextView) findViewById(R.id.distribute_by_director_work_group_tv);
-        ll_workGroup = (LinearLayout) findViewById(R.id.distribute_by_director_work_group_ll);
-        tv_deadline = (TextView) findViewById(R.id.distribute_by_director_deadline_tv);
-        ll_deadline = (LinearLayout) findViewById(R.id.distribute_by_director_deadline_ll);
+        tv_workGroup = (TextView) findViewById(R.id.distribute_by_inspection_station_work_group_tv);
+        ll_workGroup = (LinearLayout) findViewById(R.id.distribute_by_inspection_station_work_group_ll);
+        tv_deadline = (TextView) findViewById(R.id.distribute_by_inspection_station_deadline_tv);
+        ll_deadline = (LinearLayout) findViewById(R.id.distribute_by_inspection_station_deadline_ll);
     }
 
     private void setListeners() {
@@ -136,11 +132,11 @@ public class DistributeByDirectorActivity extends BaseActivity implements View.O
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.distribute_by_director_work_group_ll:
+            case R.id.distribute_by_inspection_station_work_group_ll:
                 selectWorkGroup();
                 break;
 
-            case R.id.distribute_by_director_deadline_ll:
+            case R.id.distribute_by_inspection_station_deadline_ll:
                 getDeadline();
                 break;
         }
@@ -263,7 +259,7 @@ public class DistributeByDirectorActivity extends BaseActivity implements View.O
                         if (response.equals("ok")) {
                             saveInfo();
                         } else {
-                            ToastUtil.showToast(DistributeByDirectorActivity.this, "派发失败", Toast.LENGTH_SHORT);
+                            ToastUtil.showToast(DistributeByInspectionStationActivity.this, "派发失败", Toast.LENGTH_SHORT);
                         }
                         pDialog.dismiss();
                     }
@@ -275,7 +271,7 @@ public class DistributeByDirectorActivity extends BaseActivity implements View.O
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtil.showToast(DistributeByDirectorActivity.this, "与服务器断开连接", Toast.LENGTH_SHORT);
+                        ToastUtil.showToast(DistributeByInspectionStationActivity.this, "与服务器断开连接", Toast.LENGTH_SHORT);
                         pDialog.dismiss();
                     }
                 });
@@ -284,14 +280,10 @@ public class DistributeByDirectorActivity extends BaseActivity implements View.O
     }
 
     private void saveInfo() {
-        ContentValues values = new ContentValues();
-        values.put("state", "已派工");
-        DataSupport.updateAll(BusinessData.class, values, "user = ? and orderId = ?", userNo, orderId);
-        ToastUtil.showToast(DistributeByDirectorActivity.this, "派工成功", Toast.LENGTH_SHORT);
-
-        Intent intent = new Intent("action.com.gzrijing.workassistant.LeaderFragment.Distribute");
+        Intent intent = new Intent("action.com.gzrijing.workassistant.InspectionStationFragment.distribute");
         intent.putExtra("orderId", orderId);
         sendBroadcast(intent);
+        ToastUtil.showToast(DistributeByInspectionStationActivity.this, "派工成功", Toast.LENGTH_SHORT);
         finish();
     }
 }

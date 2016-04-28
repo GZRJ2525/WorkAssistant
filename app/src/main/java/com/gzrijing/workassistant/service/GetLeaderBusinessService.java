@@ -55,45 +55,53 @@ public class GetLeaderBusinessService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        SharedPreferences sp = getSharedPreferences("saveUser", MODE_PRIVATE);
-        userNo = sp.getString("userNo", "");
+        String sitLeader = intent.getStringExtra("sitLeader");
+        if(sitLeader.equals("3")){
+            Intent intent1 = new Intent("action.com.gzrijing.workassistant.InspectionStationFragment");
+            sendBroadcast(intent1);
+            sendNotification();
+        }else{
+            SharedPreferences sp = getSharedPreferences("saveUser", MODE_PRIVATE);
+            userNo = sp.getString("userNo", "");
 
-        List<TimeData> timeDataList = DataSupport.select("time").where("userNo = ?", userNo).find(TimeData.class);
-        String time = "2016-1-10 10:00:00";
-        if (!timeDataList.toString().equals("[]")) {
-            Log.e("time", timeDataList.get(0).getTime());
-            time = timeDataList.get(0).getTime();
-        } else {
-            TimeData timeData = new TimeData();
-            timeData.setTime(time);
-            timeData.setUserNo(userNo);
-            timeData.save();
-        }
-        String url = null;
-        try {
-            url = "?cmd=getconstruction&userno=" + URLEncoder.encode(userNo, "UTF-8") + "&begindate=" + URLEncoder.encode(time, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        HttpUtils.sendHttpGetRequest(url, new HttpCallbackListener() {
-            @Override
-            public void onFinish(String response) {
-                Log.e("response", response);
-                saveData(response);
-                sendNotification();
+            List<TimeData> timeDataList = DataSupport.select("time").where("userNo = ?", userNo).find(TimeData.class);
+            String time = "2016-1-10 10:00:00";
+            if (!timeDataList.toString().equals("[]")) {
+                Log.e("time", timeDataList.get(0).getTime());
+                time = timeDataList.get(0).getTime();
+            } else {
+                TimeData timeData = new TimeData();
+                timeData.setTime(time);
+                timeData.setUserNo(userNo);
+                timeData.save();
+            }
+            String url = null;
+            try {
+                url = "?cmd=getconstruction&userno=" + URLEncoder.encode(userNo, "UTF-8") + "&begindate=" + URLEncoder.encode(time, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
             }
 
-            @Override
-            public void onError(Exception e) {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        ToastUtil.showToast(GetLeaderBusinessService.this, "与服务器断开连接", Toast.LENGTH_SHORT);
-                    }
-                });
-            }
-        });
+            HttpUtils.sendHttpGetRequest(url, new HttpCallbackListener() {
+                @Override
+                public void onFinish(String response) {
+                    Log.e("response", response);
+                    saveData(response);
+                    sendNotification();
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtil.showToast(GetLeaderBusinessService.this, "与服务器断开连接", Toast.LENGTH_SHORT);
+                        }
+                    });
+                }
+            });
+        }
+
     }
 
 

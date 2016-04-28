@@ -151,8 +151,18 @@ public class DirectorFragment extends Fragment implements AdapterView.OnItemSele
                 }
             }
         }
-        if(!orderList.toString().equals("[]")){
+        if (orderList.size() > 1) {
             sequence(orderList);
+            ArrayList<BusinessByLeader> list = new ArrayList<BusinessByLeader>();
+            for (int i = 0 ; i<orderList.size(); i++) {
+                if (orderList.get(i).getState().equals("已完工")) {
+                    list.add(orderList.get(i));
+                    orderList.remove(i);
+                }
+            }
+            if (list.size() > 0) {
+                orderList.addAll(list);
+            }
         }
         adapter.notifyDataSetChanged();
     }
@@ -192,8 +202,18 @@ public class DirectorFragment extends Fragment implements AdapterView.OnItemSele
                 getDBData();
                 orderList.clear();
                 orderList.addAll(orderListByLeader);
-                if(!orderList.toString().equals("[]")){
+                if (orderList.size() > 1) {
                     sequence(orderList);
+                    ArrayList<BusinessByLeader> list = new ArrayList<BusinessByLeader>();
+                    for (int i = 0 ; i<orderList.size(); i++) {
+                        if (orderList.get(i).getState().equals("已完工")) {
+                            list.add(orderList.get(i));
+                            orderList.remove(i);
+                        }
+                    }
+                    if (list.size() > 0) {
+                        orderList.addAll(list);
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }

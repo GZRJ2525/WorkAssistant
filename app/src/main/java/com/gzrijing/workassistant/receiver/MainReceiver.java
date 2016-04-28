@@ -65,7 +65,8 @@ public class MainReceiver extends BroadcastReceiver {
                             String cmd = jsonObject.getString("cmd");
                             if(userNo.equals(user)){
                                 if(cmd.equals("getconstruction")){
-                                    getLeaderBusiness();
+                                    String sitLeader = jsonObject.getString("SitLeader");
+                                    getLeaderBusiness(sitLeader);
                                 }
                                 if(cmd.equals("getmycons")){
                                     getWorkerBusiness();
@@ -212,8 +213,9 @@ public class MainReceiver extends BroadcastReceiver {
     /**
      * 获取Leader工程单
      */
-    private void getLeaderBusiness() {
+    private void getLeaderBusiness(String sitLeader) {
         Intent intent = new Intent(MyApplication.getContext(), GetLeaderBusinessService.class);
+        intent.putExtra("sitLeader", sitLeader);
         MyApplication.getContext().startService(intent);
     }
 

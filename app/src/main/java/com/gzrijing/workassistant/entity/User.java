@@ -5,7 +5,7 @@ public class User {
     private String userName;        //用户名称
     private String userDept;        //部门
     private String userSit;         //职位
-    private String userRank;        //1表示是组长；0表示施工员；2表示主任
+    private String userRank;        //1表示是组长；0表示施工员；2表示主任或经理；3表示水表检测站
 
     public User() {
     }
