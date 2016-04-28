@@ -37,7 +37,7 @@ public class DetailedInfoAdapter extends BaseAdapter {
 
     public DetailedInfoAdapter(Context context, List<DetailedInfo> list, ArrayList<PicUrl> picUrls, String recordFileName, String userNo, String orderId) {
         this.context = context;
-        listContainer = LayoutInflater.from(context);
+        listContainer = LayoutInflater.from(context);//【
         this.list = list;
         this.picUrls = picUrls;
         this.recordFileName = recordFileName;
@@ -65,10 +65,10 @@ public class DetailedInfoAdapter extends BaseAdapter {
         if (picUrls.size() > 0 && position + 1 == list.size()) {
             convertView = listContainer.inflate(
                     R.layout.listview_item_gridview_image, parent, false);
-            GridView gv_image = (GridView) convertView.findViewById(R.id.listview_item_gridview_image_gv);
+            GridView gv_image = (GridView) convertView.findViewById(R.id.listview_item_gridview_image_gv);//自定义布局listview_item_gridview_image_gv
             GridViewImageAdapter adapter = new GridViewImageAdapter(context, picUrls, userNo, orderId);
             gv_image.setAdapter(adapter);
-            gv_image.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            gv_image.setOnItemClickListener(new AdapterView.OnItemClickListener() {//点击某个图片项
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     if (picUrls.size() > 0) {

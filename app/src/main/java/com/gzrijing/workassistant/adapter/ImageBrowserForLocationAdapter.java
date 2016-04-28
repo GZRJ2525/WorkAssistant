@@ -14,7 +14,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImageBrowserForLocationAdapter extends PagerAdapter{
+import uk.co.senab.photoview.PhotoViewAttacher;
+
+public class ImageBrowserForLocationAdapter extends PagerAdapter {
 
     private String orderId;
     private String userNo;
@@ -22,7 +24,7 @@ public class ImageBrowserForLocationAdapter extends PagerAdapter{
     private List<PicUrl> picUrls;
     private List<View> picViews;
 
-    public ImageBrowserForLocationAdapter(Context context, List<PicUrl> picUrls, String userNo, String orderId){
+    public ImageBrowserForLocationAdapter(Context context, List<PicUrl> picUrls, String userNo, String orderId) {
         this.context = context;
         this.picUrls = picUrls;
         this.userNo = userNo;
@@ -32,9 +34,9 @@ public class ImageBrowserForLocationAdapter extends PagerAdapter{
 
     private void initViews() {
         picViews = new ArrayList<View>();
-        for(int i=0; i<picUrls.size(); i++) {
+        for (int i = 0; i < picUrls.size(); i++) {
             // 填充显示图片的页面布局
-            View view = View.inflate(context, R.layout.viewpage_item_image_browser, null);
+            View view = View.inflate(context, R.layout.viewpage_item_image_browser, null);//view 为imageview
             picViews.add(view);
         }
     }
@@ -52,11 +54,14 @@ public class ImageBrowserForLocationAdapter extends PagerAdapter{
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View view = picViews.get(position);
-        ImageView mImageView = (ImageView) view.findViewById(R.id.viewpage_item_image_browser_image_iv);
-        String picUrl = picUrls.get(position).getPicUrl();
+        ImageView mImageView = (ImageView) view.findViewById(R.id.viewpage_item_image_browser_image_iv);//存放图片的控件
+        String picUrl = picUrls.get(position).getPicUrl();//图片的url
 
-        File path = ImageUtils.getImagePath(context, userNo, orderId);
-        ImageUtils.getLocaImage(context, picUrl, mImageView, path);
+        File path = ImageUtils.getImagePath(context, userNo, orderId);//图片工具 获得图片存放路径
+        ImageUtils.getLocaImage(context, picUrl, mImageView, path);//图片工具 打开本地图片
+        //*使图片实现可以放大缩小的功能*
+        PhotoViewAttacher mAttacher = new PhotoViewAttacher(mImageView);//
+        mAttacher.update();//
 
         container.addView(view);
         return view;

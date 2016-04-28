@@ -6,16 +6,18 @@ public class SafetyInspectFailReport {
     private String time;            //整改时间
     private String worker;          //整改人
     private String remark;          //备注信息
+    private String feedback;        //反馈信息 yycq
 
     public SafetyInspectFailReport() {
     }
 
-    public SafetyInspectFailReport(String recordId, String content, String time, String worker, String remark) {
+    public SafetyInspectFailReport(String recordId, String content, String time, String worker, String remark,String feedback) {
         this.recordId = recordId;
         this.content = content;
         this.time = time;
         this.worker = worker;
         this.remark = remark;
+        this.feedback = feedback;
     }
 
     public String getRecordId() {
@@ -56,5 +58,13 @@ public class SafetyInspectFailReport {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
     }
 }

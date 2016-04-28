@@ -1713,6 +1713,7 @@ public class JsonParseUtils {
                 String flag = jsonObject.getString("TaskSf");
 
                 String failure = jsonObject.getString("TaskDel");
+                Log.e("jsondataTaskDel",failure);
                 ArrayList<SafetyInspectSecondItem> failureList = new ArrayList<SafetyInspectSecondItem>();
                 if (!failure.equals("")) {
                     JSONArray jsonArray1 = jsonObject.getJSONArray("TaskDel");
@@ -1721,10 +1722,15 @@ public class JsonParseUtils {
                         String id = jsonObject1.getString("ItemId");
                         String name = jsonObject1.getString("ItemName");
                         String isHandle = jsonObject1.getString("HandleFlag");
+                        String feedback = jsonObject1.getString("FlagInf");// 0426 yycq
+                        Log.e("解析后",feedback);
+                        String feedback1 = feedback.replace("\\n","\n");// 0427 yycq【
+                        Log.e("替换后",feedback1);
                         SafetyInspectSecondItem failureItem = new SafetyInspectSecondItem();
                         failureItem.setId(id);
                         failureItem.setName(name);
                         failureItem.setIsHandle(isHandle);
+                        failureItem.setFeedback(feedback1);//0426 yycq
                         failureList.add(failureItem);
                     }
                 }

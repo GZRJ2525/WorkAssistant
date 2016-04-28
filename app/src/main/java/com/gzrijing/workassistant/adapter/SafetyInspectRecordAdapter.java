@@ -61,12 +61,18 @@ public class SafetyInspectRecordAdapter extends BaseAdapter {
             v.image = (ImageView) convertView.findViewById(R.id.listview_item_safety_inspect_record_image_iv);
             v.name = (TextView) convertView.findViewById(R.id.listview_item_safety_inspect_record_name_tv);
             v.isHandle = (TextView) convertView.findViewById(R.id.listview_item_safety_inspect_record_is_handle_tv);
+            v.feedback = (TextView)convertView.findViewById(R.id.listview_item_safety_inspect_record_feedback_tv);//yycq
             convertView.setTag(v);
         } else {
             v = (ViewHolder) convertView.getTag();
         }
 
         v.name.setText(list.get(position).getName());
+        String feedback = list.get(position).getFeedback();
+        Log.e("feedback",feedback);
+//        feedback = feedback.replaceAll("\n","\\n");// 0427 yycq 恢复换行
+        v.feedback.setText(feedback);// 0426 yycq
+        Log.e("feedbackget",v.feedback.getText().toString());
         if (list.get(position).getIsHandle().equals("1")) {
             v.isHandle.setText("处理完");
         } else {
@@ -119,5 +125,6 @@ public class SafetyInspectRecordAdapter extends BaseAdapter {
         private ImageView image;
         private TextView name;
         private TextView isHandle;
+        private TextView feedback;//yycq
     }
 }

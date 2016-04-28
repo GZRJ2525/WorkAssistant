@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -216,6 +215,8 @@ public class SafetyInspectFailItemAdapter extends BaseAdapter {
         pDialog = new ProgressDialog(context);
         pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pDialog.setMessage("正在派发...");
+        Log.e("userno",list.get(position).getWorkerNo());
+        Log.e("UserName",list.get(position).getWorker());
         pDialog.show();
         RequestBody requestBody = new FormEncodingBuilder()
                 .add("cmd", "safeinf_handle")

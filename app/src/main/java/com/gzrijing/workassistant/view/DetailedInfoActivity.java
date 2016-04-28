@@ -46,8 +46,8 @@ public class DetailedInfoActivity extends BaseActivity {
                 "saveUser", MODE_PRIVATE);
         userNo = app.getString("userNo", "");
         Intent intent = getIntent();
-        orderId = intent.getStringExtra("orderId");
-        int id = intent.getIntExtra("id", -1);
+        orderId = intent.getStringExtra("orderId");// 上个Activity的适配器传递过来的工程编号
+        int id = intent.getIntExtra("id", -1);// 上个Activity的适配器传递过来的class BusinessByWorker数据库id 【-1的意思
 
 
         businessData = DataSupport.find(BusinessData.class, id, true);
@@ -86,7 +86,7 @@ public class DetailedInfoActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         lv_info = (ListView) findViewById(R.id.detailed_info_lv);
-        adapter = new DetailedInfoAdapter(this, infos, picUrls, recordFileName, userNo, orderId);
+        adapter = new DetailedInfoAdapter(this, infos, picUrls, recordFileName, userNo, orderId);//创建适配器的的数据
         lv_info.setAdapter(adapter);
     }
 

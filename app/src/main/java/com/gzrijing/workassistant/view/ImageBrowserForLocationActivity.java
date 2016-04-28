@@ -39,15 +39,16 @@ public class ImageBrowserForLocationActivity extends BaseActivity {
         userNo = app.getString("userNo", "");
 
         Intent intent = getIntent();
-        orderId = intent.getStringExtra("orderId");
-        position = intent.getIntExtra("position", -1);
-        picUrls = intent.getParcelableArrayListExtra("picUrls");
+        orderId = intent.getStringExtra("orderId");//DetailedInfoAdapter 传递过来的工程编号
+        position = intent.getIntExtra("position", -1);//DetailedInfoAdapter 传递过来点击的是哪个位置的图片,【默认值为-1
+
+        picUrls = intent.getParcelableArrayListExtra("picUrls");//DetailedInfoAdapter 传递过来
     }
 
     private void initViews() {
-        tv_topNum = (TextView) findViewById(R.id.image_browser_top_num_tv);
+        tv_topNum = (TextView) findViewById(R.id.image_browser_top_num_tv);//显示：“当前图片的序号/图片总数目”
         if (picUrls.size() > 0) {
-            tv_topNum.setText(1 + " / " + picUrls.size());
+            tv_topNum.setText(String.valueOf(position+1)+ " / " + picUrls.size());//position 是DetailedInfoAdapter传过来的
         }
         vp_image = (ViewPager) findViewById(R.id.image_browser_vp);
         adapter = new ImageBrowserForLocationAdapter(this, picUrls, userNo, orderId);
@@ -56,7 +57,7 @@ public class ImageBrowserForLocationActivity extends BaseActivity {
 
     }
 
-    private void setListeners() {
+    private void setListeners() {//监听用户滑动屏幕，翻看不同的图片
         vp_image.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -64,7 +65,7 @@ public class ImageBrowserForLocationActivity extends BaseActivity {
             }
 
             @Override
-            public void onPageSelected(int position) {
+            public void onPageSelected(int position) {//position 是viewpage的
                 int size = picUrls.size();
                 int index = position % size;
                 tv_topNum.setText((index+1) + " / " + size);

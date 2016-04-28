@@ -6,16 +6,19 @@ public class SafetyInspectSecondItem {
     private String isHandle;        //是否处理完（0：未处理完 1：处理完）
     private boolean isCheck;        //是否选择
     private boolean isSubmit;       //是否提交过
+    private String feedback;         //0426 yycq
 
     public SafetyInspectSecondItem() {
     }
 
-    public SafetyInspectSecondItem(String id, String name, String isHandle, boolean isCheck, boolean isSubmit) {
+    public SafetyInspectSecondItem(String id, String name, String isHandle, boolean isCheck, boolean isSubmit,String feedback) {
         this.id = id;
         this.name = name;
         this.isHandle = isHandle;
         this.isCheck = isCheck;
         this.isSubmit = isSubmit;
+        this.feedback = feedback;
+
     }
 
     public String getId() {
@@ -57,4 +60,8 @@ public class SafetyInspectSecondItem {
     public void setSubmit(boolean submit) {
         isSubmit = submit;
     }
+
+    public void  setFeedback(String feedback){this.feedback = feedback;}
+
+    public String getFeedback(){return feedback;}
 }

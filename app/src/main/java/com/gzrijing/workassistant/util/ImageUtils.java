@@ -87,9 +87,9 @@ public class ImageUtils {
         if(path==null){
             return;
         }
-        String url = path.getPath() + "/" + picUrl;
-        String imageUrl = ImageDownloader.Scheme.FILE.wrap(url);
-        imageLoader.displayImage(imageUrl, imageView, ImageOptHelper.getImgOptions());
+        String url = path.getPath() + "/" + picUrl;//图片文件的全路径
+        String imageUrl = ImageDownloader.Scheme.FILE.wrap(url);//【框架中的 从文件中获取图片
+        imageLoader.displayImage(imageUrl, imageView, ImageOptHelper.getImgOptions());//ImageOptHelper【
     }
 
     /**
