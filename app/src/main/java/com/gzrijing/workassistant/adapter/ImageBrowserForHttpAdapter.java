@@ -13,6 +13,8 @@ import com.gzrijing.workassistant.util.ImageUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.senab.photoview.PhotoViewAttacher;
+
 public class ImageBrowserForHttpAdapter extends PagerAdapter{
 
     private Context context;
@@ -51,7 +53,9 @@ public class ImageBrowserForHttpAdapter extends PagerAdapter{
         String picUrl = picUrls.get(position).getPicUrl();
 
         ImageUtils.getHttpImage(context, picUrl, mImageView);
-
+        //*使图片实现可以放大缩小的功能*
+        PhotoViewAttacher mAttacher = new PhotoViewAttacher(mImageView);
+        mAttacher.update();
         container.addView(view);
         return view;
     }

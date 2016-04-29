@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.gzrijing.workassistant.R;
 import com.gzrijing.workassistant.adapter.ImageBrowserForHttpAdapter;
-import com.gzrijing.workassistant.adapter.ImageBrowserForLocationAdapter;
 import com.gzrijing.workassistant.base.BaseActivity;
 import com.gzrijing.workassistant.entity.PicUrl;
 
@@ -40,7 +39,7 @@ public class ImageBrowserForHttpActivity extends BaseActivity {
     private void initViews() {
         tv_topNum = (TextView) findViewById(R.id.image_browser_top_num_tv);
         if (picUrls.size() > 0) {
-            tv_topNum.setText(1 + " / " + picUrls.size());
+            tv_topNum.setText((position + 1)+" / " + picUrls.size());//position 是上一个页面传递过来的点击位置，从0开始算起
         }
         vp_image = (ViewPager) findViewById(R.id.image_browser_vp);
         adapter = new ImageBrowserForHttpAdapter(this, picUrls);

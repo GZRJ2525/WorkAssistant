@@ -48,7 +48,7 @@ public class ImageBrowserForLocationActivity extends BaseActivity {
     private void initViews() {
         tv_topNum = (TextView) findViewById(R.id.image_browser_top_num_tv);//显示：“当前图片的序号/图片总数目”
         if (picUrls.size() > 0) {
-            tv_topNum.setText(String.valueOf(position+1)+ " / " + picUrls.size());//position 是DetailedInfoAdapter传过来的
+            tv_topNum.setText(position+1+ " / " + picUrls.size());//position 是DetailedInfoAdapter传过来的
         }
         vp_image = (ViewPager) findViewById(R.id.image_browser_vp);
         adapter = new ImageBrowserForLocationAdapter(this, picUrls, userNo, orderId);
