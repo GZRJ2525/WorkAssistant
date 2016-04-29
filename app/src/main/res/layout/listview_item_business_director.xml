@@ -154,6 +154,34 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/sw_10dp"
             android:layout_marginRight="@dimen/sw_10dp">
+
+            <Button
+                android:id="@+id/listview_item_business_director_call_off_btn"
+                android:layout_width="@dimen/sw_100dp"
+                android:layout_height="@dimen/sw_25dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/btn_blue_frame"
+                android:text="停止/取消工程"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/sw_12dp"/>
+
+            <Button
+                android:id="@+id/listview_item_business_director_complete_info_btn"
+                android:layout_width="@dimen/sw_60dp"
+                android:layout_height="@dimen/sw_25dp"
+                android:layout_toLeftOf="@+id/listview_item_business_director_call_off_btn"
+                android:layout_marginRight="@dimen/sw_10dp"
+                android:background="@drawable/btn_blue_frame"
+                android:text="完工信息"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/sw_12dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/sw_10dp"
+            android:layout_marginRight="@dimen/sw_10dp">
             <Button
                 android:id="@+id/listview_item_business_director_info_btn"
                 android:layout_width="@dimen/sw_60dp"
@@ -183,17 +211,6 @@
                 android:layout_marginRight="@dimen/sw_10dp"
                 android:background="@drawable/btn_blue_frame"
                 android:text="已派任务"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/sw_12dp"/>
-
-            <Button
-                android:id="@+id/listview_item_business_director_complete_info_btn"
-                android:layout_width="@dimen/sw_60dp"
-                android:layout_height="@dimen/sw_25dp"
-                android:layout_toLeftOf="@+id/listview_item_business_director_have_send_btn"
-                android:layout_marginRight="@dimen/sw_10dp"
-                android:background="@drawable/btn_blue_frame"
-                android:text="完工信息"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/sw_12dp"/>
         </RelativeLayout>

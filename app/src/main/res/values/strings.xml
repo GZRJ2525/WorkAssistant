@@ -55,8 +55,6 @@
         <item>安装人员</item>
         <item>土方人员</item>
         <item>维修内容</item>
-        <item>排水口径</item>
-        <item>排水时间</item>
         <item>施工日期</item>
         <item>完工日期</item>
         <item>验收日期</item>
@@ -67,8 +65,6 @@
     <string-array name="reportComplete_form2">
         <item>安装人员</item>
         <item>土方人员</item>
-        <item>排水口径</item>
-        <item>排水时间</item>
         <item>施工日期</item>
         <item>完工日期</item>
         <item>验收日期</item>
@@ -81,8 +77,6 @@
         <item>土方人员</item>
         <item>表身编号</item>
         <item>水表产地</item>
-        <item>排水口径</item>
-        <item>排水时间</item>
         <item>水表有效日期</item>
         <item>施工日期</item>
         <item>完工日期</item>
@@ -97,8 +91,6 @@
         <item>处理结果</item>
         <item>表身编号</item>
         <item>水表产地</item>
-        <item>排水口径</item>
-        <item>排水时间</item>
         <item>水表有效日期</item>
         <item>施工日期</item>
         <item>完工日期</item>
@@ -114,8 +106,6 @@
         <item>表身编号</item>
         <item>水表产地</item>
         <item>行至度数</item>
-        <item>排水口径</item>
-        <item>排水时间</item>
         <item>抄表日期</item>
         <item>水表有效日期</item>
         <item>施工日期</item>
@@ -129,8 +119,6 @@
         <item>安装人员</item>
         <item>土方人员</item>
         <item>处理结果</item>
-        <item>排水口径</item>
-        <item>排水时间</item>
         <item>施工日期</item>
         <item>完工日期</item>
         <item>验收日期</item>
@@ -144,8 +132,6 @@
         <item>　监理员</item>
         <item>安装人员</item>
         <item>土方人员</item>
-        <item>排水口径</item>
-        <item>排水时间</item>
         <item>施工日期</item>
         <item>完工日期</item>
         <item>验收日期</item>
@@ -186,8 +172,6 @@
         <item>　监理员</item>
         <item>安装人员</item>
         <item>土方人员</item>
-        <item>排水口径</item>
-        <item>排水时间</item>
         <item>施工日期</item>
         <item>完工日期</item>
         <item>验收日期</item>

@@ -136,30 +136,34 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
             @Override
             public void onFinish(final String response) {
                 Log.e("阀门，消防栓计划", response);
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        List<BusinessByWorker> list = JsonParseUtils.getInspection(response);
-                        for (BusinessByWorker businessByWorker : list) {
-                            orderListByWorker.add(businessByWorker);
-                            orderList.add(businessByWorker);
-                        }
-                        if (orderList.size() > 1) {
-                            sequence(orderList);
-                            ArrayList<BusinessByWorker> BBWList = new ArrayList<BusinessByWorker>();
-                            for (int i = 0; i < orderList.size(); i++) {
-                                if (orderList.get(i).getState().equals("已完工")) {
-                                    BBWList.add(orderList.get(i));
-                                    orderList.remove(i);
+                if(!response.substring(0, 1).equals("E")){
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            List<BusinessByWorker> list = JsonParseUtils.getInspection(response);
+                            for (BusinessByWorker businessByWorker : list) {
+                                orderListByWorker.add(businessByWorker);
+                                orderList.add(businessByWorker);
+                            }
+                            if (orderList.size() > 1) {
+                                sequence(orderList);
+                                ArrayList<BusinessByWorker> BBWList = new ArrayList<BusinessByWorker>();
+                                for (int i = 0; i < orderList.size(); i++) {
+                                    if (orderList.get(i).getState().equals("已完工")) {
+                                        BBWList.add(orderList.get(i));
+                                        orderList.remove(i);
+                                    }
+                                }
+                                if (BBWList.size() > 0) {
+                                    for(BusinessByWorker order : BBWList){
+                                        orderList.add(order);
+                                    }
                                 }
                             }
-                            if (BBWList.size() > 0) {
-                                orderList.addAll(BBWList);
-                            }
+                            adapter.notifyDataSetChanged();
                         }
-                        adapter.notifyDataSetChanged();
-                    }
-                });
+                    });
+                }
             }
 
             @Override
@@ -186,30 +190,34 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
             @Override
             public void onFinish(final String response) {
                 Log.e("污水井计划", response);
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        List<BusinessByWorker> list = JsonParseUtils.getInspection(response);
-                        for (BusinessByWorker businessByWorker : list) {
-                            orderListByWorker.add(businessByWorker);
-                            orderList.add(businessByWorker);
-                        }
-                        if (orderList.size() > 1) {
-                            sequence(orderList);
-                            ArrayList<BusinessByWorker> BBWList = new ArrayList<BusinessByWorker>();
-                            for (int i = 0; i < orderList.size(); i++) {
-                                if (orderList.get(i).getState().equals("已完工")) {
-                                    BBWList.add(orderList.get(i));
-                                    orderList.remove(i);
+                if(response.substring(0, 1).equals("E")){
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            List<BusinessByWorker> list = JsonParseUtils.getInspection(response);
+                            for (BusinessByWorker businessByWorker : list) {
+                                orderListByWorker.add(businessByWorker);
+                                orderList.add(businessByWorker);
+                            }
+                            if (orderList.size() > 1) {
+                                sequence(orderList);
+                                ArrayList<BusinessByWorker> BBWList = new ArrayList<BusinessByWorker>();
+                                for (int i = 0; i < orderList.size(); i++) {
+                                    if (orderList.get(i).getState().equals("已完工")) {
+                                        BBWList.add(orderList.get(i));
+                                        orderList.remove(i);
+                                    }
+                                }
+                                if (BBWList.size() > 0) {
+                                    for(BusinessByWorker order : BBWList){
+                                        orderList.add(order);
+                                    }
                                 }
                             }
-                            if (BBWList.size() > 0) {
-                                orderList.addAll(BBWList);
-                            }
+                            adapter.notifyDataSetChanged();
                         }
-                        adapter.notifyDataSetChanged();
-                    }
-                });
+                    });
+                }
             }
 
             @Override
@@ -294,7 +302,9 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
                 }
             }
             if (BBWList.size() > 0) {
-                orderList.addAll(BBWList);
+                for(BusinessByWorker order : BBWList){
+                    orderList.add(order);
+                }
             }
         }
         adapter.notifyDataSetChanged();
@@ -346,7 +356,9 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
                         }
                     }
                     if (BBWList.size() > 0) {
-                        orderList.addAll(BBWList);
+                        for(BusinessByWorker order : BBWList){
+                            orderList.add(order);
+                        }
                     }
                 }
                 adapter.notifyDataSetChanged();
@@ -370,7 +382,9 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
                         }
                     }
                     if (BBWList.size() > 0) {
-                        orderList.addAll(BBWList);
+                        for(BusinessByWorker order : BBWList){
+                            orderList.add(order);
+                        }
                     }
                 }
                 adapter.notifyDataSetChanged();

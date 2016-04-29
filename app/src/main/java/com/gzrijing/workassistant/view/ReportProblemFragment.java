@@ -246,6 +246,7 @@ public class ReportProblemFragment extends Fragment implements View.OnClickListe
             if(action.equals("action.com.gzrijing.workassistant.reportProblemFragment")){
                 btn_report.setVisibility(View.VISIBLE);
                 ToastUtil.showToast(getActivity(), "汇报成功", Toast.LENGTH_SHORT);
+                getActivity().finish();
             }
         }
     };

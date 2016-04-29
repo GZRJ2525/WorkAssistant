@@ -216,49 +216,6 @@
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/fragment_report_complete_item7_ll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:padding="@dimen/sw_5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/fragment_report_complete_item7_key_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="排水口径"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sw_15dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="："
-                android:textColor="@color/black"
-                android:textSize="@dimen/sw_15dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="DN"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sw_15dp" />
-
-            <EditText
-                android:id="@+id/fragment_report_complete_item7_value_et"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="@dimen/sw_100dp"
-                android:background="@drawable/bg_text"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sw_15dp"
-                android:layout_gravity="center_vertical"/>
-        </LinearLayout>
-        <LinearLayout
             android:id="@+id/fragment_report_complete_item8_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -429,50 +386,6 @@
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/fragment_report_complete_item13_ll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:padding="@dimen/sw_5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/fragment_report_complete_item13_key_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="排水时间"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sw_15dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="："
-                android:textColor="@color/black"
-                android:textSize="@dimen/sw_15dp" />
-
-            <EditText
-                android:id="@+id/fragment_report_complete_item13_value_et"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="@dimen/sw_60dp"
-                android:background="@drawable/edit_line_blue"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sw_15dp"
-                android:gravity="center"
-                android:layout_gravity="center_vertical"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="分钟"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sw_15dp" />
-        </LinearLayout>
         <LinearLayout
             android:id="@+id/fragment_report_complete_item14_ll"
             android:layout_width="match_parent"

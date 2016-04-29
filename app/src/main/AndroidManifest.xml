@@ -40,7 +40,7 @@
         android:theme="@style/MyAppTheme">
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="Txc9L9HTxjpI9g7WiTfWxeti" />
+            android:value="usHHwzjX4di1HX2Hwz85xRtg" />
 
         <service
             android:name="com.baidu.location.f"
@@ -475,6 +475,14 @@
         <activity
             android:name=".view.DistributeByInspectionStationActivity"
             android:label="派发工程"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.CallOffBusinessByDirectorActivity"
+            android:label="停止或取消工程"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.LeakRecordActivity"
+            android:label="漏水记录"
             android:screenOrientation="portrait" />
         <!-- app activity -->
 

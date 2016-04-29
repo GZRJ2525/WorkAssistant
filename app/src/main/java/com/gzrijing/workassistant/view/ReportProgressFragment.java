@@ -1,6 +1,7 @@
 package com.gzrijing.workassistant.view;
 
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -46,6 +47,7 @@ public class ReportProgressFragment extends Fragment implements View.OnClickList
     private ArrayList<PicUrl> picUrls;
     private ReportProgressGriViewAdapter adapter;
     private Uri imageUri;
+    private ProgressDialog pDialog;
 
     public ReportProgressFragment() {
     }
@@ -245,6 +247,7 @@ public class ReportProgressFragment extends Fragment implements View.OnClickList
             if (action.equals("action.com.gzrijing.workassistant.reportProgressFragment")) {
                 btn_report.setVisibility(View.VISIBLE);
                 ToastUtil.showToast(getActivity(), "汇报成功", Toast.LENGTH_SHORT);
+                getActivity().finish();
             }
         }
     };

@@ -70,9 +70,6 @@ public class ReportCompleteFragment extends Fragment implements View.OnClickList
     private LinearLayout ll_item6;
     private TextView tv_key6;
     private EditText et_value6;
-    private LinearLayout ll_item7;
-    private TextView tv_key7;
-    private EditText et_value7;
     private LinearLayout ll_item8;
     private TextView tv_key8;
     private EditText et_value8;
@@ -88,9 +85,6 @@ public class ReportCompleteFragment extends Fragment implements View.OnClickList
     private LinearLayout ll_item12;
     private TextView tv_key12;
     private EditText et_value12;
-    private LinearLayout ll_item13;
-    private TextView tv_key13;
-    private EditText et_value13;
     private LinearLayout ll_item14;
     private TextView tv_key14;
     private TextView tv_value14;
@@ -220,10 +214,6 @@ public class ReportCompleteFragment extends Fragment implements View.OnClickList
         tv_key6 = (TextView) layoutView.findViewById(R.id.fragment_report_complete_item6_key_tv);
         et_value6 = (EditText) layoutView.findViewById(R.id.fragment_report_complete_item6_value_et);
 
-        ll_item7 = (LinearLayout) layoutView.findViewById(R.id.fragment_report_complete_item7_ll);
-        tv_key7 = (TextView) layoutView.findViewById(R.id.fragment_report_complete_item7_key_tv);
-        et_value7 = (EditText) layoutView.findViewById(R.id.fragment_report_complete_item7_value_et);
-
         ll_item8 = (LinearLayout) layoutView.findViewById(R.id.fragment_report_complete_item8_ll);
         tv_key8 = (TextView) layoutView.findViewById(R.id.fragment_report_complete_item8_key_tv);
         et_value8 = (EditText) layoutView.findViewById(R.id.fragment_report_complete_item8_value_et);
@@ -243,10 +233,6 @@ public class ReportCompleteFragment extends Fragment implements View.OnClickList
         ll_item12 = (LinearLayout) layoutView.findViewById(R.id.fragment_report_complete_item12_ll);
         tv_key12 = (TextView) layoutView.findViewById(R.id.fragment_report_complete_item12_key_tv);
         et_value12 = (EditText) layoutView.findViewById(R.id.fragment_report_complete_item12_value_et);
-
-        ll_item13 = (LinearLayout) layoutView.findViewById(R.id.fragment_report_complete_item13_ll);
-        tv_key13 = (TextView) layoutView.findViewById(R.id.fragment_report_complete_item13_key_tv);
-        et_value13 = (EditText) layoutView.findViewById(R.id.fragment_report_complete_item13_value_et);
 
         ll_item14 = (LinearLayout) layoutView.findViewById(R.id.fragment_report_complete_item14_ll);
         tv_key14 = (TextView) layoutView.findViewById(R.id.fragment_report_complete_item14_key_tv);
@@ -301,9 +287,6 @@ public class ReportCompleteFragment extends Fragment implements View.OnClickList
             if(info.getKey().equals("行至度数")){
                 ll_item6.setVisibility(View.VISIBLE);
             }
-            if(info.getKey().equals("排水口径")){
-                ll_item7.setVisibility(View.VISIBLE);
-            }
             if(info.getKey().equals("甲方代表")){
                 ll_item8.setVisibility(View.VISIBLE);
             }
@@ -318,9 +301,6 @@ public class ReportCompleteFragment extends Fragment implements View.OnClickList
             }
             if(info.getKey().equals("土方人员")){
                 ll_item12.setVisibility(View.VISIBLE);
-            }
-            if(info.getKey().equals("排水时间")){
-                ll_item13.setVisibility(View.VISIBLE);
             }
             if(info.getKey().equals("抄表日期")){
                 ll_item14.setVisibility(View.VISIBLE);
@@ -434,24 +414,9 @@ public class ReportCompleteFragment extends Fragment implements View.OnClickList
                 break;
 
             case R.id.fragment_report_complete_report_btn:
-                prompt();
+                report();
                 break;
         }
-    }
-
-    private void prompt() {
-        new AlertDialog.Builder(getActivity())
-                .setTitle("是否汇报？")
-                .setMessage("如果汇报了完工信息后，工程量汇报信息就不能汇报了，请确认汇报了工程量后，再进行此操作")
-                .setPositiveButton("是", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        report();
-                    }
-                })
-                .setNegativeButton("否", null)
-                .show();
-
     }
 
     private void report() {
@@ -474,9 +439,6 @@ public class ReportCompleteFragment extends Fragment implements View.OnClickList
             if(info.getKey().equals("行至度数")){
                 info.setValue(et_value6.getText().toString().trim());
             }
-            if(info.getKey().equals("排水口径")){
-                info.setValue(et_value7.getText().toString().trim());
-            }
             if(info.getKey().equals("甲方代表")){
                 info.setValue(et_value8.getText().toString().trim());
             }
@@ -491,9 +453,6 @@ public class ReportCompleteFragment extends Fragment implements View.OnClickList
             }
             if(info.getKey().equals("土方人员")){
                 info.setValue(et_value12.getText().toString().trim());
-            }
-            if(info.getKey().equals("排水时间")){
-                info.setValue(et_value13.getText().toString().trim());
             }
             if(info.getKey().equals("抄表日期")){
                 info.setValue(tv_value14.getText().toString());
@@ -628,6 +587,7 @@ public class ReportCompleteFragment extends Fragment implements View.OnClickList
                 String result = intent.getStringExtra("result");
                 if(result.equals("汇报成功")){
                     ToastUtil.showToast(context, "汇报成功", Toast.LENGTH_SHORT);
+                    getActivity().finish();
                 }
                 if(result.equals("汇报失败")){
                     String response = intent.getStringExtra("response");

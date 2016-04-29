@@ -186,46 +186,19 @@
                 android:textColor="@color/blue"
                 android:textSize="@dimen/sw_12dp"/>
 
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/sw_10dp"
-            android:layout_marginRight="@dimen/sw_10dp">
-
-            <Button
-                android:id="@+id/listview_item_business_worker_supplies_apply_btn"
-                android:layout_width="@dimen/sw_60dp"
-                android:layout_height="@dimen/sw_25dp"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/btn_blue_frame"
-                android:text="材料申请"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/sw_12dp"/>
-
-            <Button
-                android:id="@+id/listview_item_business_worker_info_btn"
-                android:layout_width="@dimen/sw_60dp"
-                android:layout_height="@dimen/sw_25dp"
-                android:layout_toLeftOf="@+id/listview_item_business_worker_supplies_apply_btn"
-                android:layout_marginRight="@dimen/sw_10dp"
-                android:background="@drawable/btn_blue_frame"
-                android:text="详细信息"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/sw_12dp"/>
-
             <Button
                 android:id="@+id/listview_item_business_worker_gps_btn"
                 android:layout_width="@dimen/sw_60dp"
                 android:layout_height="@dimen/sw_25dp"
-                android:layout_toLeftOf="@+id/listview_item_business_worker_info_btn"
+                android:layout_toLeftOf="@+id/listview_item_business_worker_safety_inspect_fail_btn"
                 android:layout_marginRight="@dimen/sw_10dp"
                 android:background="@drawable/btn_blue_frame"
                 android:text="工程定位"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/sw_12dp"/>
         </RelativeLayout>
+
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -251,6 +224,56 @@
                 android:layout_marginRight="@dimen/sw_10dp"
                 android:background="@drawable/btn_blue_frame"
                 android:text="问题处理结果"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/sw_12dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/sw_10dp"
+            android:layout_marginRight="@dimen/sw_10dp">
+
+            <Button
+                android:id="@+id/listview_item_business_worker_info_btn"
+                android:layout_width="@dimen/sw_60dp"
+                android:layout_height="@dimen/sw_25dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/btn_blue_frame"
+                android:text="详细信息"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/sw_12dp"/>
+
+            <Button
+                android:id="@+id/listview_item_business_worker_supplies_apply_btn"
+                android:layout_width="@dimen/sw_60dp"
+                android:layout_height="@dimen/sw_25dp"
+                android:layout_toLeftOf="@+id/listview_item_business_worker_info_btn"
+                android:layout_marginRight="@dimen/sw_10dp"
+                android:background="@drawable/btn_blue_frame"
+                android:text="材料申请"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/sw_12dp"/>
+
+            <Button
+                android:id="@+id/listview_item_business_worker_leak_record_btn"
+                android:layout_width="@dimen/sw_60dp"
+                android:layout_height="@dimen/sw_25dp"
+                android:layout_toLeftOf="@+id/listview_item_business_worker_supplies_apply_btn"
+                android:layout_marginRight="@dimen/sw_10dp"
+                android:background="@drawable/btn_blue_frame"
+                android:text="漏水记录"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/sw_12dp"/>
+
+            <Button
+                android:id="@+id/listview_item_business_worker_complete_order_btn"
+                android:layout_width="@dimen/sw_60dp"
+                android:layout_height="@dimen/sw_25dp"
+                android:layout_toLeftOf="@+id/listview_item_business_worker_leak_record_btn"
+                android:layout_marginRight="@dimen/sw_10dp"
+                android:background="@drawable/btn_blue_frame"
+                android:text="完工确认"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/sw_12dp"/>
         </RelativeLayout>
