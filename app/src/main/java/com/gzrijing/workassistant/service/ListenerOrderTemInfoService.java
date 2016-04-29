@@ -31,8 +31,14 @@ public class ListenerOrderTemInfoService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         userNo = intent.getStringExtra("userNo");
         orderId = intent.getStringExtra("orderId");
-        saveData();
-        sendNotification();
+        String sitLeader = intent.getStringExtra("sitLeader");
+        if(sitLeader.equals("3")){
+            Intent intent1 = new Intent("action.com.gzrijing.workassistant.InspectionStationFragment");
+            sendBroadcast(intent1);
+        }else{
+            saveData();
+            sendNotification();
+        }
     }
 
     private void saveData() {

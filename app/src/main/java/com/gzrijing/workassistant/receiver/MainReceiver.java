@@ -172,8 +172,9 @@ public class MainReceiver extends BroadcastReceiver {
                                 }
                                 if(cmd.equals("getconstempmsg")){
                                     String orderId = jsonObject.getString("FileNo");
+                                    String sitLeader = jsonObject.getString("SitLeader");
                                     if(!orderId.equals("")){
-                                        listenerOrderTemInfo(userNo, orderId);
+                                        listenerOrderTemInfo(userNo, orderId, sitLeader);
                                     }
                                 }
                                 if(cmd.equals("LoadSafeItemSaved")){
@@ -398,10 +399,11 @@ public class MainReceiver extends BroadcastReceiver {
     /**
      * 监听工程临时信息
      */
-    private void listenerOrderTemInfo(String userNo, String orderId){
+    private void listenerOrderTemInfo(String userNo, String orderId, String sitLeader){
         Intent intent = new Intent(MyApplication.getContext(), ListenerOrderTemInfoService.class);
         intent.putExtra("userNo", userNo);
         intent.putExtra("orderId", orderId);
+        intent.putExtra("sitLeader", sitLeader);
         MyApplication.getContext().startService(intent);
     }
 
