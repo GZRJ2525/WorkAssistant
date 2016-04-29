@@ -25,8 +25,8 @@ import com.gzrijing.workassistant.util.ImageUtils;
 import com.gzrijing.workassistant.util.ToastUtil;
 import com.gzrijing.workassistant.util.VoiceUtil;
 import com.gzrijing.workassistant.view.BusinessHaveSendActivity;
+import com.gzrijing.workassistant.view.CallOffBusinessByDirectorActivity;
 import com.gzrijing.workassistant.view.DetailedInfoActivity;
-import com.gzrijing.workassistant.view.DistributeActivity;
 import com.gzrijing.workassistant.view.DistributeByDirectorActivity;
 import com.gzrijing.workassistant.view.ProgressActivity;
 import com.gzrijing.workassistant.view.ReportInfoCompleteActivity;
@@ -140,6 +140,15 @@ public class BusinessDirectorAdapter extends BaseAdapter implements SlideView.On
             }
         });
 
+        v.callOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CallOffBusinessByDirectorActivity.class);
+                intent.putExtra("orderId", orderList.get(position).getOrderId());
+                context.startActivity(intent);
+            }
+        });
+
         v.temInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,6 +254,7 @@ public class BusinessDirectorAdapter extends BaseAdapter implements SlideView.On
         private Button progress;
         private Button info;
         private Button haveSend;
+        private Button callOff;
         private TextView flag;
         private LinearLayout bg_ll;
         private RelativeLayout btn_rl;
@@ -261,6 +271,8 @@ public class BusinessDirectorAdapter extends BaseAdapter implements SlideView.On
                     R.id.listview_item_business_director_info_btn);
             haveSend = (Button) view.findViewById(
                     R.id.listview_item_business_director_have_send_btn);
+            callOff = (Button) view.findViewById(
+                    R.id.listview_item_business_director_call_off_btn);
             urgent = (ImageView) view.findViewById(
                     R.id.listview_item_business_director_urgent_iv);
             type = (TextView) view.findViewById(

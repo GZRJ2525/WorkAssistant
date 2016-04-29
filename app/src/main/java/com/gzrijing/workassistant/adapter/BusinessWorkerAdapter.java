@@ -3,6 +3,7 @@ package com.gzrijing.workassistant.adapter;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -33,6 +34,7 @@ import com.gzrijing.workassistant.util.ImageUtils;
 import com.gzrijing.workassistant.util.ToastUtil;
 import com.gzrijing.workassistant.util.VoiceUtil;
 import com.gzrijing.workassistant.view.GetGPSActivity;
+import com.gzrijing.workassistant.view.LeakRecordActivity;
 import com.gzrijing.workassistant.view.PipeInspectionMapActivity;
 import com.gzrijing.workassistant.view.ProblemProcessResultActivity;
 import com.gzrijing.workassistant.view.QueryProjectAmountActivity;
@@ -59,6 +61,7 @@ public class BusinessWorkerAdapter extends BaseAdapter implements SlideView.OnSl
     private String userNo;
     private Handler handler = new Handler();
     private SlideView mLastSlideViewWithStatusOn;
+    private ProgressDialog pDialog;
 
     public BusinessWorkerAdapter(Context context, List<BusinessByWorker> orderList, String userNo) {
         this.context = context;
@@ -172,6 +175,8 @@ public class BusinessWorkerAdapter extends BaseAdapter implements SlideView.OnSl
             v.gps.setVisibility(View.GONE);
             v.problemResult.setVisibility(View.GONE);
             v.safetyInspectFail.setVisibility(View.GONE);
+            v.leakRecord.setVisibility(View.GONE);
+            v.completeOrder.setVisibility(View.GONE);
         }else{
             v.info.setVisibility(View.VISIBLE);
             v.suppliesApply.setVisibility(View.VISIBLE);
@@ -179,6 +184,8 @@ public class BusinessWorkerAdapter extends BaseAdapter implements SlideView.OnSl
             v.gps.setVisibility(View.VISIBLE);
             v.problemResult.setVisibility(View.VISIBLE);
             v.safetyInspectFail.setVisibility(View.VISIBLE);
+            v.leakRecord.setVisibility(View.VISIBLE);
+            v.completeOrder.setVisibility(View.VISIBLE);
         }
         if (orderList.get(position).isUrgent()) {
             v.urgent.setVisibility(View.VISIBLE);
@@ -260,6 +267,22 @@ public class BusinessWorkerAdapter extends BaseAdapter implements SlideView.OnSl
             }
         });
 
+        v.leakRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, LeakRecordActivity.class);
+                intent.putExtra("orderId", orderList.get(position).getOrderId());
+                context.startActivity(intent);
+            }
+        });
+
+        v.completeOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sureComplete(orderList.get(position).getOrderId());
+            }
+        });
+
         v.btn_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -314,6 +337,51 @@ public class BusinessWorkerAdapter extends BaseAdapter implements SlideView.OnSl
         });
 
         return slideView;
+    }
+
+    private void sureComplete(final String orderId){
+        new AlertDialog.Builder(context)
+                .setTitle("确认完工吗？")
+                .setMessage("确定完工后，有关这个工程的所有操作都不能再使用")
+                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        pDialog = new ProgressDialog(context);
+                        pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        pDialog.setMessage("正在提交...");
+                        pDialog.show();
+                        RequestBody requestBody = new FormEncodingBuilder()
+                                .add("cmd", "dofinishcons2")
+                                .add("userno", userNo)
+                                .add("fileno", orderId)
+                                .build();
+                        HttpUtils.sendHttpPostRequest(requestBody, new HttpCallbackListener() {
+                            @Override
+                            public void onFinish(final String response) {
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ToastUtil.showToast(context, response, Toast.LENGTH_SHORT);
+                                        pDialog.dismiss();
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ToastUtil.showToast(context, "与服务器断开连接", Toast.LENGTH_SHORT);
+                                        pDialog.dismiss();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                })
+                .setNegativeButton("取消", null)
+                .show();
     }
 
     private void sendSure(final int position) {
@@ -437,6 +505,8 @@ public class BusinessWorkerAdapter extends BaseAdapter implements SlideView.OnSl
         private Button gps;
         private Button queryProjectAmount;
         private Button problemResult;
+        private Button leakRecord;
+        private Button completeOrder;
         private RelativeLayout head_rl;
         private LinearLayout bg_ll;
         private RelativeLayout btn_rl;
@@ -470,6 +540,10 @@ public class BusinessWorkerAdapter extends BaseAdapter implements SlideView.OnSl
                     R.id.listview_item_business_worker_project_amount_btn);
             problemResult = (Button) view.findViewById(
                     R.id.listview_item_business_worker_problem_process_result_btn);
+            leakRecord = (Button) view.findViewById(
+                    R.id.listview_item_business_worker_leak_record_btn);
+            completeOrder = (Button) view.findViewById(
+                    R.id.listview_item_business_worker_complete_order_btn);
             flag = (TextView) view.findViewById(
                     R.id.listview_item_business_worker_flag_tv);
             head_rl = (RelativeLayout) view.findViewById(

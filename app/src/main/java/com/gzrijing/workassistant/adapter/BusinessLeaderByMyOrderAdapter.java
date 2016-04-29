@@ -3,6 +3,7 @@ package com.gzrijing.workassistant.adapter;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,6 +30,7 @@ import com.gzrijing.workassistant.util.ToastUtil;
 import com.gzrijing.workassistant.view.BusinessLeaderByMyOrderDetailedInfoActivity;
 import com.gzrijing.workassistant.view.BusinessLeaderByMyOrderSuppliesApplyActivity;
 import com.gzrijing.workassistant.view.GetGPSActivity;
+import com.gzrijing.workassistant.view.LeakRecordActivity;
 import com.gzrijing.workassistant.view.PipeInspectionMapActivity;
 import com.gzrijing.workassistant.view.QueryProjectAmountActivity;
 import com.gzrijing.workassistant.view.ReportActivity;
@@ -47,6 +49,7 @@ public class BusinessLeaderByMyOrderAdapter extends BaseAdapter {
     private List<BusinessByWorker> orderList;
     private String userNo;
     private Handler handler = new Handler();
+    private ProgressDialog pDialog;
 
     public BusinessLeaderByMyOrderAdapter(Context context, List<BusinessByWorker> orderList, String userNo) {
         this.context = context;
@@ -101,6 +104,10 @@ public class BusinessLeaderByMyOrderAdapter extends BaseAdapter {
                     R.id.listview_item_business_worker_project_amount_btn);
             v.safetyFail = (Button) convertView.findViewById(
                     R.id.listview_item_business_worker_safety_inspect_fail_btn);
+            v.leakRecord = (Button) convertView.findViewById(
+                    R.id.listview_item_business_worker_leak_record_btn);
+            v.completeOrder = (Button) convertView.findViewById(
+                    R.id.listview_item_business_worker_complete_order_btn);
             v.flag = (TextView) convertView.findViewById(
                     R.id.listview_item_business_worker_flag_tv);
             v.head_rl = (RelativeLayout) convertView.findViewById(
@@ -121,7 +128,6 @@ public class BusinessLeaderByMyOrderAdapter extends BaseAdapter {
         v.state.setText(orderList.get(position).getState());
         v.receivedTime.setText(orderList.get(position).getReceivedTime());
         v.deadline.setText(orderList.get(position).getDeadline());
-        v.safetyFail.setVisibility(View.GONE);
 
         String endTime = orderList.get(position).getDeadline();
         try {
@@ -240,6 +246,22 @@ public class BusinessLeaderByMyOrderAdapter extends BaseAdapter {
             }
         });
 
+        v.leakRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, LeakRecordActivity.class);
+                intent.putExtra("orderId", orderList.get(position).getOrderId());
+                context.startActivity(intent);
+            }
+        });
+
+        v.completeOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sureComplete(orderList.get(position).getOrderId());
+            }
+        });
+
         v.btn_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -276,6 +298,51 @@ public class BusinessLeaderByMyOrderAdapter extends BaseAdapter {
         });
 
         return convertView;
+    }
+
+    private void sureComplete(final String orderId){
+        new AlertDialog.Builder(context)
+                .setTitle("确认完工吗？")
+                .setMessage("确定完工后，有关这个工程的所有操作都不能再使用")
+                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        pDialog = new ProgressDialog(context);
+                        pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        pDialog.setMessage("正在提交...");
+                        pDialog.show();
+                        RequestBody requestBody = new FormEncodingBuilder()
+                                .add("cmd", "dofinishcons2")
+                                .add("userno", userNo)
+                                .add("fileno", orderId)
+                                .build();
+                        HttpUtils.sendHttpPostRequest(requestBody, new HttpCallbackListener() {
+                            @Override
+                            public void onFinish(final String response) {
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ToastUtil.showToast(context, response, Toast.LENGTH_SHORT);
+                                        pDialog.dismiss();
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ToastUtil.showToast(context, "与服务器断开连接", Toast.LENGTH_SHORT);
+                                        pDialog.dismiss();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                })
+                .setNegativeButton("取消", null)
+                .show();
     }
 
     private void sendSure(final int position) {
@@ -374,9 +441,12 @@ public class BusinessLeaderByMyOrderAdapter extends BaseAdapter {
         private Button gps;
         private Button queryProjectAmount;
         private Button safetyFail;
+        private Button leakRecord;
+        private Button completeOrder;
         private RelativeLayout head_rl;
         private LinearLayout bg_ll;
         private RelativeLayout btn_rl;
         private TextView timeLeft;
+
     }
 }
