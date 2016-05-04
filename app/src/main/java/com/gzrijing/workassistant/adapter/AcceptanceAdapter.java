@@ -56,7 +56,7 @@ public class AcceptanceAdapter extends BaseAdapter {
         } else {
             v = (ViewHolder) convertView.getTag();
         }
-        v.accId.setText(list.get(position).getOrderId());
+        v.accId.setText(list.get(position).getOrderId());//显示工程编号
 
         v.printByClient.setOnClickListener(new View.OnClickListener() {
             @Override

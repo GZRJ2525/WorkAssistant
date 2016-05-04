@@ -5,9 +5,9 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.gzrijing.workassistant.R;
 import com.gzrijing.workassistant.adapter.PrintInfoAdapter;
 import com.gzrijing.workassistant.adapter.PrintSuppliesAdapter;
-import com.gzrijing.workassistant.adapter.SuppliesApplyingAdapter;
 import com.gzrijing.workassistant.base.BaseActivity;
 import com.gzrijing.workassistant.entity.Acceptance;
 import com.gzrijing.workassistant.entity.DetailedInfo;
@@ -112,7 +111,7 @@ public class PrintActivity extends BaseActivity implements View.OnClickListener 
 
         btn_connect = (Button) findViewById(R.id.print_connect_btn);
 
-        lv_info = (ListView) findViewById(R.id.print_info_lv);
+        lv_info = (ListView) findViewById(R.id.print_info_lv);//显示工程详情列表
         adapter = new PrintInfoAdapter(this, acceptance.getDetailedInfos());
         lv_info.setAdapter(adapter);
 

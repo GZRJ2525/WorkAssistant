@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/sw_5dp"
     android:orientation="horizontal">
-
+<!--详情项目-->
     <TextView
         android:id="@+id/listview_item_print_info_key_tv"
         android:layout_width="wrap_content"
@@ -18,7 +18,7 @@
         android:text="："
         android:textColor="@color/black"
         android:textSize="@dimen/sw_15dp"/>
-
+<!--详情项目内容-->
     <TextView
         android:id="@+id/listview_item_print_info_value_tv"
         android:layout_width="wrap_content"

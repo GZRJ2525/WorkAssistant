@@ -34,12 +34,12 @@
                 android:text="中山市润丰水业有限公司"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sw_20dp" />
-
+            <!--显示打印人，工单-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/sw_5dp">
+                android:layout_marginTop="@dimen/sw_5dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/print_worker_tv"
@@ -57,12 +57,12 @@
                     android:textSize="@dimen/sw_15dp" />
 
             </LinearLayout>
-
+            <!--分割线-->
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/black"/>
-
+                android:background="@color/black" />
+<!--显示工程详情-->
             <com.gzrijing.workassistant.widget.MyListView
                 android:id="@+id/print_info_lv"
                 android:layout_width="match_parent"

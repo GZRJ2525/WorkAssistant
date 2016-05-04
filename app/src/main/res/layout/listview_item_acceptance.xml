@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/sw_10dp">
-
+<!--显示完工的工程编号-->
     <TextView
         android:id="@+id/listview_item_acceptance_id_tv"
         android:layout_width="wrap_content"
