@@ -28,8 +28,8 @@ public class ListenerReportInfoCompleteService extends IntentService {
         String userNo = intent.getStringExtra("userNo");
 
         ContentValues values = new ContentValues();
-        values.put("state", "已完成");
-        DataSupport.updateAll(BusinessData.class, values, "userNo = ? and orderId = ?", userNo, orderId);
+        values.put("state", "已完工");
+        DataSupport.updateAll(BusinessData.class, values, "user = ? and orderId = ?", userNo, orderId);
 
         Intent intent1 = new Intent("action.com.gzrijing.workassistant.LeaderFragment");
         sendBroadcast(intent1);
