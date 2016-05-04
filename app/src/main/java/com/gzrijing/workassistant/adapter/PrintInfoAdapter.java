@@ -1,21 +1,16 @@
 package com.gzrijing.workassistant.adapter;
 
 import android.content.Context;
-import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import com.gzrijing.workassistant.R;
 import com.gzrijing.workassistant.entity.DetailedInfo;
-import com.gzrijing.workassistant.entity.PicUrl;
-import com.gzrijing.workassistant.view.ImageBrowserForLocationActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PrintInfoAdapter extends BaseAdapter {
@@ -58,6 +53,7 @@ public class PrintInfoAdapter extends BaseAdapter {
         }
         v.key.setText(list.get(position).getKey());
         v.value.setText(list.get(position).getValue());
+        Log.e("value",v.value.getText().toString());//
         return convertView;
     }
 
