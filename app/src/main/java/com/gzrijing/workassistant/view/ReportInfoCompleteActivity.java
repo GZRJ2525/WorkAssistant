@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.gzrijing.workassistant.R;
 import com.gzrijing.workassistant.adapter.GridViewImageForReportInfoAdapter;
 import com.gzrijing.workassistant.adapter.PrintInfoAdapter;
-import com.gzrijing.workassistant.adapter.SuppliesApplyingAdapter;
+import com.gzrijing.workassistant.adapter.PrintSuppliesAdapter;
 import com.gzrijing.workassistant.base.BaseActivity;
 import com.gzrijing.workassistant.entity.Acceptance;
 import com.gzrijing.workassistant.entity.PicUrl;
@@ -40,8 +40,8 @@ public class ReportInfoCompleteActivity extends BaseActivity {
     private ListView lv_suppliesClient;
     private ListView lv_suppliesWater;
     private PrintInfoAdapter detailedAdapter;
-    private SuppliesApplyingAdapter clientAdapter;
-    private SuppliesApplyingAdapter waterAdapter;
+    private PrintSuppliesAdapter clientAdapter;
+    private PrintSuppliesAdapter waterAdapter;
     private GridView gv_image;
     private GridViewImageForReportInfoAdapter imageAdapter;
 
@@ -109,7 +109,7 @@ public class ReportInfoCompleteActivity extends BaseActivity {
         String url = null;
         try {
             url = "?cmd=getfinishconstruction&userno=" + URLEncoder.encode(userNo, "UTF-8") +
-                    "&fileno=" + URLEncoder.encode(orderId, "UTF-8") + "&enddate=&isfinish=1";
+                    "&fileno=" + URLEncoder.encode(orderId, "UTF-8") + "&enddate=&isfinish=2";
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -124,8 +124,8 @@ public class ReportInfoCompleteActivity extends BaseActivity {
                         infos.addAll(list);
                         if (!infos.toString().equals("[]")) {
                             detailedAdapter = new PrintInfoAdapter(ReportInfoCompleteActivity.this, infos.get(0).getDetailedInfos());
-                            clientAdapter = new SuppliesApplyingAdapter(ReportInfoCompleteActivity.this, infos.get(0).getSuppliesByClient());
-                            waterAdapter = new SuppliesApplyingAdapter(ReportInfoCompleteActivity.this, infos.get(0).getSuppliesByWater());
+                            clientAdapter = new PrintSuppliesAdapter(ReportInfoCompleteActivity.this, infos.get(0).getSuppliesByClient());
+                            waterAdapter = new PrintSuppliesAdapter(ReportInfoCompleteActivity.this, infos.get(0).getSuppliesByWater());
                             lv_info.setAdapter(detailedAdapter);
                             lv_suppliesClient.setAdapter(clientAdapter);
                             lv_suppliesWater.setAdapter(waterAdapter);
