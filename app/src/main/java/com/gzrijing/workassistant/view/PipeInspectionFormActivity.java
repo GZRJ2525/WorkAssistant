@@ -412,6 +412,7 @@ public class PipeInspectionFormActivity extends BaseActivity implements View.OnC
         Intent intent = new Intent(this, PipeInspectionFormService.class);
         intent.putExtra("type", type);
         intent.putExtra("id", id);
+        intent.putExtra("userNo", userNo);
         intent.putExtra("flag", "1");
 
         JSONArray jsonArray = new JSONArray();

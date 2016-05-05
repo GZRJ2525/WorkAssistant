@@ -39,6 +39,7 @@ public class PipeInspectionFormService extends IntentService {
         String type = intent.getStringExtra("type");
         String id = intent.getStringExtra("id");
         String jsonData = intent.getStringExtra("jsonData");
+        String userNo = intent.getStringExtra("userNo");
         Log.e("jsonData", jsonData);
 
         RequestBody requestBody = null;
@@ -46,6 +47,7 @@ public class PipeInspectionFormService extends IntentService {
             requestBody = new FormEncodingBuilder()
                     .add("cmd", "RecordTaskFire")
                     .add("fileno", id)
+                    .add("upuserid", userNo)
                     .add("fileJson", jsonData)
                     .build();
         }
@@ -53,6 +55,7 @@ public class PipeInspectionFormService extends IntentService {
             requestBody = new FormEncodingBuilder()
                     .add("cmd", "RecordTaskValve")
                     .add("fileno", id)
+                    .add("upuserid", userNo)
                     .add("fileJson", jsonData)
                     .build();
         }
@@ -60,6 +63,7 @@ public class PipeInspectionFormService extends IntentService {
             requestBody = new FormEncodingBuilder()
                     .add("cmd", "RecordTaskSlop")
                     .add("fileno", id)
+                    .add("upuserid", userNo)
                     .add("fileJson", jsonData)
                     .build();
         }
