@@ -190,7 +190,7 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
             @Override
             public void onFinish(final String response) {
                 Log.e("污水井计划", response);
-                if(response.substring(0, 1).equals("E")){
+                if(!response.substring(0, 1).equals("E")){
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
