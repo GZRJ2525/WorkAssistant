@@ -63,7 +63,7 @@ public class LeaderMachineApplyBillListActivity extends BaseActivity implements 
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("action.com.gzrijing.workassistant.LeaderMachineApplyBillByPlan");
-        intentFilter.addAction("action.com.gzrijing.workassistant.LeaderMachineApplyBill");
+        intentFilter.addAction("action.com.gzrijing.workassistant.LeaderMachineApplyBill");//新的机械申请单
         registerReceiver(mBroadcastReceiver, intentFilter);
     }
 
@@ -79,7 +79,7 @@ public class LeaderMachineApplyBillListActivity extends BaseActivity implements 
         adapter = new LeaderMachineApplyBillListAdapter(LeaderMachineApplyBillListActivity.this, billList, userNo);
         lv_bill.setAdapter(adapter);
 
-        getApplyBill();
+        getApplyBill();//第一，进入该界面，立即加载所有申请单信息
 
     }
 
@@ -91,7 +91,7 @@ public class LeaderMachineApplyBillListActivity extends BaseActivity implements 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.leader_machine_apply_bill_list_query_btn:
-                getApplyBill();
+                getApplyBill();//第二，输入了申请单号，进行查询。
                 break;
         }
     }
@@ -101,11 +101,11 @@ public class LeaderMachineApplyBillListActivity extends BaseActivity implements 
         pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pDialog.setMessage("正在加载数据");
         pDialog.show();
-        String id = et_id.getText().toString().trim();
+        String id = et_id.getText().toString().trim();//查询时输入的申请单号。为空字符串则查询所有
         String url = null;
-        try {
+        try {//卢工，接口65
             url = "?cmd=getmachineneedandbacklist&userno=" + URLEncoder.encode(userNo, "UTF-8")
-                    + "&savedate=&billno=" + URLEncoder.encode(id, "UTF-8")
+                    + "&savedate=&billno=" + URLEncoder.encode(id, "UTF-8")//billno：查具体一个机械申请单，空则不成为过滤条件
                     + "&fileno=&billtype=" + URLEncoder.encode("申请", "UTF-8") + "&isallappoint=";
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -115,7 +115,7 @@ public class LeaderMachineApplyBillListActivity extends BaseActivity implements 
             @Override
             public void onFinish(String response) {
                 Log.e("response", response);
-                ArrayList<LeaderMachineApplyBill> list = JsonParseUtils.getLeaderMachineApplyBill(response);
+                ArrayList<LeaderMachineApplyBill> list = JsonParseUtils.getLeaderMachineApplyBill(response);//服务器返回机械申请单信息
                 billList.clear();
                 billList.addAll(list);
                 if (billList.size() > 1) {
@@ -155,18 +155,18 @@ public class LeaderMachineApplyBillListActivity extends BaseActivity implements 
         });
     }
 
-    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {//广播接收器：
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (action.equals("action.com.gzrijing.workassistant.LeaderMachineApplyBillByPlan")) {
+            if (action.equals("action.com.gzrijing.workassistant.LeaderMachineApplyBillByPlan")) {//【ByPlan安排送机
                 String machineName = intent.getStringExtra("machineName");
-                String billNo = intent.getStringExtra("billNo");
+                String billNo = intent.getStringExtra("billNo");//机械申请单号
                 for (LeaderMachineApplyBill bill : billList) {
-                    if (bill.getBillNo().equals(billNo)) {
-                        for (LeaderMachineApplyBillByMachine machine : bill.getMachineList()) {
+                    if (bill.getBillNo().equals(billNo)) {//找到对应的申请单
+                        for (LeaderMachineApplyBillByMachine machine : bill.getMachineList()) {//getMachineList()申请单中的机械列表
                             if (machine.getName().equals(machineName)) {
-                                int sendNum = Integer.valueOf(machine.getSendNum());
+                                int sendNum = Integer.valueOf(machine.getSendNum());//安排数量
                                 sendNum++;
                                 machine.setSendNum(String.valueOf(sendNum));
                                 adapter.notifyDataSetChanged();

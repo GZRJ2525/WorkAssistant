@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class LeaderMachineApplyBill implements Parcelable {
     private String billNo;          //单据编号
-    private String billType;        //单据类型
+    private String billType;        //单据类型 两种类型 申请/退还（ 申请（工程机械申请）\ 退还  (正常机械退还\损坏机械退还)）
     private String orderId;         //工程编号
     private String useAddress;      //使用地点
     private String useDate;         //使用时间
@@ -15,7 +15,7 @@ public class LeaderMachineApplyBill implements Parcelable {
     private String applyName;       //申请人
     private String applyDate;       //申请时间
     private String remark;          //备注
-    private String state;           //状态（未审核，已审核，不通过）
+    private String state;           //状态（已审核(卢工接口65 State = 状态（审核）)，未审核((卢工接口65 State = 状态（保存）)）
     private ArrayList<LeaderMachineApplyBillByMachine> machineList = new ArrayList<LeaderMachineApplyBillByMachine>(); //申请单的机械列表
 
     public LeaderMachineApplyBill() {

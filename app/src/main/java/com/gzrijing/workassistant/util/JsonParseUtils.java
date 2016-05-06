@@ -1785,11 +1785,11 @@ public class JsonParseUtils {
                 String applyDate = jsonObject.getString("SaveDate");
                 String remark = jsonObject.getString("Remark");
                 String state = jsonObject.getString("State");
-                if (state.equals("保存")) {
-                    state = "未审核";
+                if (state.equals("保存")) {//卢工接口65 State = 状态（审核，保存）：保存 是机械组长没有看到单并没有去审核，即未审核。
+                    state = "未审核";//将服务器返回的“保存”转化为“未审核”
                 }
-                if (state.equals("审核")) {
-                    state = "已审核";
+                if (state.equals("审核")) {//卢工接口65 State = 状态（审核，保存）：审核 是机械组长看到单并通过了审核，即已审核
+                    state = "已审核";//将服务器返回的“审核”转化为“已审核”
                 }
 
                 String machineNeedDetail = jsonObject.getString("MachineNeedDetail");
