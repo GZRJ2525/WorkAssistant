@@ -122,6 +122,7 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
             order.setTemInfoNum(data.getTemInfoNum());
             order.setRecordFileName(data.getRecordFileName());
             orderListByWorker.add(order);
+            orderList.add(order);
         }
     }
 
