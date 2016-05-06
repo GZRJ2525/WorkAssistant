@@ -1,26 +1,21 @@
 package com.gzrijing.workassistant.adapter;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gzrijing.workassistant.R;
-import com.gzrijing.workassistant.entity.LeaderMachineApplyBill;
 import com.gzrijing.workassistant.entity.LeaderMachineReturnBill;
 import com.gzrijing.workassistant.listener.HttpCallbackListener;
 import com.gzrijing.workassistant.util.HttpUtils;
 import com.gzrijing.workassistant.util.ToastUtil;
-import com.gzrijing.workassistant.view.LeaderMachineApplyBillByInfoActivity;
 import com.gzrijing.workassistant.view.LeaderMachineReturnBillByInfoActivity;
 import com.gzrijing.workassistant.view.LeaderMachineReturnBillByPlanActivity;
 import com.squareup.okhttp.FormEncodingBuilder;
@@ -87,16 +82,12 @@ public class LeaderMachineReturnBillListAdapter extends BaseAdapter {
         v.type.setText(list.get(position).getBillType());
 
         String state = list.get(position).getState();
-        if(state.equals("未审核")){
+        if (state.equals("未审核")) {//看json解析工具
             v.plan.setText("审核");
         }
-        if(state.equals("已审核")){
+        if (state.equals("已审核")) {//看json解析工具
             v.plan.setText("安排退机");
         }
-        if(state.equals("不通过")){
-            v.plan.setText("不通过");
-        }
-
         v.info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,60 +100,23 @@ public class LeaderMachineReturnBillListAdapter extends BaseAdapter {
         v.plan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(list.get(position).getState().equals("未审核")){
-                    newDialog(position);
+                if (list.get(position).getState().equals("未审核")) {
+                    submit(position, "1");//提交审核
                 }
-                if(list.get(position).getState().equals("已审核")){
+                if (list.get(position).getState().equals("已审核")) {
                     Intent intent = new Intent(context, LeaderMachineReturnBillByPlanActivity.class);
                     intent.putExtra("bill", list.get(position));
                     context.startActivity(intent);
                 }
             }
         });
-
         return convertView;
     }
 
-    private void newDialog(final int position) {
-        final EditText et = new EditText(context);
-        et.setVisibility(View.GONE);
-        new AlertDialog.Builder(context).setTitle("选择类型").setView(et).setSingleChoiceItems(
-                new String[]{"通过", "不通过"}, 0, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if(which == 0){
-                            et.setVisibility(View.GONE);
-                        }
-                        if(which == 1){
-                            et.setVisibility(View.VISIBLE);
-                            et.setTextColor(context.getResources().getColor(R.color.black));
-                            et.setTextSize(context.getResources().getDimension(R.dimen.sw_15dp));
-                            et.setHint("请填写不通过原因");
-                            et.setHintTextColor(context.getResources().getColor(R.color.grey_hint));
-                        }
-                        index = which;
-                    }
-                })
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (index == 0) {
-                            submit(position, "1", et);
-                        }
-                        if (index == 1) {
-                            submit(position, "0", et);
-                        }
-                    }
-                })
-                .setNegativeButton("取消", null).show();
-    }
 
-    private void submit(final int position, String isPass, EditText et) {
+    private void submit(final int position, String isPass) {
         String reason = "";
-        if(isPass.equals("0")){
-            reason = et.getText().toString().trim();
-        }
-        JSONArray jsonArray = new JSONArray();
+        JSONArray jsonArray = new JSONArray();//卢工，接口21。因为客户要求没有申请“不通过”情况。所以调用时直接将isPass = "1",reason = ""
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("BillNo", list.get(position).getBillNo());
@@ -185,16 +139,15 @@ public class LeaderMachineReturnBillListAdapter extends BaseAdapter {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        if(response.equals("ok")){
+                        if (response.equals("ok")) {
                             list.get(position).setState("已审核");
                             notifyDataSetChanged();
                             ToastUtil.showToast(context, "审核成功", Toast.LENGTH_SHORT);
-                        }else{
+                        } else {
                             ToastUtil.showToast(context, "审核失败", Toast.LENGTH_SHORT);
                         }
                     }
                 });
-
             }
 
             @Override
