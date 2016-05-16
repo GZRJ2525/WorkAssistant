@@ -46,7 +46,7 @@
         <item>全部</item>
         <item>未派工</item>
         <item>已派工</item>
-        <item>完成</item>
+        <item>已完工</item>
     </string-array>
 
     <!-- 完工汇报界面汇报项开始 -->
@@ -54,6 +54,7 @@
     <string-array name="reportComplete_form1">
         <item>安装人员</item>
         <item>土方人员</item>
+        <item>第三方交款单位</item>
         <item>维修内容</item>
         <item>施工日期</item>
         <item>完工日期</item>
@@ -65,6 +66,7 @@
     <string-array name="reportComplete_form2">
         <item>安装人员</item>
         <item>土方人员</item>
+        <item>第三方交款单位</item>
         <item>施工日期</item>
         <item>完工日期</item>
         <item>验收日期</item>
@@ -75,6 +77,7 @@
     <string-array name="reportComplete_form3">
         <item>安装人员</item>
         <item>土方人员</item>
+        <item>第三方交款单位</item>
         <item>表身编号</item>
         <item>水表产地</item>
         <item>水表有效日期</item>
@@ -88,6 +91,7 @@
     <string-array name="reportComplete_form4">
         <item>安装人员</item>
         <item>土方人员</item>
+        <item>第三方交款单位</item>
         <item>处理结果</item>
         <item>表身编号</item>
         <item>水表产地</item>
@@ -102,6 +106,7 @@
     <string-array name="reportComplete_form5">
         <item>安装人员</item>
         <item>土方人员</item>
+        <item>第三方交款单位</item>
         <item>处理结果</item>
         <item>表身编号</item>
         <item>水表产地</item>
@@ -118,6 +123,7 @@
     <string-array name="reportComplete_form6">
         <item>安装人员</item>
         <item>土方人员</item>
+        <item>第三方交款单位</item>
         <item>处理结果</item>
         <item>施工日期</item>
         <item>完工日期</item>
@@ -132,6 +138,7 @@
         <item>　监理员</item>
         <item>安装人员</item>
         <item>土方人员</item>
+        <item>第三方交款单位</item>
         <item>施工日期</item>
         <item>完工日期</item>
         <item>验收日期</item>
@@ -145,6 +152,7 @@
         <item>　监理员</item>
         <item>安装人员</item>
         <item>土方人员</item>
+        <item>第三方交款单位</item>
         <item>施工日期</item>
         <item>完工日期</item>
         <item>验收日期</item>
@@ -158,6 +166,7 @@
         <item>　监理员</item>
         <item>安装人员</item>
         <item>土方人员</item>
+        <item>第三方交款单位</item>
         <item>施工日期</item>
         <item>完工日期</item>
         <item>验收日期</item>
@@ -172,6 +181,7 @@
         <item>　监理员</item>
         <item>安装人员</item>
         <item>土方人员</item>
+        <item>第三方交款单位</item>
         <item>施工日期</item>
         <item>完工日期</item>
         <item>验收日期</item>

@@ -227,6 +227,10 @@ public class ReportProgressFragment extends Fragment implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fragment_report_progress_report_btn:
+                if(et_content.getText().toString().trim().equals("")){
+                    ToastUtil.showToast(getActivity(),"请填写汇报内容", Toast.LENGTH_SHORT);
+                    return;
+                }
                 btn_report.setVisibility(View.GONE);
                 String content = et_content.getText().toString().trim();
 

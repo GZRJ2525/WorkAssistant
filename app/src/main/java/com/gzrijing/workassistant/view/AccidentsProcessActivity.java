@@ -77,7 +77,7 @@ public class AccidentsProcessActivity extends BaseActivity {
         pDialog.setMessage("正在加载数据...");
         pDialog.show();
         String url = null;
-        try {
+        try {//卢工接口27. 获取工程项目照片
             url = "?cmd=getconspic&fileno=" + URLEncoder.encode(accident.getOrderId(), "UTF-8")
                     + "&relationid=" + accident.getId() + "&pictype=WnW_ConsAccidentPic";
         } catch (UnsupportedEncodingException e) {
@@ -93,7 +93,7 @@ public class AccidentsProcessActivity extends BaseActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        picUrls = JsonParseUtils.getImageUrl(response);
+                        picUrls = JsonParseUtils.getImageUrl(response);//从服务器获得图片url ，传给适配器去显示
                         adapter = new GridViewImageForReportInfoAdapter(AccidentsProcessActivity.this, picUrls);
                         gv_image.setAdapter(adapter);
                         pDialog.dismiss();
@@ -169,6 +169,7 @@ public class AccidentsProcessActivity extends BaseActivity {
         pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pDialog.setMessage("正在提交...");
         pDialog.show();
+        //卢工接口72．保存意外问题的处理结果
         RequestBody requestBody = new FormEncodingBuilder()
                 .add("cmd", "dosaveaccidentresult")
                 .add("userno", userNo)

@@ -62,7 +62,7 @@ public class SafetyInspectFailItemActivity extends BaseActivity {
         pDialog.setMessage("正在加载数据");
         pDialog.show();
         String url = null;
-        try {
+        try {//卢工接口39. 获取被派工岗位的人员列表  返回：(UserNo=员工编号；UserName=员工名称)
             url = "?cmd=getsitusergl&userno=" + URLEncoder.encode(userNo, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -71,7 +71,7 @@ public class SafetyInspectFailItemActivity extends BaseActivity {
             @Override
             public void onFinish(String response) {
                 Log.e("response", response);
-                ArrayList<SubordinateLocation> list = JsonParseUtils.getSubordinateLocationInfo(response);
+                ArrayList<SubordinateLocation> list = JsonParseUtils.getSubordinateLocationInfo(response);//下属位置
                 workerList.addAll(list);
                 getFailItem();
             }
@@ -91,7 +91,7 @@ public class SafetyInspectFailItemActivity extends BaseActivity {
 
     private void getFailItem() {
         String url = null;
-        try {
+        try {//贺工接口20.获取工程已经保存的安全信息
             url = "?cmd=LoadSafeItemSaved&fileid="+URLEncoder.encode(orderId, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

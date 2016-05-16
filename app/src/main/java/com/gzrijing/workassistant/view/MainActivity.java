@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         initData();
         initViews();
         setListeners();
-        initMyLocation();
+        initMyLocation();//每分钟定位一次，并且上传坐标到服务器
     }
 
     private void initData() {
@@ -62,7 +62,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         userName = app.getString("userName", "");
 
         Intent intent = getIntent();
-        id = Integer.parseInt(intent.getStringExtra("fragId"));
+        id = Integer.parseInt(intent.getStringExtra("fragId"));//【传过来的是0
     }
 
     private void initViews() {
@@ -75,16 +75,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         iv_acceptance = (ImageView) findViewById(R.id.main_acceptance_iv);
         iv_more = (ImageView) findViewById(R.id.main_more_iv);
 
-        if (id == 0) {
+        if (id == 0) {//传过来的就是“0”
             fragmentManager = getSupportFragmentManager();
             setTabSelection(0);
-        } else if (id == 1) {
+        } else if (id == 1) {//【是否可以删除
             fragmentManager = getSupportFragmentManager();
             setTabSelection(1);
-        } else if (id == 2) {
+        } else if (id == 2) {//【是否可以删除
             fragmentManager = getSupportFragmentManager();
             setTabSelection(2);
-        } else if (id == 3) {
+        } else if (id == 3) {//【是否可以删除
             fragmentManager = getSupportFragmentManager();
             setTabSelection(3);
         }
@@ -195,7 +195,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      */
     private void hideFragments(FragmentTransaction transaction) {
         if (businessFragment != null) {
-            transaction.hide(businessFragment);
+            transaction.hide(businessFragment);//【hide
         }
         if (manageFragment != null) {
             transaction.hide(manageFragment);
@@ -270,7 +270,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      * @param longitude
      */
     private void uploadLocation(double latitude, double longitude) {
-        RequestBody requestBody = new FormEncodingBuilder()
+        RequestBody requestBody = new FormEncodingBuilder()//贺工接口29.人员Gps坐标记录
                 .add("cmd", "UserGpsCheckFun")
                 .add("UserNo", userNo)
                 .add("GpsNo", latitude + "," + longitude)
@@ -291,6 +291,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        locationClient.stop();
+        locationClient.stop();//【
     }
 }

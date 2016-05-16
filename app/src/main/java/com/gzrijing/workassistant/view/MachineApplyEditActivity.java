@@ -50,14 +50,14 @@ public class MachineApplyEditActivity extends BaseActivity implements View.OnCli
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case 0:
+                case 0://查询成功
                     machineQueries.clear();
                     List<Machine> MQList = (List<Machine>) msg.obj;
                     machineQueries.addAll(MQList);
                     queryAdapter.notifyDataSetChanged();
                     break;
 
-                case 1:
+                case 1://查询失败
                     ToastUtil.showToast(MachineApplyEditActivity.this, "与服务器断开连接", Toast.LENGTH_SHORT);
                     break;
             }
@@ -86,27 +86,27 @@ public class MachineApplyEditActivity extends BaseActivity implements View.OnCli
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        iv_delAll = (ImageView) findViewById(R.id.machine_apply_edit_del_all_iv);
-        btn_add = (Button) findViewById(R.id.machine_apply_edit_add_btn);
-        et_name = (EditText) findViewById(R.id.machine_apply_edit_name_et);
-        et_spec = (EditText) findViewById(R.id.machine_apply_edit_spec_et);
-        et_unit = (EditText) findViewById(R.id.machine_apply_edit_unit_et);
-        et_keyword = (EditText) findViewById(R.id.machine_apply_edit_query_keyword_et);
-        btn_keyword = (Button) findViewById(R.id.machine_apply_edit_query_keyword_btn);
+        iv_delAll = (ImageView) findViewById(R.id.machine_apply_edit_del_all_iv);//红色叉，删除
+        btn_add = (Button) findViewById(R.id.machine_apply_edit_add_btn);//自定义机械添加按钮
+        et_name = (EditText) findViewById(R.id.machine_apply_edit_name_et);//自定义机械名称
+        et_spec = (EditText) findViewById(R.id.machine_apply_edit_spec_et);//自定义机械规格
+        et_unit = (EditText) findViewById(R.id.machine_apply_edit_unit_et);//自定义机械单位
+        et_keyword = (EditText) findViewById(R.id.machine_apply_edit_query_keyword_et);//查询已有机械输入的关键字
+        btn_keyword = (Button) findViewById(R.id.machine_apply_edit_query_keyword_btn);//查询 触发按钮
 
-        lv_apply = (ListView) findViewById(R.id.machine_apply_edit_apply_lv);
+        lv_apply = (ListView) findViewById(R.id.machine_apply_edit_apply_lv);//要申请的机械列表
         applyAdapter = new MachineApplyAdapter(this, machineList);
         lv_apply.setAdapter(applyAdapter);
 
-        lv_query = (ListView) findViewById(R.id.machine_apply_edit_query_lv);
+        lv_query = (ListView) findViewById(R.id.machine_apply_edit_query_lv);//查询到的机械列表
         queryAdapter = new MachineQueryAdapter(this, machineQueries);
         lv_query.setAdapter(queryAdapter);
     }
 
     private void setListeners() {
-        iv_delAll.setOnClickListener(this);
-        btn_add.setOnClickListener(this);
-        btn_keyword.setOnClickListener(this);
+        iv_delAll.setOnClickListener(this);//删除不申请的机械
+        btn_add.setOnClickListener(this);//添加自定义机械
+        btn_keyword.setOnClickListener(this);//查询已有机械
 
         lv_query.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -133,7 +133,7 @@ public class MachineApplyEditActivity extends BaseActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.machine_apply_edit_del_all_iv:
+            case R.id.machine_apply_edit_del_all_iv://保存前，点击红色叉号，删除不需要的机械
                 machineList.clear();
                 applyAdapter.notifyDataSetChanged();
                 break;
@@ -167,7 +167,7 @@ public class MachineApplyEditActivity extends BaseActivity implements View.OnCli
             machine.setName(name+"_"+spec);
         }
         machine.setUnit(unit);
-        machine.setApplyNum(1);
+        machine.setApplyNum(1);//默认添加数为1。在申请机械列表数量中再编辑。
         machineList.add(machine);
         applyAdapter.notifyDataSetChanged();
         et_name.setText("");
@@ -182,7 +182,7 @@ public class MachineApplyEditActivity extends BaseActivity implements View.OnCli
             return;
         }
         String url = null;
-        try {
+        try {//卢工接口33.获取机械台账。machineno：机械编号，空则不作为过滤条件；machinename：机械名称，模糊查询，空则不作为过滤条件
             url = "?cmd=getmachinelist&machineno=&machinename=" + URLEncoder.encode(keyWork, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

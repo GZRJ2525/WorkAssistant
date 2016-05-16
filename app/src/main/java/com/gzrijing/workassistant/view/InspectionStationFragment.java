@@ -75,7 +75,7 @@ public class InspectionStationFragment extends Fragment {
         pDialog.setMessage("请保持网络连接，正在加载数据...");
         pDialog.show();
         String url = null;
-        try {
+        try {//卢工接口2. 获取工程项目
             url = "?cmd=getconstruction&userno=" + URLEncoder.encode(userNo, "UTF-8") + "&begindate=";
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -93,13 +93,13 @@ public class InspectionStationFragment extends Fragment {
                         sequence(orderList);
                         ArrayList<BusinessByLeader> BBLList = new ArrayList<BusinessByLeader>();
                         for (int i = 0; i < orderList.size(); i++) {
-                            if (orderList.get(i).getState().equals("已完工")) {
-                                BBLList.add(orderList.get(i));
+                            if (orderList.get(i).getState().equals("已完工")) {//完工工程
+                                BBLList.add(orderList.get(i));//已完工的工程保存起来
                                 orderList.remove(i);
                             }
                         }
                         if (BBLList.size() > 0) {
-                            orderList.addAll(BBLList);
+                            orderList.addAll(BBLList);//【将已完工的工程再加入，什么意思？
                         }
                     }
                     handler.post(new Runnable() {

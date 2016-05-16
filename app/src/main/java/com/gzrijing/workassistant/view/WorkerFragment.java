@@ -57,7 +57,7 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
                 case 0:
                     adapter.notifyDataSetChanged();
                     Message message = handler.obtainMessage(0);
-                    handler.sendMessageDelayed(message, 60 * 1000);
+                    handler.sendMessageDelayed(message, 60 * 1000);//【1分钟发送一次消息
             }
             return false;
         }
@@ -93,17 +93,17 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
         intentFilter.addAction("action.com.gzrijing.workassistant.WorkerFragment");
         intentFilter.addAction("action.com.gzrijing.workassistant.WorkerFragment.state");
         intentFilter.addAction("action.com.gzrijing.workassistant.WorkerFragment.Inspection");
-        intentFilter.addAction("action.com.gzrijing.workassistant.PipeInspectMap.add");
-        intentFilter.addAction("action.com.gzrijing.workassistant.PipeInspectMap.update");
-        intentFilter.addAction("action.com.gzrijing.workassistant.PipeInspectMap.inspection");
+        intentFilter.addAction("action.com.gzrijing.workassistant.PipeInspectMap.add");//【
+        intentFilter.addAction("action.com.gzrijing.workassistant.PipeInspectMap.update");//【
+        intentFilter.addAction("action.com.gzrijing.workassistant.PipeInspectMap.inspection");//【
         intentFilter.addAction("action.com.gzrijing.workassistant.temInfoNum");
         getActivity().registerReceiver(mBroadcastReceiver, intentFilter);
 
-        getWorkerOreder();
+        getWorkerOreder();//从本地SQLite中获取业务信息列表
 
-        getInspectionOrder();
+        getInspectionOrder();//供水管巡检业务【不同于“供水管维护”业务的安全检查不合格项
 
-        getSewageWellsOrder();
+        getSewageWellsOrder();//【污水井业务
 
     }
 
@@ -111,7 +111,7 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
         List<BusinessData> list = DataSupport.where("user = ?", userNo).find(BusinessData.class);
         for (BusinessData data : list) {
             BusinessByWorker order = new BusinessByWorker();
-            order.setId(data.getId());
+            order.setId(data.getId());//【用于什么？
             order.setOrderId(data.getOrderId());
             order.setUrgent(data.isUrgent());
             order.setType(data.getType());
@@ -128,7 +128,7 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
 
     private void getInspectionOrder() {
         String url = null;
-        try {
+        try {//贺工接口1.获取阀门计划
             url = "?cmd=GetPlanValve&userno=" + URLEncoder.encode(userNo, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -144,7 +144,7 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
                             List<BusinessByWorker> list = JsonParseUtils.getInspection(response);
                             for (BusinessByWorker businessByWorker : list) {
                                 orderListByWorker.add(businessByWorker);
-                                orderList.add(businessByWorker);
+                                orderList.add(businessByWorker);//【为什么还要添加到orderList中？
                             }
                             if (orderList.size() > 1) {
                                 sequence(orderList);
@@ -157,7 +157,7 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
                                 }
                                 if (BBWList.size() > 0) {
                                     for(BusinessByWorker order : BBWList){
-                                        orderList.add(order);
+                                        orderList.add(order);//[完工的工程追加到列表后面！]
                                     }
                                 }
                             }
@@ -182,7 +182,7 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
 
     private void getSewageWellsOrder() {
         String url = null;
-        try {
+        try {//贺工接口3.获取污水井计划
             url = "?cmd=GetPlanSlop&userno=" + URLEncoder.encode(userNo, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -198,7 +198,7 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
                             List<BusinessByWorker> list = JsonParseUtils.getInspection(response);
                             for (BusinessByWorker businessByWorker : list) {
                                 orderListByWorker.add(businessByWorker);
-                                orderList.add(businessByWorker);
+                                orderList.add(businessByWorker);//【为什么还要添加到orderList中？排序？
                             }
                             if (orderList.size() > 1) {
                                 sequence(orderList);
@@ -254,7 +254,7 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
         lv_order.setAdapter(adapter);
 
         Message message = handler.obtainMessage(0);
-        handler.sendMessageDelayed(message, 60 * 1000);
+        handler.sendMessageDelayed(message, 60 * 1000);//【1分钟发送一次消息。
 
     }
 
@@ -265,13 +265,13 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
 
     private void select(View view) {
         if (view != null) {
-            TextView tv = (TextView) view;
+            TextView tv = (TextView) view;//【
             tv.setTextColor(getResources().getColor(R.color.black));
         }
         String type = sp_business.getSelectedItem().toString();
         String state = sp_state.getSelectedItem().toString();
 
-        orderList.clear();
+        orderList.clear();//[!!筛选查看前，清空了数据]
         if (type.equals("全部") && state.equals("全部")) {
             orderList.addAll(orderListByWorker);
         } else if (type.equals("全部") && !state.equals("全部")) {
@@ -340,7 +340,7 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (action.equals("action.com.gzrijing.workassistant.WorkerFragment.Inspection")) {
+            if (action.equals("action.com.gzrijing.workassistant.WorkerFragment.Inspection")) {//[接收巡检业务广播]
                 String jsonData = intent.getStringExtra("jsonData");
                 List<BusinessByWorker> list = JsonParseUtils.getInspection(jsonData);
                 for (BusinessByWorker businessByWorker : list) {
@@ -365,7 +365,7 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
                 adapter.notifyDataSetChanged();
             }
 
-            if (action.equals("action.com.gzrijing.workassistant.WorkerFragment")) {
+            if (action.equals("action.com.gzrijing.workassistant.WorkerFragment")) {//[接收工程业务广播]
                 String jsonData = intent.getStringExtra("jsonData");
                 List<BusinessByWorker> list = JsonParseUtils.getWorkerBusiness(jsonData);
                 orderList.addAll(list);
@@ -390,17 +390,18 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
                 }
                 adapter.notifyDataSetChanged();
             }
-            if (action.equals("action.com.gzrijing.workassistant.PipeInspectMap.add")
+            if (action.equals("action.com.gzrijing.workassistant.PipeInspectMap.add")//【PipeInspectMap
                     || action.equals("action.com.gzrijing.workassistant.PipeInspectMap.update")
                     || action.equals("action.com.gzrijing.workassistant.PipeInspectMap.inspection")) {
                 orderListByWorker.clear();
                 orderList.clear();
-                getWorkerOreder();
-                getInspectionOrder();
-                getSewageWellsOrder();
+                getWorkerOreder();//【可以不用重新获得？这些数据是来自SQLite中的。
+                orderList.addAll(orderListByWorker);//将SQLite中保存的业务信息添加到orderList中，显示在列表中。
+                getInspectionOrder();//[获得的数据没有保存到SQLite中，需要重新获取。
+                getSewageWellsOrder();//[获得的数据没有保存到SQLite中，需要重新获取。
             }
 
-            if (action.equals("action.com.gzrijing.workassistant.WorkerFragment.state")) {
+            if (action.equals("action.com.gzrijing.workassistant.WorkerFragment.state")) {//[接收工程状态变化的广播
                 String orderId = intent.getStringExtra("orderId");
                 String state = intent.getStringExtra("state");
                 for (BusinessByWorker order : orderListByWorker) {
@@ -416,7 +417,7 @@ public class WorkerFragment extends Fragment implements AdapterView.OnItemSelect
                 }
             }
 
-            if (action.equals("action.com.gzrijing.workassistant.temInfoNum")) {
+            if (action.equals("action.com.gzrijing.workassistant.temInfoNum")) {//接收临时消息变化的广播
                 String orderId = intent.getStringExtra("orderId");
                 int num = intent.getIntExtra("temInfoNum", -1);
                 for (BusinessByWorker order : orderListByWorker) {

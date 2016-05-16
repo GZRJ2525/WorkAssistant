@@ -171,7 +171,7 @@
                 android:text="附件："
                 android:textColor="@color/black"
                 android:textSize="@dimen/sw_15dp" />
-
+            <!--施工员汇报问题时，上传的图片-->
             <com.gzrijing.workassistant.widget.WrapHeightGridView
                 android:id="@+id/accidents_process_image_gv"
                 android:layout_width="match_parent"

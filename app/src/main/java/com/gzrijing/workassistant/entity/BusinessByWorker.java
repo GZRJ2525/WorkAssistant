@@ -14,10 +14,10 @@ public class BusinessByWorker {
     private boolean urgent;                 //工程是否紧急
     private int temInfoNum;                 //标记有多少条临时信息
     private String flag;                    //状态标识
-    private String recordFileName;          //录音文件名
+    private String recordFileName;          //录音文件名 [施工员特有 【组长作为施工员 也有]
     private ArrayList<DetailedInfo> detailedInfos = new ArrayList<DetailedInfo>();   //详细信息
     private ArrayList<PicUrl> picUrls = new ArrayList<PicUrl>();     //图片URL
-    private ArrayList<Inspection> InspectionInfos = new ArrayList<Inspection>(); //巡查任务点
+    private ArrayList<Inspection> InspectionInfos = new ArrayList<Inspection>(); //巡查任务点 [施工员特有 【组长作为施工员 也有]
     private SlideView slideView;
 
     public BusinessByWorker() {

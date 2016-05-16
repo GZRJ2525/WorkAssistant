@@ -100,7 +100,7 @@ public class BusinessLeaderAdapter extends BaseAdapter implements SlideView.OnSl
 
         BusinessByLeader item = orderList.get(position);
         item.setSlideView(slideView);
-        item.getSlideView().shrink();
+        item.getSlideView().shrink();//【
 
         v.orderId.setText(orderList.get(position).getOrderId());
         v.type.setText(orderList.get(position).getType());
@@ -109,35 +109,35 @@ public class BusinessLeaderAdapter extends BaseAdapter implements SlideView.OnSl
         v.deadline.setText(orderList.get(position).getDeadline());
         v.temInfo.setText("有" + orderList.get(position).getTemInfoNum() + "条临时信息");
 
-        String endTime = orderList.get(position).getDeadline();
+        String endTime = orderList.get(position).getDeadline();//工程期限就是结束时间
         if(endTime.equals("")){
             v.timeLeft.setText("");
-            v.head_rl.setBackgroundColor(context.getResources().getColor(R.color.blue));
-        }else{
+            v.head_rl.setBackgroundColor(context.getResources().getColor(R.color.blue));//没有工程期限的工程标识为蓝色，客服发过来的工期就没有工程期限
+        }else{//要求工程期限的，根据距离到期长短，设置不同颜色：
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date d = sdf.parse(endTime);
                 long time = d.getTime() - System.currentTimeMillis();
-                long day = time / (1000 * 60 * 60 * 24);
+                long day = time / (1000 * 60 * 60 * 24);//取整
                 long dayNm = 0;
-                if (day > 0) {
+                if (day > 0) {//足日
                     dayNm = day;
                 }
-                long hour = (time - day * 1000 * 60 * 60 * 24) / (1000 * 60 * 60);
+                long hour = (time - day * 1000 * 60 * 60 * 24) / (1000 * 60 * 60);//取整
                 long hourNm = 0;
-                if (hour > 0) {
+                if (hour > 0) {//足时
                     hourNm = hour;
                 }
-                long min = (time - day * 1000 * 60 * 60 * 24 - hour * 1000 * 60 * 60) / (1000 * 60);
+                long min = (time - day * 1000 * 60 * 60 * 24 - hour * 1000 * 60 * 60) / (1000 * 60);//取整
                 long minNm = 0;
-                if (min > 0) {
+                if (min > 0) {//足分
                     minNm = min;
                 }
                 String surpTime = dayNm + "天" + hourNm + "时" + minNm + "分";
-                if (dayNm == 0 && hourNm < 4 && hourNm > 1) {
+                if (dayNm == 0 && hourNm < 4 && hourNm > 1) {//【2小时，3小时(1小时到4小时，不包括1小时,4小时)
                     v.timeLeft.setText(surpTime);
                     v.head_rl.setBackgroundColor(context.getResources().getColor(R.color.orangeShallow));
-                } else if (dayNm == 0 && hourNm < 2) {
+                } else if (dayNm == 0 && hourNm < 2) {//【0小时，1小时(2小时内，不包括2小时)
                     v.timeLeft.setText(surpTime);
                     v.head_rl.setBackgroundColor(context.getResources().getColor(R.color.redShallow));
                 } else {
@@ -192,7 +192,7 @@ public class BusinessLeaderAdapter extends BaseAdapter implements SlideView.OnSl
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, MachineApplyActivity.class);
-                intent.putExtra("id", orderList.get(position).getId());
+                intent.putExtra("id", orderList.get(position).getId());//数据ID
                 intent.putExtra("orderId", orderList.get(position).getOrderId());
                 context.startActivity(intent);
             }
@@ -257,7 +257,7 @@ public class BusinessLeaderAdapter extends BaseAdapter implements SlideView.OnSl
         final String flag = orderList.get(position).getFlag();
         v.flag.setText(flag);
         if (flag.equals("确认收到")) {
-            v.bg_ll.setBackgroundResource(R.color.pink_bg);
+            v.bg_ll.setBackgroundResource(R.color.pink_bg);//显示“确认收到”，显示粉红色，点击“确认收到”后为白色
         } else {
             v.bg_ll.setBackgroundResource(R.color.white);
         }
@@ -265,8 +265,8 @@ public class BusinessLeaderAdapter extends BaseAdapter implements SlideView.OnSl
         v.btn_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (flag.equals("确认收到")) {
-                    sendSure(position);
+                if (flag.equals("确认收到")) {//如果点击的是“确认收到”
+                    sendSure(position);//通知服务器，工程收到 已经确认，【服务器接到通知，做和动作，如何公知客户端，更改状态。
                 }
                 if (flag.equals("派工")) {
                     Intent intent = new Intent(context, DistributeActivity.class);
@@ -276,15 +276,15 @@ public class BusinessLeaderAdapter extends BaseAdapter implements SlideView.OnSl
             }
         });
 
-        v.deleteHolder.setOnClickListener(new View.OnClickListener() {
+        v.deleteHolder.setOnClickListener(new View.OnClickListener() {//删除工程
             @Override
             public void onClick(View v) {
-                DataSupport.delete(BusinessData.class, orderList.get(position).getId());
+                DataSupport.delete(BusinessData.class, orderList.get(position).getId());//调用框架中的删除方法
                 String picPath = ImageUtils.getImagePath(context, userNo, orderList.get(position).getOrderId()).getPath();
-                DeleteFolderUtil.deleteFolder(picPath);
+                DeleteFolderUtil.deleteFolder(picPath);//清除保存在手机上的与该工程有关的图片
                 String voicePath = VoiceUtil.getVoicePath(context, userNo, orderList.get(position).getOrderId()).getPath();
-                DeleteFolderUtil.deleteFolder(voicePath);
-                orderList.remove(position);
+                DeleteFolderUtil.deleteFolder(voicePath);//清除保存在手机上的与该工程有关的录音
+                orderList.remove(position);//清除在业务列表中的显示
                 notifyDataSetChanged();
             }
         });
@@ -293,7 +293,7 @@ public class BusinessLeaderAdapter extends BaseAdapter implements SlideView.OnSl
     }
 
     private void sendSure(final int position) {
-        RequestBody requestBody = new FormEncodingBuilder()
+        RequestBody requestBody = new FormEncodingBuilder()//卢工接口3保存确认收到信息   【施工员
                 .add("cmd", "doreceive")
                 .add("userno", userNo)
                 .add("fileno", orderList.get(position).getOrderId())
@@ -304,7 +304,7 @@ public class BusinessLeaderAdapter extends BaseAdapter implements SlideView.OnSl
                 orderList.get(position).setFlag("派工");
                 ContentValues values = new ContentValues();
                 values.put("flag", "派工");
-                DataSupport.updateAll(BusinessData.class, values,
+                DataSupport.updateAll(BusinessData.class, values,//【本地数据已经更新，为什么其他账号登陆后，再登陆回原来的账号会变成“确认收到”，而不是“派工”。是服务器没有做“派工”的标识？
                         "user = ? and orderId = ?", userNo, orderList.get(position).getOrderId());
                 handler.post(new Runnable() {
                     @Override
@@ -327,9 +327,9 @@ public class BusinessLeaderAdapter extends BaseAdapter implements SlideView.OnSl
     }
 
     @Override
-    public void onSlide(View view, int status) {
+    public void onSlide(View view, int status) {//【水平滑动？
         if (mLastSlideViewWithStatusOn != null
-                && mLastSlideViewWithStatusOn != view) {
+                && mLastSlideViewWithStatusOn != view) {//SlideView 的对象非空 并且
             mLastSlideViewWithStatusOn.shrink();
         }
 
@@ -393,16 +393,16 @@ public class BusinessLeaderAdapter extends BaseAdapter implements SlideView.OnSl
             temInfo = (TextView) view.findViewById(
                     R.id.listview_item_business_leader_tem_info_tv);
             head_rl = (RelativeLayout) view.findViewById(
-                    R.id.listview_item_business_leader_head_rl);
+                    R.id.listview_item_business_leader_head_rl);//
             flag = (TextView) view.findViewById(
                     R.id.listview_item_business_leader_flag_tv);
             bg_ll = (LinearLayout) view.findViewById(
-                    R.id.listview_item_business_leader_bg_ll);
+                    R.id.listview_item_business_leader_bg_ll);//工单信息背景色
             btn_rl = (RelativeLayout) view.findViewById(
-                    R.id.listview_item_business_leader_rl);
+                    R.id.listview_item_business_leader_rl);//
             timeLeft = (TextView) view.findViewById(
                     R.id.listview_item_business_leader_time_left_tv);
-            deleteHolder = (ViewGroup) view.findViewById(R.id.holder);
+            deleteHolder = (ViewGroup) view.findViewById(R.id.holder);//【
         }
     }
 }

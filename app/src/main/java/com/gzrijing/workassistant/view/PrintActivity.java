@@ -45,8 +45,9 @@ public class PrintActivity extends BaseActivity implements View.OnClickListener 
     private Acceptance acceptance;
     private String userName;
     private TextView tv_worker;
+    private TextView tv_payer;
     private TextView tv_orderId;
-
+    String flag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +71,7 @@ public class PrintActivity extends BaseActivity implements View.OnClickListener 
         userName = app.getString("userName", "");
         Intent intent = getIntent();
         acceptance = intent.getParcelableExtra("acceptance");
-        String flag = intent.getStringExtra("flag");
+        flag = intent.getStringExtra("flag");
         if (flag.equals("客户")) {
             suppliesList = acceptance.getSuppliesByClient();
 
@@ -106,6 +107,9 @@ public class PrintActivity extends BaseActivity implements View.OnClickListener 
 
         tv_worker = (TextView) findViewById(R.id.print_worker_tv);
         tv_worker.setText("打印人：" + userName);
+        tv_payer = (TextView) findViewById(R.id.print_payer_tv);
+        if(flag.equals("客户"))tv_payer.setText("交款单位:"+acceptance.getKHPayUnit());
+        if(flag.equals("水务"))tv_payer.setText("交款单位:"+acceptance.getSWPayUnit());
         tv_orderId = (TextView) findViewById(R.id.print_order_id_tv);
         tv_orderId.setText("工单：" + acceptance.getOrderId());
 

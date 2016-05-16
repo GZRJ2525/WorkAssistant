@@ -329,7 +329,7 @@ public class MachineApplyActivity extends BaseActivity implements View.OnClickLi
         }
 
         Log.e("json", jsonArray.toString());
-        RequestBody requestBody = new FormEncodingBuilder()
+        RequestBody requestBody = new FormEncodingBuilder()//卢工 接口20
                 .add("cmd", "dosavemachineneed")
                 .add("billno", "")
                 .add("billtype", "工程机械申请")
@@ -371,6 +371,7 @@ public class MachineApplyActivity extends BaseActivity implements View.OnClickLi
                 });
             }
         });
+//        btn_apply.setClickable(false);//设置不可以再点击，防止双击or多击，提交多个重复申请单
     }
 
     private void savaMachineNo(String applyId) {

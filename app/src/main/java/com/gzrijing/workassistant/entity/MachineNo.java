@@ -14,12 +14,12 @@ public class MachineNo implements Parcelable {
     private String useAddress;      //机械使用地点
     private String remarks;         //备注
     private String approvalTime;    //机械单审批时间
-    private String applyState;      //机械申请状态（申请中，已审批，不批准）
+    private String applyState;      //机械申请状态（申请中，已审批，不批准）。[接口已经撤销了“不批准”状态。]
     private String returnState;     //机械退回状态（申请中，已安排，已退回）
     private String returnType;      //机械退回性质（正常，损坏）
     private String returnApplyTime; //机械退回申请时间
     private String returnAddress;   //机械退回地点
-    private String reason;          //不批准原因
+    private String reason;          //不批准原因[已经没有“不批准”，该属性可以撤销]
     private ArrayList<Machine> machineList = new ArrayList<Machine>();
 
     public MachineNo() {

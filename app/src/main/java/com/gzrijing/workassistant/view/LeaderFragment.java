@@ -93,7 +93,7 @@ public class LeaderFragment extends Fragment implements AdapterView.OnItemSelect
             order.setReceivedTime(data.getReceivedTime());
             order.setDeadline(data.getDeadline());
             order.setTemInfoNum(data.getTemInfoNum());
-            order.setFlag(data.getFlag());
+            order.setFlag(data.getFlag());//【来自手机的本地数据，当服务器Flag变化时，有没有更改本地的这个状态？本地的数据是何时记录的？
             order.setTemInfoNum(data.getTemInfoNum());
             orderListByLeader.add(order);
         }
@@ -147,7 +147,6 @@ public class LeaderFragment extends Fragment implements AdapterView.OnItemSelect
         }
         String type = sp_business.getSelectedItem().toString();
         String state = sp_state.getSelectedItem().toString();
-
         orderList.clear();
         if (type.equals("全部") && state.equals("全部")) {
             orderList.addAll(orderListByLeader);
@@ -170,18 +169,19 @@ public class LeaderFragment extends Fragment implements AdapterView.OnItemSelect
                 }
             }
         }
-        if (orderList.size() > 1) {
+        if (orderList.size() > 1) {//非空判断
             sequence(orderList);
-            ArrayList<BusinessByLeader> list = new ArrayList<BusinessByLeader>();
-            for (int i = 0 ; i<orderList.size(); i++) {
-                if (orderList.get(i).getState().equals("已完工")) {
-                    list.add(orderList.get(i));
-                    orderList.remove(i);
-                }
-            }
-            if (list.size() > 0) {
-                orderList.addAll(list);
-            }
+            //将完工的工程放后面，没必要。直接筛选查看即可
+//            ArrayList<BusinessByLeader> list = new ArrayList<BusinessByLeader>();
+//            for (int i = 0 ; i<orderList.size(); i++) {
+//                if (orderList.get(i).getState().equals("已完工")) {
+//                    list.add(orderList.get(i));//list存放完工的工程
+//                    orderList.remove(i);
+//                }
+//            }
+//            if (list.size() > 0) {
+//                orderList.addAll(list);
+//            }
         }
         adapter.notifyDataSetChanged();
     }
@@ -211,7 +211,7 @@ public class LeaderFragment extends Fragment implements AdapterView.OnItemSelect
 
     }
 
-    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {//【似乎少了“确认收到”的action？？
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -231,7 +231,7 @@ public class LeaderFragment extends Fragment implements AdapterView.OnItemSelect
                         }
                     }
                     if (list.size() > 0) {
-                        orderList.addAll(list);
+                        orderList.addAll(list);//【】
                     }
                 }
                 adapter.notifyDataSetChanged();

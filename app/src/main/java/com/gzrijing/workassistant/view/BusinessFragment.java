@@ -66,7 +66,7 @@ public class BusinessFragment extends Fragment {
     private String userNo;
     private Handler handler = new Handler();
     private ImageLoader mImageLoader;
-    private int count = 0;
+    private int count = 0;//【dialog何时关闭的标识]
     private ProgressDialog pDialog;
 
     public BusinessFragment() {
@@ -94,27 +94,27 @@ public class BusinessFragment extends Fragment {
         if (savedInstanceState == null) {
             Log.e("userRank", userRank);
             Log.e("userNo", userNo);
-            if(userRank.equals("3")){
-                Fragment fragment = getChildFragmentManager().findFragmentByTag(userRank);
+            if(userRank.equals("3")){//水表检定站主任
+                Fragment fragment = getChildFragmentManager().findFragmentByTag(userRank);//【
                 if (fragment == null) {
                     setTabSelection(Integer.valueOf(userRank));
                 }
             }else{
-                List<TimeData> timeData = DataSupport.where("userNo = ?", userNo).find(TimeData.class);
-                if (timeData.size() > 0) {
-                    Fragment fragment = getChildFragmentManager().findFragmentByTag(userRank);
+                List<TimeData> timeData = DataSupport.where("userNo = ?", userNo).find(TimeData.class);//【timeData
+                if (timeData.size() > 0) {//非首次登陆该部手机
+                    Fragment fragment = getChildFragmentManager().findFragmentByTag(userRank);//【
                     if (fragment == null) {
                         setTabSelection(Integer.valueOf(userRank));
                     }
-                } else {
-                    DataSupport.deleteAll(BusinessData.class);
-                    DataSupport.deleteAll(TimeData.class);
-                    DeleteFolderUtil.deleteFolder(Environment.getExternalStorageDirectory()+"/GZRJWorkassistant");
+                } else {//首次登陆该部手机
+                    DataSupport.deleteAll(BusinessData.class);//[清除掉该部手机中记录的其他账号的工程资料]
+                    DataSupport.deleteAll(TimeData.class);//[清除掉该部手机中记录的其他账号的获取工程资料的时间记录]
+                    DeleteFolderUtil.deleteFolder(Environment.getExternalStorageDirectory()+"/GZRJWorkassistant");//[清除掉该部手机中记录的其他账号的获取的图片等资料在SD卡中文件夹]
                     mImageLoader = ImageLoader.getInstance();
                     pDialog = new ProgressDialog(getActivity());
                     pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                     pDialog.setCancelable(false);
-                    pDialog.setMessage("请保持网络连接，正在加载数据...");
+                    pDialog.setMessage("请保持网络连接，正在加载数据...");//[检查站的不在这儿，在InspectionStationFragment中。它没有工程类型和状态的筛选]
                     pDialog.show();
                     if (userRank.equals("0")) {
                         getWorkerBusiness();
@@ -134,14 +134,14 @@ public class BusinessFragment extends Fragment {
     }
 
     private void getDirectorBusiness() {
-        String time = "2016-1-10 10:00:00";
+        String time = "2016-1-10 10:00:00";//【
         TimeData timeData = new TimeData();
         timeData.setTime(time);
         timeData.setUserNo(userNo);
         timeData.save();
 
         String url = null;
-        try {
+        try {//卢工接口2. 获取工程项目  【begindate
             url = "?cmd=getconstruction&userno=" + URLEncoder.encode(userNo, "UTF-8") + "&begindate=" + URLEncoder.encode(time, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -174,7 +174,7 @@ public class BusinessFragment extends Fragment {
 
         ContentValues values = new ContentValues();
         values.put("time", time);
-        DataSupport.updateAll(TimeData.class, values, "userNo = ?", userNo);
+        DataSupport.updateAll(TimeData.class, values, "userNo = ?", userNo);//[储存获得工程数据的时间，做什么用？]
 
         List<BusinessByLeader> list = JsonParseUtils.getLeaderBusiness(data);
         if(list.size() == 0){
@@ -241,7 +241,7 @@ public class BusinessFragment extends Fragment {
         timeData.save();
 
         String url = null;
-        try {
+        try {//卢工接口2. 获取工程项目  【State = 状态（已派工/未派工）
             url = "?cmd=getconstruction&userno=" + URLEncoder.encode(userNo, "UTF-8") + "&begindate=" + URLEncoder.encode(time, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -250,7 +250,7 @@ public class BusinessFragment extends Fragment {
         HttpUtils.sendHttpGetRequest(url, new HttpCallbackListener() {
             @Override
             public void onFinish(String response) {
-                Log.e("response", response);
+                Log.e("卢2response", response);
                 saveLeaderBusinessData(response);
             }
 
@@ -275,10 +275,10 @@ public class BusinessFragment extends Fragment {
 
         ContentValues values = new ContentValues();
         values.put("time", time);
-        DataSupport.updateAll(TimeData.class, values, "userNo = ?", userNo);
+        DataSupport.updateAll(TimeData.class, values, "userNo = ?", userNo);//[ 获取工程的时间 记入数据库]
 
         List<BusinessByLeader> list = JsonParseUtils.getLeaderBusiness(data);
-        if(list.size() == 0){
+        if(list.size() == 0){//无工程信息
             pDialog.dismiss();
             Fragment fragment = getChildFragmentManager().findFragmentByTag(userRank);
             if (fragment == null) {
@@ -295,7 +295,7 @@ public class BusinessFragment extends Fragment {
             data1.setState(order.getState());
             data1.setReceivedTime(order.getReceivedTime());
             data1.setDeadline(order.getDeadline());
-            data1.setFlag(order.getFlag());
+            data1.setFlag(order.getFlag());//[也就是服务器返回的State]
             data1.setTemInfoNum(order.getTemInfoNum());
             List<DetailedInfo> infos = order.getDetailedInfos();
             for (DetailedInfo info : infos) {
@@ -303,7 +303,7 @@ public class BusinessFragment extends Fragment {
                 data2.setKey(info.getKey());
                 data2.setValue(info.getValue());
                 data2.save();
-                data1.getDetailedInfoList().add(data2);
+                data1.getDetailedInfoList().add(data2);//[保存工程的详情]
             }
             List<PicUrl> picUrls = order.getPicUrls();
             for (final PicUrl picUrl : picUrls) {
@@ -313,8 +313,8 @@ public class BusinessFragment extends Fragment {
                     public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                         super.onLoadingComplete(imageUri, view, loadedImage);
                         try {
-                            File path = ImageUtils.getImagePath(getActivity(), userNo, order.getOrderId());
-                            ImageUtils.saveFile(getActivity(), loadedImage, picUrl.getPicUrl(), path);
+                            File path = ImageUtils.getImagePath(getActivity(), userNo, order.getOrderId());//[创建一个存储图片的路径]
+                            ImageUtils.saveFile(getActivity(), loadedImage, picUrl.getPicUrl(), path);//[保存下载的图片]
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -323,7 +323,7 @@ public class BusinessFragment extends Fragment {
                 ImageData data3 = new ImageData();
                 data3.setUrl(picUrl.getPicUrl());
                 data3.save();
-                data1.getImageDataList().add(data3);
+                data1.getImageDataList().add(data3);//[保存图片的Url]
             }
             data1.save();
             getMachine(order.getOrderId(), data1);
@@ -338,7 +338,7 @@ public class BusinessFragment extends Fragment {
 
     private void getMachineApply(String orderId, final BusinessData businessData) {
         String url = null;
-        try {
+        try {//卢工接口54．属于自己制单，但还没有接收完的机械申请单【接收完的机械单资料如何获得？
             url = "?cmd=getmymachineneed&userno=" + URLEncoder.encode(userNo, "UTF-8") +
                     "&billno=&fileno=" + URLEncoder.encode(orderId, "UTF-8")+"&checkdate=";
         } catch (UnsupportedEncodingException e) {
@@ -415,7 +415,7 @@ public class BusinessFragment extends Fragment {
 
     private void getMachineReceived(String orderId, final BusinessData businessData) {
         String url = null;
-        try {
+        try {//卢工接口55．获取某工程项目已经领出去的机械
             url = "?cmd=gethavesendmachine&fileno=" + URLEncoder.encode(orderId, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -474,7 +474,7 @@ public class BusinessFragment extends Fragment {
         timeData.save();
 
         String url = null;
-        try {
+        try {//卢工接口13. 获取我的工单
             url = "?cmd=getmycons&userno=" + URLEncoder.encode(userNo, "UTF-8") + "&fileno=&begindate=" + URLEncoder.encode(time, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -511,7 +511,7 @@ public class BusinessFragment extends Fragment {
         values.put("time", time);
         DataSupport.updateAll(TimeData.class, values, "userNo = ?", userNo);
 
-        List<BusinessByWorker> list = JsonParseUtils.getWorkerBusiness(data);
+        List<BusinessByWorker> list = JsonParseUtils.getWorkerBusiness(data);//服务器返回的工程数据
         if(list.size() == 0){
             pDialog.dismiss();
             Fragment fragment = getChildFragmentManager().findFragmentByTag(userRank);
@@ -532,7 +532,7 @@ public class BusinessFragment extends Fragment {
             data1.setFlag(order.getFlag());
             data1.setTemInfoNum(order.getTemInfoNum());
             data1.setRecordFileName(order.getRecordFileName());
-            if (order.getRecordFileName() != null && !order.getRecordFileName().equals("")) {
+            if (order.getRecordFileName() != null && !order.getRecordFileName().equals("")) {//【
                 String url = HttpUtils.voiceURLPath + order.getRecordFileName();
                 File file = VoiceUtil.getVoicePath(getActivity(), userNo, order.getOrderId());
                 HttpUtils.downloadFile(url, file, new HttpCallbackListener() {
@@ -602,7 +602,7 @@ public class BusinessFragment extends Fragment {
 
     private void getSuppliesApply(String orderId, final BusinessData businessData) {
         String url = null;
-        try {
+        try {//卢工接口17. 获取属于自己制单的材料申请单
             url = "?cmd=getmymaterialneedmain&userno=" + URLEncoder.encode(userNo, "UTF-8") +
                     "&checkdate=&fileno=" + URLEncoder.encode(orderId, "UTF-8");
         } catch (UnsupportedEncodingException e) {
@@ -681,7 +681,7 @@ public class BusinessFragment extends Fragment {
 
     private void getSuppliesReceived(String orderId, final BusinessData businessData) {
         String url = null;
-        try {
+        try {//卢工接口49．监听哪些材料可以领用
             url = "?cmd=getmaterialsend&userno=" + URLEncoder.encode(userNo, "UTF-8") +
                     "&checkdate=&fileno=" + URLEncoder.encode(orderId, "UTF-8") +
                     "&billno=";
@@ -699,7 +699,7 @@ public class BusinessFragment extends Fragment {
                         List<SuppliesNo> list = JsonParseUtils.getMyOrderSuppliesNoBySend(response);
                         for(SuppliesNo suppliesNo : list){
                             SuppliesNoData suppliesNoData = new SuppliesNoData();
-                            suppliesNoData.setApplyId(suppliesNo.getApplyId());
+                            suppliesNoData.setApplyId(suppliesNo.getApplyId());//【]
                             suppliesNoData.setReceivedId(suppliesNo.getReceivedId());
                             suppliesNoData.setReceivedState(suppliesNo.getReceivedState());
                             suppliesNoData.setReceivedTime(suppliesNo.getReceivedTime());

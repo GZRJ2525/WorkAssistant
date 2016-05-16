@@ -91,7 +91,7 @@ public class AcceptanceFragment extends Fragment implements View.OnClickListener
     private void query() {
         String orderId = et_orderId.getText().toString().trim();//输入的工程编号
         String url = null;
-        try {
+        try {//卢工接口57．获取工程的所有信息，是否完工都可以查询
             url = "?cmd=getfinishconstruction&userno=" + URLEncoder.encode(userNo, "UTF-8")
                     + "&fileno=" + URLEncoder.encode(orderId, "UTF-8") + "&enddate=&isfinish=1";
         } catch (UnsupportedEncodingException e) {

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BusinessData extends DataSupport {
     private int id;
-    private String user;                    //用户名
+    private String user;                    //用户名[用户账号，不是用户名字]
     private String orderId;                 //工程编码
     private String type;                    //工程类型
     private String state;                   //工程状态
@@ -16,11 +16,11 @@ public class BusinessData extends DataSupport {
     private boolean urgent;                 //工程是否紧急
     private int temInfoNum;                 //标记有多少条临时信息
     private String flag;                    //状态标识
-    private String recordFileName;          //录音文件名
-    private List<SuppliesNoData> suppliesNoList = new ArrayList<SuppliesNoData>();  //材料单号
-    private List<MachineNoData> machineNoList = new ArrayList<MachineNoData>(); //机械单号
+    private String recordFileName;          //录音文件名[施工员的BusinessData类该属性才有值]
+    private List<SuppliesNoData> suppliesNoList = new ArrayList<SuppliesNoData>();  //材料单号[]
+    private List<MachineNoData> machineNoList = new ArrayList<MachineNoData>(); //机械单号[组长有该属性，施工员没有]
     private List<SuppliesData> suppliesDataList = new ArrayList<SuppliesData>();//材料清单
-    private List<MachineData> machineDataList = new ArrayList<MachineData>();   //机械清单
+    private List<MachineData> machineDataList = new ArrayList<MachineData>();   //机械清单[组长有该属性，施工员没有]
     private List<DetailedInfoData> detailedInfoList = new ArrayList<DetailedInfoData>();//工程详细信息
     private List<ImageData> imageDataList = new ArrayList<ImageData>();     //工程图片
 

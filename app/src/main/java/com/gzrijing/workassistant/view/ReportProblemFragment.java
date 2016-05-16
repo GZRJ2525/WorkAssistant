@@ -226,6 +226,10 @@ public class ReportProblemFragment extends Fragment implements View.OnClickListe
     public void onClick(View v) {
       switch (v.getId()) {
       case R.id.fragment_report_problem_report_btn:
+          if(et_describe.getText().toString().trim().equals("")){
+              ToastUtil.showToast(getActivity(),"请填写问题描述", Toast.LENGTH_SHORT);
+              return;
+          }
           btn_report.setVisibility(View.GONE);
           String content = et_describe.getText().toString().trim();
 

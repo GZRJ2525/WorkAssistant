@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gzrijing.workassistant.R;
@@ -39,6 +40,10 @@ public class ReportInfoCompleteActivity extends BaseActivity {
     private ImageLoader mImageLoader;
     private ListView lv_suppliesClient;
     private ListView lv_suppliesWater;
+    private TextView KHConsContent;
+    private TextView KHEarthWorkContent ;
+    private TextView SWConsContent ;
+    private TextView SWEarthWorkContent ;
     private PrintInfoAdapter detailedAdapter;
     private PrintSuppliesAdapter clientAdapter;
     private PrintSuppliesAdapter waterAdapter;
@@ -69,7 +74,7 @@ public class ReportInfoCompleteActivity extends BaseActivity {
 
     private void getCompletePicUrl() {
         String url = null;
-        try {
+        try {//卢工接口27. 获取工程项目照片。卢工接口31．获取某一工程进度
             url = "?cmd=getconspic&fileno=" + URLEncoder.encode(orderId, "UTF-8") + "&relationid=&pictype=WnW_ConsFinishPic";
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -107,7 +112,7 @@ public class ReportInfoCompleteActivity extends BaseActivity {
 
     private void getCompleteInfo() {
         String url = null;
-        try {
+        try {//卢工接口57．获取工程的所有信息，是否完工都可以查询
             url = "?cmd=getfinishconstruction&userno=" + URLEncoder.encode(userNo, "UTF-8") +
                     "&fileno=" + URLEncoder.encode(orderId, "UTF-8") + "&enddate=&isfinish=2";
         } catch (UnsupportedEncodingException e) {
@@ -122,10 +127,14 @@ public class ReportInfoCompleteActivity extends BaseActivity {
                     public void run() {
                         ArrayList<Acceptance> list = JsonParseUtils.getReportCompleteInfo(response);
                         infos.addAll(list);
-                        if (!infos.toString().equals("[]")) {
+                        if (!infos.toString().equals("[]")) {//【"[]"
                             detailedAdapter = new PrintInfoAdapter(ReportInfoCompleteActivity.this, infos.get(0).getDetailedInfos());
                             clientAdapter = new PrintSuppliesAdapter(ReportInfoCompleteActivity.this, infos.get(0).getSuppliesByClient());
                             waterAdapter = new PrintSuppliesAdapter(ReportInfoCompleteActivity.this, infos.get(0).getSuppliesByWater());
+                            KHConsContent.setText("客户的施工内容："+list.get(0).getKHContent());
+                            KHEarthWorkContent.setText("客户的土建项目："+list.get(0).getKHCivil());
+                            SWConsContent.setText("水务的施工内容："+list.get(0).getSWContent());
+                            SWEarthWorkContent.setText("水务的土建项目："+list.get(0).getSWCivil());
                             lv_info.setAdapter(detailedAdapter);
                             lv_suppliesClient.setAdapter(clientAdapter);
                             lv_suppliesWater.setAdapter(waterAdapter);
@@ -155,6 +164,13 @@ public class ReportInfoCompleteActivity extends BaseActivity {
         lv_info = (ListView) findViewById(R.id.report_info_complete_info_lv);
         lv_suppliesClient = (ListView) findViewById(R.id.report_info_complete_client_supplies_lv);
         lv_suppliesWater = (ListView) findViewById(R.id.report_info_complete_water_supplies_lv);
+
+        //显示客户的施工内容和土建项目
+        KHConsContent = (TextView) findViewById(R.id.KHConsContent_tv);
+        KHEarthWorkContent = (TextView) findViewById(R.id.KHEarthWorkContent_tv);
+        //显示水务的施工内容和土建项目
+        SWConsContent = (TextView) findViewById(R.id.SWConsContent_tv);
+        SWEarthWorkContent = (TextView) findViewById(R.id.SWEarthWorkContent_tv);
 
         gv_image = (GridView) findViewById(R.id.report_info_complete_image_gv);
     }

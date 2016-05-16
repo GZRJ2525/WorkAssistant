@@ -41,6 +41,7 @@ public class ReportCompleteService extends IntentService {
     private String supervisionname;     //　监理员
     private String installname;         //安装人员
     private String earthworkname;       //土方人员
+    private String payunit;             //第三方交款单位
     private String remark4;             //　备　注
     private Handler handler = new Handler();
     private String userNo;
@@ -142,6 +143,7 @@ public class ReportCompleteService extends IntentService {
         supervisionname = "noc";
         installname = "noc";
         earthworkname = "noc";
+        payunit = "noc";
         remark4 = "noc";
 
     }
@@ -203,12 +205,15 @@ public class ReportCompleteService extends IntentService {
             if (info.getKey().equals("土方人员")) {
                 earthworkname = info.getValue();
             }
+            if (info.getKey().equals("第三方交款单位")) {
+                payunit = info.getValue();
+            }
             if (info.getKey().equals("　备　注")) {
                 remark4 = info.getValue();
             }
         }
 
-        RequestBody requestBody = new FormEncodingBuilder()
+        RequestBody requestBody = new FormEncodingBuilder()//卢工接口10. 完成工程项目
                 .add("cmd", "dofinishcons")
                 .add("userno", userNo)
                 .add("fileno", orderId)
@@ -229,6 +234,7 @@ public class ReportCompleteService extends IntentService {
                 .add("supervisionname", supervisionname)
                 .add("installname", installname)
                 .add("earthworkname", earthworkname)
+                .add("payunit", payunit)
                 .add("remark4", remark4)
                 .build();
 
@@ -239,7 +245,7 @@ public class ReportCompleteService extends IntentService {
         FileNameMap fileNameMap = URLConnection.getFileNameMap();
         String contentTypeFor = fileNameMap.getContentTypeFor(path);
         if (contentTypeFor == null) {
-            contentTypeFor = "application/octet-stream";
+                contentTypeFor = "application/octet-stream";
         }
         return contentTypeFor;
     }

@@ -66,7 +66,7 @@ public class BusinessLeaderByMyOrderActivity extends BaseActivity {
         pDialog.setMessage("正在加载数据...");
         pDialog.show();
         String url = null;
-        try {
+        try {//卢工接口13. 获取我的工单
             url = "?cmd=getmycons&userno="+ URLEncoder.encode(userNo, "UTF-8")
                     +"&fileno="+URLEncoder.encode(orderId, "UTF-8")+"&begindate=";
         } catch (UnsupportedEncodingException e) {

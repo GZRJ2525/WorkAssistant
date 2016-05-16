@@ -229,7 +229,7 @@
                 android:layout_width="@dimen/sw_60dp"
                 android:layout_height="@dimen/sw_30dp"
                 android:background="@drawable/btn_blue"
-                android:text="待审核"
+                android:text="不审核"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sw_15dp" />
         </LinearLayout>

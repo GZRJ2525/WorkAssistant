@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //初始化推送服务
         pushManager = PushManager.getInstance();
         pushManager.initialize(getApplicationContext());
-        ServiceOpenAndClose serviceOpenAndClose = DataSupport.find(ServiceOpenAndClose.class, 1);
+        ServiceOpenAndClose serviceOpenAndClose = DataSupport.find(ServiceOpenAndClose.class, 1);//[]
         if (serviceOpenAndClose == null) {
             ServiceOpenAndClose service = new ServiceOpenAndClose();
             service.setPushService("1");
@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             values.put("pushService", "1");
             DataSupport.update(ServiceOpenAndClose.class, values, 1);
         }
-        clientId = pushManager.getClientid(getApplicationContext());
+        clientId = pushManager.getClientid(getApplicationContext());//用于标识客户端身份，由第三方客户端获取并保存到第三方服务端。
 
         getUserNamePwd();
     }
@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pDialog.setMessage("正在登陆...");
         pDialog.show();
-        String userName = et_user.getText().toString().trim();
+        String userName = et_user.getText().toString().trim();//是账号userNo，非用户名字
         String password = et_pwd.getText().toString().trim().toLowerCase();
         if (password.equals(pwd)) {
             password = pwd;
@@ -169,9 +169,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             password = md5.substring(0, md5.length() - 2)
                     + password.substring(password.length() - 2);
         }
-        RequestBody requestBody = new FormEncodingBuilder()
+        RequestBody requestBody = new FormEncodingBuilder()//卢工接口1. 登录         -----------
                 .add("cmd", "login")
-                .add("userno", userName)
+                .add("userno", userName)//userName是账号userNo，非用户名字
                 .add("pwd", password)
                 .add("clientid", clientId)
                 .build();
@@ -181,11 +181,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onFinish(String response) {
                 Log.e("response", response);
                 Message msg = null;
-                if (response.substring(0, 1).equals("E")) {
+                if (response.substring(0, 1).equals("E")) {//服务器返回"Error" 失败
                     msg = handler.obtainMessage(1);
                 } else {
                     pwd = finalPWD;
-                    User user = JsonParseUtils.getUser(response);
+                    User user = JsonParseUtils.getUser(response);//json 数据解析
                     msg = handler.obtainMessage(2);
                     msg.obj = user;
                 }
@@ -205,7 +205,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
-                case 0:
+                case 0://
                     ToastUtil.showToast(LoginActivity.this, "与服务器断开连接", Toast.LENGTH_SHORT);
                     pDialog.dismiss();
                     break;
@@ -223,7 +223,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     edit.putString("userSit", user.getUserSit());
                     edit.commit();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.putExtra("fragId", "0");
+                    intent.putExtra("fragId", "0");//【fragId
                     startActivity(intent);
                     ToastUtil.showToast(LoginActivity.this, "欢迎" + user.getUserName() + "登录", Toast.LENGTH_SHORT);
                     pDialog.dismiss();

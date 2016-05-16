@@ -133,7 +133,7 @@ public class SafetyInspectFailItemAdapter extends BaseAdapter {
         }
 
         v.content.setText(list.get(position).getContent());
-        v.worker.setText(list.get(position).getWorker());
+        v.worker.setText(list.get(position).getWorker());//【
         v.remark.setText(list.get(position).getRemark());
         v.remark.clearFocus();
         if (index != -1 && index == position) {

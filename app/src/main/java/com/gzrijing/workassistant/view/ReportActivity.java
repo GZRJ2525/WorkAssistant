@@ -74,11 +74,11 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
                 setTabSelection(1);
                 break;
 
-            case R.id.report_complete_btn:
+            case R.id.report_project_amount_btn:
                 setTabSelection(2);
                 break;
 
-            case R.id.report_project_amount_btn:
+            case R.id.report_complete_btn :
                 setTabSelection(3);
                 break;
         }
@@ -91,9 +91,9 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
             case 0:
                 btn_progress.setBackgroundResource(R.drawable.btn_paging_left_on);
                 btn_progress.setTextColor(getResources().getColor(R.color.white));
-                btn_complete.setBackgroundResource(R.drawable.btn_paging_middle_off);
+                btn_complete.setBackgroundResource(R.drawable.btn_paging_right_off);
                 btn_complete.setTextColor(getResources().getColor(R.color.blue));
-                btn_projectAmount.setBackgroundResource(R.drawable.btn_paging_right_off);
+                btn_projectAmount.setBackgroundResource(R.drawable.btn_paging_middle_off);
                 btn_projectAmount.setTextColor(getResources().getColor(R.color.blue));
                 btn_problem.setBackgroundResource(R.drawable.btn_paging_middle_off);
                 btn_problem.setTextColor(getResources().getColor(R.color.blue));
@@ -101,7 +101,7 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
                     reportProgress = new ReportProgressFragment();
                     Bundle bundle = new Bundle();
                     bundle.putString("orderId", orderId);
-                    reportProgress.setArguments(bundle);
+                    reportProgress.setArguments(bundle);//【
                     transaction.add(R.id.fragment_report, reportProgress);
                 } else {
                     transaction.show(reportProgress);
@@ -111,9 +111,9 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
             case 1:
                 btn_progress.setBackgroundResource(R.drawable.btn_paging_left_off);
                 btn_progress.setTextColor(getResources().getColor(R.color.blue));
-                btn_complete.setBackgroundResource(R.drawable.btn_paging_middle_off);
+                btn_complete.setBackgroundResource(R.drawable.btn_paging_right_off);
                 btn_complete.setTextColor(getResources().getColor(R.color.blue));
-                btn_projectAmount.setBackgroundResource(R.drawable.btn_paging_right_off);
+                btn_projectAmount.setBackgroundResource(R.drawable.btn_paging_middle_off);
                 btn_projectAmount.setTextColor(getResources().getColor(R.color.blue));
                 btn_problem.setBackgroundResource(R.drawable.btn_paging_middle_on);
                 btn_problem.setTextColor(getResources().getColor(R.color.white));
@@ -129,11 +129,31 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
                 break;
 
             case 2:
+            btn_progress.setBackgroundResource(R.drawable.btn_paging_left_off);
+            btn_progress.setTextColor(getResources().getColor(R.color.blue));
+            btn_complete.setBackgroundResource(R.drawable.btn_paging_right_off);
+            btn_complete.setTextColor(getResources().getColor(R.color.blue));
+            btn_projectAmount.setBackgroundResource(R.drawable.btn_paging_middle_on);
+            btn_projectAmount.setTextColor(getResources().getColor(R.color.white));
+            btn_problem.setBackgroundResource(R.drawable.btn_paging_middle_off);
+            btn_problem.setTextColor(getResources().getColor(R.color.blue));
+            if (reportProjectAmount == null) {
+                reportProjectAmount = new ReportProjectAmountFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("orderId", orderId);
+                bundle.putString("type", type);
+                reportProjectAmount.setArguments(bundle);
+                transaction.add(R.id.fragment_report, reportProjectAmount);
+            } else {
+                transaction.show(reportProjectAmount);
+            }
+            break;
+            case 3:
                 btn_progress.setBackgroundResource(R.drawable.btn_paging_left_off);
                 btn_progress.setTextColor(getResources().getColor(R.color.blue));
-                btn_complete.setBackgroundResource(R.drawable.btn_paging_middle_on);
+                btn_complete.setBackgroundResource(R.drawable.btn_paging_right_on);
                 btn_complete.setTextColor(getResources().getColor(R.color.white));
-                btn_projectAmount.setBackgroundResource(R.drawable.btn_paging_right_off);
+                btn_projectAmount.setBackgroundResource(R.drawable.btn_paging_middle_off);
                 btn_projectAmount.setTextColor(getResources().getColor(R.color.blue));
                 btn_problem.setBackgroundResource(R.drawable.btn_paging_middle_off);
                 btn_problem.setTextColor(getResources().getColor(R.color.blue));
@@ -146,27 +166,6 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
                     transaction.add(R.id.fragment_report, reportComplete);
                 } else {
                     transaction.show(reportComplete);
-                }
-                break;
-
-            case 3:
-                btn_progress.setBackgroundResource(R.drawable.btn_paging_left_off);
-                btn_progress.setTextColor(getResources().getColor(R.color.blue));
-                btn_complete.setBackgroundResource(R.drawable.btn_paging_middle_off);
-                btn_complete.setTextColor(getResources().getColor(R.color.blue));
-                btn_projectAmount.setBackgroundResource(R.drawable.btn_paging_right_on);
-                btn_projectAmount.setTextColor(getResources().getColor(R.color.white));
-                btn_problem.setBackgroundResource(R.drawable.btn_paging_middle_off);
-                btn_problem.setTextColor(getResources().getColor(R.color.blue));
-                if (reportProjectAmount == null) {
-                    reportProjectAmount = new ReportProjectAmountFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("orderId", orderId);
-                    bundle.putString("type", type);
-                    reportProjectAmount.setArguments(bundle);
-                    transaction.add(R.id.fragment_report, reportProjectAmount);
-                } else {
-                    transaction.show(reportProjectAmount);
                 }
                 break;
 

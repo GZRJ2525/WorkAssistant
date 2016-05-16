@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Acceptance implements Parcelable {
     private String orderId;             //工程编号
@@ -13,6 +12,8 @@ public class Acceptance implements Parcelable {
     private String KHCivil;             //客户土建项目
     private String SWContent;           //水务施工内容
     private String SWCivil;             //水务土建项目
+    private String KHPayUnit;//客户收款
+    private String SWPayUnit;//水务收款
     private ArrayList<Supplies> suppliesByClient = new ArrayList<Supplies>();       //客户收费材料
     private ArrayList<Supplies> suppliesByWater = new ArrayList<Supplies>();        //水务收费材料
     private ArrayList<DetailedInfo> detailedInfos = new ArrayList<DetailedInfo>();  //详细信息
@@ -20,13 +21,15 @@ public class Acceptance implements Parcelable {
     public Acceptance() {
     }
 
-    public Acceptance(String orderId, String orderType, String KHContent, String KHCivil, String SWContent, String SWCivil, ArrayList<Supplies> suppliesByClient, ArrayList<Supplies> suppliesByWater, ArrayList<DetailedInfo> detailedInfos) {
+    public Acceptance(String orderId, String orderType, String KHContent, String KHCivil, String SWContent, String SWCivil,String KHPayUnit,String SWPayUnit, ArrayList<Supplies> suppliesByClient, ArrayList<Supplies> suppliesByWater, ArrayList<DetailedInfo> detailedInfos) {
         this.orderId = orderId;
         this.orderType = orderType;
         this.KHContent = KHContent;
         this.KHCivil = KHCivil;
         this.SWContent = SWContent;
         this.SWCivil = SWCivil;
+        this.KHPayUnit = KHPayUnit;
+        this.SWPayUnit = SWPayUnit;
         this.suppliesByClient = suppliesByClient;
         this.suppliesByWater = suppliesByWater;
         this.detailedInfos = detailedInfos;
@@ -80,6 +83,18 @@ public class Acceptance implements Parcelable {
         this.SWCivil = SWCivil;
     }
 
+    public String getKHPayUnit() {return KHPayUnit;}
+
+    public void setKHPayUnit(String KHPayUnit) {this.KHPayUnit = KHPayUnit;}
+
+    public String getSWPayUnit() {
+        return SWPayUnit;
+    }
+
+    public void setSWPayUnit(String SWPayUnit) {
+        this.SWPayUnit = SWPayUnit;
+    }
+
     public ArrayList<Supplies> getSuppliesByClient() {
         return suppliesByClient;
     }
@@ -117,6 +132,8 @@ public class Acceptance implements Parcelable {
         dest.writeString(this.KHCivil);
         dest.writeString(this.SWContent);
         dest.writeString(this.SWCivil);
+        dest.writeString(this.KHPayUnit);
+        dest.writeString(this.SWPayUnit);
         dest.writeTypedList(suppliesByClient);
         dest.writeTypedList(suppliesByWater);
         dest.writeTypedList(detailedInfos);
@@ -129,6 +146,8 @@ public class Acceptance implements Parcelable {
         this.KHCivil = in.readString();
         this.SWContent = in.readString();
         this.SWCivil = in.readString();
+        this.KHPayUnit = in.readString();
+        this.SWPayUnit = in.readString();
         this.suppliesByClient = in.createTypedArrayList(Supplies.CREATOR);
         this.suppliesByWater = in.createTypedArrayList(Supplies.CREATOR);
         this.detailedInfos = in.createTypedArrayList(DetailedInfo.CREATOR);

@@ -20,7 +20,26 @@
                 android:id="@+id/report_info_complete_info_lv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black" />
+            <!--客户的施工内容-->
+            <TextView
+                android:id="@+id/KHConsContent_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"/>
+            <!--客户的土建项目-->
+            <TextView
+                android:id="@+id/KHEarthWorkContent_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,7 +100,22 @@
                 android:id="@+id/report_info_complete_client_supplies_lv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
+            <!--水务的施工内容-->
+            <TextView
+                android:id="@+id/SWConsContent_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"/>
+            <!--水务的土建项目-->
+            <TextView
+                android:id="@+id/SWEarthWorkContent_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sw_15dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

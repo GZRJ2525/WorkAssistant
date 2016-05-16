@@ -33,16 +33,17 @@ public class ReportProblemService extends IntentService {
     protected void onHandleIntent(Intent intent) {
 
         final ArrayList<PicUrl> picUrls = intent.getParcelableArrayListExtra("picUrls");
-        picUrls.remove(0);
+        picUrls.remove(0);//【
         final String userNo = intent.getStringExtra("userNo");
         final String orderId = intent.getStringExtra("orderId");
         final String content = intent.getStringExtra("content");
 
+        //卢工接口29. 工程汇报问题，施工员汇报或者保存“其它”意外问题， 负责人就是保存者的组长
         RequestBody requestBody = new FormEncodingBuilder()
                 .add("cmd", "dosaveconsaccident")
                 .add("userno", userNo)
                 .add("fileno", orderId)
-                .add("reason", content)
+                .add("reason", content)//施工员汇报的内容
                 .build();
 
         HttpUtils.sendHttpPostRequest(requestBody, new HttpCallbackListener() {
@@ -57,7 +58,7 @@ public class ReportProblemService extends IntentService {
                     });
                 } else {
                     for (PicUrl picUrl : picUrls) {
-                        Log.e("id", response);
+                        Log.e("id", response);//卢工接口37．上传汇报问题图片
                         String[] key = {"cmd", "userno", "fileno", "relationid", "picdescription"};
                         String[] value = {"uploadconsaccidentpic", userNo, orderId, response, ""};
 
@@ -97,7 +98,7 @@ public class ReportProblemService extends IntentService {
                         });
                     }
                     Intent intent1 = new Intent("action.com.gzrijing.workassistant.reportProblemFragment");
-                    sendBroadcast(intent1);
+                    sendBroadcast(intent1);//发广播，以便ReportProblemFragment 收到 问题汇报到服务器的结果。
                 }
             }
 

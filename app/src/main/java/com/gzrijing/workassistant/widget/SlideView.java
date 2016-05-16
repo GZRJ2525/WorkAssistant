@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.gzrijing.workassistant.R;
 
-public class SlideView extends LinearLayout {
+public class SlideView extends LinearLayout {//【
 
     private static final String TAG = "SlideView";
 

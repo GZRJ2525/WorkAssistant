@@ -1,10 +1,7 @@
 package com.gzrijing.workassistant.view;
 
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +20,6 @@ import com.gzrijing.workassistant.entity.Acceptance;
 import com.gzrijing.workassistant.entity.QueryProjectAmount;
 import com.gzrijing.workassistant.entity.Supplies;
 import com.gzrijing.workassistant.listener.HttpCallbackListener;
-import com.gzrijing.workassistant.service.ReportProjectAmountService;
 import com.gzrijing.workassistant.util.HttpUtils;
 import com.gzrijing.workassistant.util.JsonParseUtils;
 import com.gzrijing.workassistant.util.ToastUtil;
@@ -72,7 +67,7 @@ public class QueryProjectAmountByInfoActivity extends BaseActivity {
         getQueryProjectAmountSupplies();
     }
 
-    private void getQueryProjectAmountSupplies() {
+    private void getQueryProjectAmountSupplies() {//卢工接口45．查看已派工单工程量信息—材料
         String url = "?cmd=getsomeinstallconfirmdetail&togetherid=&confirmid=" + projectAmount.getId() + "&fileno=";
         HttpUtils.sendHttpGetRequest(url, new HttpCallbackListener() {
             @Override
@@ -132,6 +127,8 @@ public class QueryProjectAmountByInfoActivity extends BaseActivity {
         String state = projectAmount.getState();
         if(state.equals("已审核")){
             menu.findItem(R.id.action_print).setVisible(true);
+        }else {
+            menu.findItem(R.id.action_print).setVisible(true);
         }
         return true;
     }
@@ -142,7 +139,7 @@ public class QueryProjectAmountByInfoActivity extends BaseActivity {
 
         if (id == android.R.id.home) {
             finish();
-            return true;
+           return true;
         }
 
         if (id == R.id.action_print) {

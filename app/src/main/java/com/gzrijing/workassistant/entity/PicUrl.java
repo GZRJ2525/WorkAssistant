@@ -5,8 +5,8 @@ import android.os.Parcelable;
 
 public class PicUrl implements Parcelable {
     private String picUrl;
-    private String picTime;
-    private boolean isCheck;
+    private String picTime;//【
+    private boolean isCheck;//【
 
     public PicUrl() {
     }

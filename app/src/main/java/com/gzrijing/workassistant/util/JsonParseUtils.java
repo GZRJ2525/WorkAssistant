@@ -66,15 +66,15 @@ public class JsonParseUtils {
      * @param jsonData
      * @return User
      */
-    public static User getUser(String jsonData) {
+    public static User getUser(String jsonData) {// {"UserNo":"tjq","UserName":"谭杰清","UserDept":"施工组","UserSit":"供水维护组","SitLeader":"0"}
         User user = null;
         try {
             JSONObject jsonObject = new JSONObject(jsonData);
-            String userNo = jsonObject.getString("UserNo");
-            String userName = jsonObject.getString("UserName");
-            String userDept = jsonObject.getString("UserDept");
-            String userSit = jsonObject.getString("UserSit");
-            String userRank = jsonObject.getString("SitLeader");
+            String userNo = jsonObject.getString("UserNo");//账号
+            String userName = jsonObject.getString("UserName");//用户名
+            String userDept = jsonObject.getString("UserDept");//【部门
+            String userSit = jsonObject.getString("UserSit");//【职位
+            String userRank = jsonObject.getString("SitLeader");//是否组长（1表示是组长；0表示不是组长）【还有个3 是主任
             user = new User(userNo, userName, userDept, userSit, userRank);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -112,7 +112,7 @@ public class JsonParseUtils {
                 businessByLeader.setTemInfoNum(temInfoNum);
                 if (state.equals("未派工")) {
                     businessByLeader.setFlag("确认收到");
-                } else if (state.equals("未派工")) {
+                } else if (state.equals("未派工")) {//【可以省略这个判断。客户要求，可以多次派工，派工状态下还可以派工。完工后，也可以派工。
                     businessByLeader.setFlag("已完工");
                 } else {
                     businessByLeader.setFlag("派工");
@@ -438,8 +438,8 @@ public class JsonParseUtils {
                     String longitude = "0";
                     String latitude = "0";
                     if (!gps.equals("")) {
-                        longitude = gps.split("，")[0];
-                        latitude = gps.split("，")[1];
+                        longitude = gps.split("，")[0];//【
+                        latitude = gps.split("，")[1];//【
                     }
                     String valveNo = jsonObject1.getString("ValveNo");
                     String valveGNo = jsonObject1.getString("ValveGNo");
@@ -1080,12 +1080,12 @@ public class JsonParseUtils {
     }
 
     /**
-     * 获取某工程的机械申请单
+     * 获取某工程的机械申请单。
      *
      * @param jsonData
      * @return
      */
-    public static ArrayList<MachineNo> getMachineApplyNo(String jsonData) {
+    public static ArrayList<MachineNo> getMachineApplyNo(String jsonData) {//卢工接口54
         ArrayList<MachineNo> list = new ArrayList<MachineNo>();
         try {
             JSONArray jsonArray = new JSONArray(jsonData);
@@ -1459,6 +1459,10 @@ public class JsonParseUtils {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String orderId = jsonObject.getString("FileNo");
                 String orderType = jsonObject.getString("ConsTypeName");
+                String KHConsContent = jsonObject.getString("KHConsContent");
+                String KHEarthWorkContent = jsonObject.getString("KHEarthWorkContent");
+                String SWConsContent = jsonObject.getString("SWConsContent");
+                String SWEarthWorkContent = jsonObject.getString("SWEarthWorkContent");
 
                 String KHMaking = jsonObject.getString("KHMaking");
                 ArrayList<Supplies> suppliesByClient = new ArrayList<Supplies>();
@@ -1527,6 +1531,10 @@ public class JsonParseUtils {
                 Acceptance acceptance = new Acceptance();
                 acceptance.setOrderId(orderId);
                 acceptance.setOrderType(orderType);
+                acceptance.setKHContent(KHConsContent);
+                acceptance.setKHCivil(KHEarthWorkContent);
+                acceptance.setSWContent(SWConsContent);
+                acceptance.setSWCivil(SWEarthWorkContent);
                 acceptance.setSuppliesByClient(suppliesByClient);
                 acceptance.setSuppliesByWater(suppliesByWater);
                 acceptance.setDetailedInfos(detailedInfos);
@@ -1959,6 +1967,8 @@ public class JsonParseUtils {
                 String SWContent = jsonObject.getString("SWConsContent");
                 String KHCivil = jsonObject.getString("KHEarthWorkContent");
                 String SWCivil = jsonObject.getString("SWEarthWorkContent");
+                String KHPayUnit = jsonObject.getString("KHPayUnit");
+                String SWPayUnit = jsonObject.getString("SWPayUnit");
 
                 String KHMaking = jsonObject.getString("KHMaking");
                 ArrayList<Supplies> suppliesByClient = new ArrayList<Supplies>();
@@ -2031,6 +2041,8 @@ public class JsonParseUtils {
                 acceptance.setKHCivil(KHCivil);
                 acceptance.setSWContent(SWContent);
                 acceptance.setSWCivil(SWCivil);
+                acceptance.setKHPayUnit(KHPayUnit);
+                acceptance.setSWPayUnit(SWPayUnit);
                 acceptance.setSuppliesByClient(suppliesByClient);
                 acceptance.setSuppliesByWater(suppliesByWater);
                 acceptance.setDetailedInfos(detailedInfos);
